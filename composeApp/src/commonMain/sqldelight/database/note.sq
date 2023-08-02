@@ -1,0 +1,39 @@
+CREATE TABLE noteEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    createAt INTEGER NOT NULL,
+    priority TEXT NOT NULL,
+    rememberMe TEXT,
+    image TEXT
+);
+
+
+insertNote:
+INSERT OR REPLACE  INTO noteEntity(
+    id ,
+    title ,
+    content ,
+    createAt ,
+    priority ,
+    rememberMe,
+    image
+) VALUES (?,?,?,?,?,?,?);
+
+deleteNote:
+DELETE FROM noteEntity WHERE id = :id ;
+
+getNotes:
+SELECT * FROM noteEntity ORDER BY createAt DESC ;
+
+getNotesHighPriority:
+SELECT * FROM noteEntity WHERE priority LIKE "high";
+
+getNotesLowPriority:
+SELECT * FROM noteEntity WHERE priority LIKE "low";
+
+getNotesMedPriority:
+SELECT * FROM noteEntity WHERE priority LIKE "med";
+
+searchNoteByTitle:
+SELECT * FROM noteEntity WHERE title LIKE '%' || :title || '%' ;
