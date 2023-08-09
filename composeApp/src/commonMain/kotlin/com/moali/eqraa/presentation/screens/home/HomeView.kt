@@ -29,6 +29,8 @@ import com.moali.eqraa.ui.resources.ContentDescriptions
 import com.moali.eqraa.presentation.screens.home.components.EqraaIteem
 import com.moali.eqraa.presentation.screens.home.components.HomeEventsType
 import com.moali.eqraa.presentation.screens.home.components.HomeTopAppBar
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 
 
 @Composable
@@ -53,19 +55,19 @@ fun HomeView (
         ){
 
             EqraaIteem(
-                text = "ElQuran Elkarem",
+                text = stringResource(SharedRes.strings.alquran_alkarem),
                 onClick = {
                     onItemClick(HomeEventsType.TO_QURAN)
                 }
             )
+//            EqraaIteem(
+//                text = "Seb7a",
+//                onClick = {
+//                    onItemClick(HomeEventsType.TO_SEBHA)
+//                }
+//            )
             EqraaIteem(
-                text = "Seb7a",
-                onClick = {
-                    onItemClick(HomeEventsType.TO_SEBHA)
-                }
-            )
-            EqraaIteem(
-                text = "Note",
+                text = stringResource(SharedRes.strings.note),
                 onClick = {
                     onItemClick(HomeEventsType.TO_NOTE)
                 }

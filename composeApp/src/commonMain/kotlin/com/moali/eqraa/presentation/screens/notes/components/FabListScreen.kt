@@ -6,13 +6,14 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import com.moali.eqraa.domain.models.Note
 
 @Composable
 fun FabListScreen(
-    navToTaskScreeen: (Int) -> Unit
+    navToTaskScreeen: (Note?) -> Unit
 ) {
     FloatingActionButton(
-        onClick = {  },
+        onClick = { navToTaskScreeen(null) },
         containerColor = MaterialTheme.colorScheme.primary
     ) {
         Icon(

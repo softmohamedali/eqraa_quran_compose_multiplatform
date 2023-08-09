@@ -2,7 +2,7 @@ package com.moali.eqraa
 
 import androidx.compose.ui.interop.LocalUIViewController
 import androidx.compose.ui.window.ComposeUIViewController
-
+import com.moali.eqraa.core.shared.ProvideSqlDelightNoteDataSource
 
 
 fun MainViewController() =ComposeUIViewController {
@@ -12,7 +12,6 @@ fun MainViewController() =ComposeUIViewController {
     MyApp(
         darkTheme = isDarkTheme,
         dynamicColor = false,
-        appModule = AppModule(),
-        imagePicker = ImagePickerFactory(LocalUIViewController.current).createPicker()
+        noteDataSource= ProvideSqlDelightNoteDataSource().sqlDNoteDataSource
     )
 }

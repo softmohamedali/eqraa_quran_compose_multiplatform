@@ -6,12 +6,11 @@ import database.NoteEntity
 
 fun NoteEntity.toNote(): Note {
     return Note(
-        id = this.id.toInt(),
+        id = this.id,
         title = this.title,
         content = this.content,
         createAt = this.createAt.toInt(),
-        priority = Priority.NONE,
-        //ToDo
+        priority =this.priority,
         rememberMe = this.rememberMe,
         image = this.image,
     )

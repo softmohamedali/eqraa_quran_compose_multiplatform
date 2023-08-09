@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.moali.eqraa.ui.resources.ContentDescriptions
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun HomeTopAppBar(
@@ -77,7 +79,7 @@ fun HomeTopAppBar(
         ){
             Spacer(Modifier.weight(1f))
             Text(
-                text = "Eqraa",
+                text = stringResource(SharedRes.strings.app_name),
                 color = MaterialTheme.colorScheme.onPrimary
             )
             IconButton(

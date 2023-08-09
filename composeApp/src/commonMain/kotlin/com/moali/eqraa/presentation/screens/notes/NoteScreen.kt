@@ -1,65 +1,97 @@
 package com.moali.eqraa.presentation.screens.notes
 
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Warning
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarResult
-import androidx.compose.material3.Text
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
-import com.moali.eqraa.core.utils.ResultState
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Action
-import com.moali.eqraa.domain.models.Note
-import com.moali.eqraa.domain.models.Priority
-import com.moali.eqraa.domain.models.ToolBarState
-import com.moali.eqraa.presentation.components.appcomponent.NoteItem
-import com.moali.eqraa.presentation.screens.quran.QuranViewModel
+import com.moali.eqraa.presentation.screens.note_details.NoteDetailsScreen
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import kotlinx.coroutines.launch
 
 
-class NoteScreen : Screen {
+class NoteScreen(
+    private val noteDataSource: NoteDataSource,
+    private val action: Action?
+) : Screen {
 
     @Composable
     override fun Content() {
-        //    val tasks by noteViewModel.allTask.collectAsState()
-//    val searchTasks by noteViewModel.searshTask.collectAsState()
-//    LaunchedEffect(key1 = true) {
-//        noteViewModel.getAllTask()
-//        noteViewModel.getState()
-//    }
+        val noteViewModel = getViewModel(
+            "NoteScreen",
+            viewModelFactory { NoteViewModel(noteDataSource = noteDataSource) }
+        )
+
+        val state = noteViewModel.state
+        if (action != null) {
+            noteViewModel.handleDBAction(action)
+        }
+
         val scaffoldState = rememberScaffoldState()
-//    val toolBarSearchValue by noteViewModel.toolbarSearchValue
-//    val toolBarState by noteViewModel.toolBarState
-//    val state by noteViewModel.stste.collectAsState()
-//    val highPriorityTasks by noteViewModel.highPriorityTasks.collectAsState()
-//    val lowPriorityTasks by noteViewModel.lowPriorityTasks.collectAsState()
-//    val action by noteViewModel.action
-        val noteViewModel= getViewModel("QuranScreen", viewModelFactory { NoteViewModel() })
+        val navigator = LocalNavigator.currentOrThrow
+
 
         NoteView(
-            navToTaskScreeen ={
-
+            navToTaskScreen = {
+                navigator.push(
+                    NoteDetailsScreen(
+                        noteDataSource,
+                        it,
+                    )
+                )
             },
-            noteViewModel =noteViewModel,
-            scaffoldState =scaffoldState,
+            scaffoldState = scaffoldState,
+            action = state.action,
+            notes = state.allNotes,
+            searchNotes = state.searchNotes,
+            state = state.priority,
+            toolBarState = state.noteToolBarState,
+            toolBarSearchValue = state.toolbarSearchValue,
+            isPriorityMenuShow = state.isPriorityMenuShown,
+            isActionMenuShown = state.isActionMenuShown,
+            onHandleDBAction = {
+                noteViewModel.onEvent(NoteEvents.OnHandleDBAction)
+            },
+            onUndoDeleteTask = {
+                noteViewModel.onEvent(NoteEvents.OnUndoDeleteTask)
+            },
+            onPriorityClickSaveState = {
+                noteViewModel.onEvent(NoteEvents.OnPriorityClickSaveState(it))
+            },
+            onActionMenuClick = {
+                noteViewModel.onEvent(NoteEvents.OnActionMenuClick)
+            },
+
+            onConfirmDialogClick = {
+                noteViewModel.onEvent(NoteEvents.OnConfirmDialogClick)
+            },
+            onSearchOpenClick = {
+                noteViewModel.onEvent(NoteEvents.OnSearchOpenClick)
+            },
+            onFilterClick = {
+                noteViewModel.onEvent(NoteEvents.OnFilterClick)
+            },
+            onSearchClick = {
+                noteViewModel.onEvent(NoteEvents.OnSearchClick)
+            },
+            onCloseClick = {
+                noteViewModel.onEvent(NoteEvents.OnCloseClick)
+            },
+            onSearchTextChange = {
+                noteViewModel.onEvent(NoteEvents.OnSearchTextChange(it))
+            },
+            isShowAlertDialog=state.isShowDeleteDialog,
+            onCloseDialog={
+                noteViewModel.onEvent(NoteEvents.OnCloseAlertDelete)
+            },
+            onDeleteActionClick = {
+                noteViewModel.onEvent(NoteEvents.OnDeleteAllClick)
+            }
         )
 
     }

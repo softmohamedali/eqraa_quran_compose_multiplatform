@@ -36,9 +36,13 @@ kotlin {
         binaries.executable()
     }
 
-    iosX64()
-    iosArm64()
-    iosSimulatorArm64()
+
+        iosX64()
+        iosArm64()
+        iosSimulatorArm64()
+
+
+
 
     cocoapods {
         version = "1.0.0"
@@ -88,19 +92,14 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
                 val voyagerVersion = "1.0.0-rc05"
-                // Multiplatform
                 // Navigator
                 implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-                // BottomSheetNavigator
                 implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion")
-                // TabNavigator
                 implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
-                // Transitions
                 implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
 
                 // Koin integration
                 implementation("cafe.adriel.voyager:voyager-koin:$voyagerVersion")
-
 
                 //moko for share resources
                 api("dev.icerock.moko:resources:0.23.0")
@@ -125,8 +124,8 @@ kotlin {
                 implementation(libs.compose.uitooling)
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.ktor.client.okhttp)
-                implementation(libs.sqlDelight.driver.android)
 
+                implementation("com.squareup.sqldelight:android-driver:1.5.5")
                 api("io.insert-koin:koin-android:$koinVersion")
             }
         }
@@ -136,14 +135,12 @@ kotlin {
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
                 implementation(libs.ktor.client.okhttp)
-                implementation(libs.sqlDelight.driver.sqlite)
             }
         }
 
         val jsMain by getting {
             dependencies {
                 implementation(compose.web.core)
-                implementation(libs.sqlDelight.driver.sqljs)
             }
         }
         val androidUnitTest by getting
@@ -154,8 +151,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.ktor.client.darwin)
-                implementation(libs.sqlDelight.driver.native)
-
+                implementation("com.squareup.sqldelight:native-driver:1.5.5")
             }
 
             dependsOn(commonMain)
@@ -236,17 +232,11 @@ compose.experimental {
     web.application {}
 }
 
-libres {
-    // https://github.com/Skeptick/libres#setup
-}
+
 tasks.getByPath("desktopProcessResources").dependsOn("libresGenerateResources")
 tasks.getByPath("desktopSourcesJar").dependsOn("libresGenerateResources")
 tasks.getByPath("jsProcessResources").dependsOn("libresGenerateResources")
 
-buildConfig {
-    // BuildConfig configuration here.
-    // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
-}
 
 multiplatformResources {
     multiplatformResourcesPackage = "com.moali.kmm_sharingresources"
@@ -262,26 +252,12 @@ dependencies {
     commonMainApi("dev.icerock.moko:mvvm-flow-compose:0.16.1")
 }
 
-//sqldelight {
-//    databases {
-//        create("EqraaDatabase") {
-//            // Database configuration here.
-//            // https://cashapp.github.io/sqldelight
-//            packageName.set("com.moali.eqraa.database")
-//
-//            sourceFolders.set(listOf("sqldelight"))
-//        }
-//    }
-//}
-
 sqldelight {
     database("EqraaDatabase") {
         packageName = "com.moali.eqraa.database"
         sourceFolders = listOf("sqldelight")
     }
 }
-
-
 
 apollo {
     service("api") {

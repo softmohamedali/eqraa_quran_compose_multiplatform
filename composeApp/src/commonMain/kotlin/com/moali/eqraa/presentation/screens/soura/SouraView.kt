@@ -1,11 +1,15 @@
 package com.moali.eqraa.presentation.screens.soura
 
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,11 +32,11 @@ fun SouraView(
     onBackClick:()->Unit
 ) {
 
-    LaunchedEffect(1) {
-        Logger.i {
-            soura.sup()
-        }
-    }
+    val scrollableState= rememberScrollState()
+
+
+
+
     Column (
         modifier = Modifier.fillMaxSize(),
     ){
@@ -44,6 +48,7 @@ fun SouraView(
 
         Column (
             modifier = Modifier.fillMaxSize().padding(10.dp)
+                .verticalScroll(scrollableState),
         ){
             Spacer(modifier = Modifier.height(15.dp))
 
@@ -69,8 +74,9 @@ fun SouraView(
                 overflow = TextOverflow.Visible,
                 textAlign = TextAlign.Center,
                 fontSize = 20.sp,
+                lineHeight = 40.sp,
                 style = TextStyle(
-                    textDirection = TextDirection.Rtl
+                    textDirection = TextDirection.Rtl,
                 )
 
             )

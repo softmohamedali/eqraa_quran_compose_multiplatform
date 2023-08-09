@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">اقرأ</string>
+    <string name="alquran_alkarem">القرأن الكريم</string>
+    <string name="note">مذكره</string>
+    <string name="no_data_found_error_X">لا يوجد بيانات خطأ (%s)</string>
+    <string name="notes">مذكرات</string>
+    <string name="high">مهم</string>
+    <string name="medium">متوسط</string>
+    <string name="low">منخفض</string>
+    <string name="none">لا شئ</string>
+    <string name="delete_all">حذف الجميع</string>
+    <string name="add_note">اضافه مذكره</string>
+    <string name="save">حفظ</string>
+    <string name="title">العنوان</string>
+    <string name="your_description_here">اكتب مذكرتك هنا</string>
+    <string name="delete_x">حذف %s</string>
+    <string name="sure_delete">هل انت متاكد من حذف هذه المذكره</string>
+    <string name="sure_delete_all">هل انت متاكد من حذف جميع المذكرات</string>
+    <string name="cancel">الغاء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="search">بحث</string>
+</resources>

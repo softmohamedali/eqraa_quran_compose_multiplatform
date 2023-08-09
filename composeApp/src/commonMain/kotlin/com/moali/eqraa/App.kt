@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.Navigator
 import com.moali.eqraa.core.shared.EqraaTheme
+import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.presentation.screens.home.HomeScreen
 import com.moali.eqraa.presentation.screens.home.components.EqraaIteem
 
@@ -16,6 +17,7 @@ import com.moali.eqraa.presentation.screens.home.components.EqraaIteem
 fun MyApp(
     darkTheme: Boolean,
     dynamicColor: Boolean,
+    noteDataSource: NoteDataSource?
 ) {
     EqraaTheme(
         darkTheme = darkTheme,
@@ -33,7 +35,7 @@ fun MyApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Navigator(HomeScreen())
+            Navigator(HomeScreen(noteDataSource))
         }
     }
 }

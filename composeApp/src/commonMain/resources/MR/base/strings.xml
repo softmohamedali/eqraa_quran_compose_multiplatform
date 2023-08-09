@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Eqraa</string>
+    <string name="alquran_alkarem">AlQuran AlKarem</string>
+    <string name="note">Note</string>
+    <string name="no_data_found_error_X">No Data Found Error (%s)</string>
+    <string name="notes">Notes</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
+    <string name="none">None</string>
+    <string name="delete_all">Delete All</string>
+    <string name="add_note">Add Note</string>
+    <string name="save">Save</string>
+    <string name="title">Title</string>
+    <string name="your_description_here">Your Description Here</string>
+    <string name="delete_x">Delete %s</string>
+    <string name="sure_delete">Are you sure want delete this note</string>
+    <string name="sure_delete_all">Are you sure want delete all Note</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="search">Search</string>
+</resources>

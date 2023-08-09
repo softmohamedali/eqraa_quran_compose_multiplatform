@@ -5,6 +5,7 @@ import androidx.compose.ui.window.rememberWindowState
 import com.moali.eqraa.MyApp
 
 fun main() = application {
+
     Window(
         title = "Eqraa",
         state = rememberWindowState(width = 800.dp, height = 600.dp),
@@ -13,7 +14,7 @@ fun main() = application {
         MyApp(
             darkTheme = false,
             dynamicColor = false,
-
+            noteDataSource=null
         )
     }
 }

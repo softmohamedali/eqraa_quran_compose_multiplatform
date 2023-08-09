@@ -7,7 +7,7 @@ import com.moali.eqraa.domain.models.Note
 @Composable
 fun HandleListTask(
     listNotes: List<Note>,
-    navToTaskScreeen: (Int) -> Unit
+    navToTaskScreeen: (Note) -> Unit
 ) {
     if (listNotes.isEmpty()) {
         DisplayEmptyContent()

@@ -8,6 +8,20 @@ CREATE TABLE noteEntity (
     image TEXT
 );
 
+CREATE TABLE priorityEntity (
+    id INTEGER NOT NULL PRIMARY KEY,
+    type TEXT NOT NULL
+);
+
+insertPriority:
+INSERT OR REPLACE  INTO priorityEntity(
+    id ,
+    type
+) VALUES (?,?);
+
+getStatePriorty:
+SELECT * FROM priorityEntity WHERE id LIKE 1;
+
 
 insertNote:
 INSERT OR REPLACE  INTO noteEntity(
@@ -22,6 +36,9 @@ INSERT OR REPLACE  INTO noteEntity(
 
 deleteNote:
 DELETE FROM noteEntity WHERE id = :id ;
+
+deleteAllNote:
+DELETE FROM noteEntity;
 
 getNotes:
 SELECT * FROM noteEntity ORDER BY createAt DESC ;
