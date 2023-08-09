@@ -87,7 +87,7 @@ fun ProrityDropDownItem(
             }
 
         }
-        if (isExpanded){
+        if (isExpanded) {
             PriorityMenu(
                 onClick = {
                     onItemSelected(it)
@@ -95,6 +95,8 @@ fun ProrityDropDownItem(
                 modifier = Modifier
                     .fillMaxWidth(fraction = 0.94f)
                     .background(MaterialTheme.colors.background),
+
+                showNone = false
             )
         }
     }

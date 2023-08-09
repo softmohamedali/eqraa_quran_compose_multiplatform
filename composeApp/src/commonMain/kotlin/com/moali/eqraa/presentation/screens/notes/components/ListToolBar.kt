@@ -209,7 +209,8 @@ fun SearchToolBar(
                 }) {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = ""
+                        contentDescription = "",
+                        tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             },
@@ -231,7 +232,8 @@ fun SearchToolBar(
                 }) {
                     Icon(
                         imageVector = Icons.Default.Close,
-                        contentDescription = ""
+                        contentDescription = "",
+                        tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             },
@@ -244,7 +246,8 @@ fun SearchToolBar(
                 disabledIndicatorColor = MaterialTheme.colorScheme.onPrimary,
                 focusedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
                 unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
-                backgroundColor = MaterialTheme.colorScheme.primary
+                backgroundColor = MaterialTheme.colorScheme.primary,
+                placeholderColor =  MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
             )
         )
     }

@@ -50,7 +50,7 @@ getNotesLowPriority:
 SELECT * FROM noteEntity WHERE priority LIKE "low";
 
 getNotesMedPriority:
-SELECT * FROM noteEntity WHERE priority LIKE "med";
+SELECT * FROM noteEntity WHERE priority LIKE "medium";
 
 searchNoteByTitle:
 SELECT * FROM noteEntity WHERE title LIKE '%' || :title || '%' ;

@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Note
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.MenuBook
@@ -58,7 +60,8 @@ fun HomeView (
                 text = stringResource(SharedRes.strings.alquran_alkarem),
                 onClick = {
                     onItemClick(HomeEventsType.TO_QURAN)
-                }
+                },
+                icon = Icons.Default.Book
             )
 //            EqraaIteem(
 //                text = "Seb7a",
@@ -70,7 +73,8 @@ fun HomeView (
                 text = stringResource(SharedRes.strings.note),
                 onClick = {
                     onItemClick(HomeEventsType.TO_NOTE)
-                }
+                },
+               icon = Icons.Default.Note
             )
         }
     }

@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import co.touchlab.kermit.Logger
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.getPropertyColor
 
@@ -51,6 +52,7 @@ fun NoteItem(
                         .width(20.dp)){
                         drawCircle(getPropertyColor(note.priority))
                     }
+                    Logger.i { "note Priorty in item ${note.priority}" }
                 }
             }
             Text(

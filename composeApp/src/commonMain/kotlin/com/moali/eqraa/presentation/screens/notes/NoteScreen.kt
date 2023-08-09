@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import co.touchlab.kermit.Logger
 import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.presentation.screens.note_details.NoteDetailsScreen
@@ -61,6 +62,7 @@ class NoteScreen(
                 noteViewModel.onEvent(NoteEvents.OnUndoDeleteTask)
             },
             onPriorityClickSaveState = {
+                Logger.i { "prioirty.${it}" }
                 noteViewModel.onEvent(NoteEvents.OnPriorityClickSaveState(it))
             },
             onActionMenuClick = {

@@ -7,7 +7,6 @@ import com.moali.eqraa.ui.theme.med
 import com.moali.eqraa.ui.theme.none
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.StringResource
-import dev.icerock.moko.resources.compose.stringResource
 
 enum class Priority(
     var color:Color,
@@ -27,7 +26,7 @@ data class PriorityEntity(
 object PriorityType{
     const val LOW="LOW"
     const val HIGH="HIGH"
-    const val MEDIUME="MEDIUME"
+    const val MEDIUM="MEDIUM"
 
 }
 
@@ -35,7 +34,7 @@ fun getPropertyColor(type:String):Color{
     return when{
         type==PriorityType.LOW -> low
         type==PriorityType.HIGH -> high
-        type==PriorityType.MEDIUME -> med
+        type==PriorityType.MEDIUM -> med
         else -> none
     }
 }
@@ -44,7 +43,7 @@ fun getPropertyFromString(type:String):Priority{
     return when{
         type==PriorityType.LOW -> Priority.LOW
         type==PriorityType.HIGH -> Priority.HIGH
-        type==PriorityType.MEDIUME -> Priority.MEDIUM
+        type==PriorityType.MEDIUM -> Priority.MEDIUM
         else -> Priority.NONE
     }
 }

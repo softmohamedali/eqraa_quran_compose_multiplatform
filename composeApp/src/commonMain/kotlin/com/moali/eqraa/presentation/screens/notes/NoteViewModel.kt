@@ -3,6 +3,7 @@ package com.moali.eqraa.presentation.screens.notes
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import co.touchlab.kermit.Logger
 import com.moali.eqraa.core.shared.Dispatchers
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.NoteDataSource
@@ -38,7 +39,8 @@ class NoteViewModel(
             }
             is NoteEvents.OnActionMenuClick->{
                 state=state.copy(
-                    isActionMenuShown = !state.isActionMenuShown
+                    isActionMenuShown = !state.isActionMenuShown,
+                    isPriorityMenuShown = false
                 )
             }
             is NoteEvents.OnDeleteAllClick->{
@@ -51,7 +53,7 @@ class NoteViewModel(
                 handleDBAction(Action.DELETE_ALL,)
                 state=state.copy(
                     action = Action.DELETE_ALL,
-                    isShowDeleteDialog = false
+                    isShowDeleteDialog = false,
                 )
             }
             is NoteEvents.OnSearchOpenClick->{
@@ -99,6 +101,7 @@ class NoteViewModel(
                                 success = true,
                                 loading = false
                             )
+                            Logger.i { it.toString() }
                         }
                     }
                     Priority.LOW ->{
@@ -126,6 +129,7 @@ class NoteViewModel(
                                 success = true,
                                 loading = false
                             )
+                            Logger.i { it.toString() }
                         }
                     }
                 }

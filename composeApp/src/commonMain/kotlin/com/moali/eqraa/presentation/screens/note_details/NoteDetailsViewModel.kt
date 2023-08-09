@@ -85,7 +85,6 @@ class NoteDetailsViewModel(
                 priority = state.priority.name,
                 content = state.noteContent
             )
-            Logger.i { "addNote-----------" +"${note}"}
             noteDataSource.insertNote(note = note)
         }
     }
