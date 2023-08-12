@@ -1,7 +1,7 @@
 package com.moali.eqraa.core.shared
 
+import app.cash.sqldelight.db.SqlDriver
 import com.moali.eqraa.data.local.SqlDNoteDataSource
-import com.squareup.sqldelight.db.SqlDriver
 
 
 expect class DataBaseDriverFactory{

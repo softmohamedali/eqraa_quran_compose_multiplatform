@@ -9,7 +9,9 @@ plugins {
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.apollo)
-    id("com.squareup.sqldelight")
+//    id("com.squareup.sqldelight")
+    //1
+    id("app.cash.sqldelight")
     //moko for share resources
     id("dev.icerock.mobile.multiplatform-resources")
 
@@ -53,6 +55,7 @@ kotlin {
         framework {
             baseName = "ComposeApp"
             isStatic = true
+            //here you can add any required exports
         }
     }
 
@@ -87,8 +90,11 @@ kotlin {
                 implementation(kotlin("stdlib-common"))
                 implementation("co.touchlab:kermit:2.0.0-RC4") //Add latest version
 
-                implementation("com.squareup.sqldelight:runtime:1.5.5")
-                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.5")
+//                implementation("com.squareup.sqldelight:runtime:1.5.5")
+//                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.5")
+                implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-alpha05")
+                implementation("app.cash.sqldelight:primitive-adapters:2.0.0-alpha05")
+
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
 
                 val voyagerVersion = "1.0.0-rc05"
@@ -125,7 +131,8 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.ktor.client.okhttp)
 
-                implementation("com.squareup.sqldelight:android-driver:1.5.5")
+                implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")
+//                implementation("com.squareup.sqldelight:android-driver:1.5.5")
                 api("io.insert-koin:koin-android:$koinVersion")
             }
         }
@@ -135,6 +142,7 @@ kotlin {
                 implementation(compose.desktop.common)
                 implementation(compose.desktop.currentOs)
                 implementation(libs.ktor.client.okhttp)
+                implementation("app.cash.sqldelight:sqlite-driver:2.0.0-alpha05")
             }
         }
 
@@ -151,7 +159,9 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation(libs.ktor.client.darwin)
-                implementation("com.squareup.sqldelight:native-driver:1.5.5")
+
+//                implementation("com.squareup.sqldelight:native-driver:1.5.5")
+                implementation("app.cash.sqldelight:native-driver:2.0.0-alpha05")
             }
 
             dependsOn(commonMain)
@@ -253,9 +263,11 @@ dependencies {
 }
 
 sqldelight {
-    database("EqraaDatabase") {
-        packageName = "com.moali.eqraa.database"
-        sourceFolders = listOf("sqldelight")
+    databases{
+        create("EqraaDatabase") {
+            packageName.set("com.moali.eqraa.database")
+
+        }
     }
 }
 

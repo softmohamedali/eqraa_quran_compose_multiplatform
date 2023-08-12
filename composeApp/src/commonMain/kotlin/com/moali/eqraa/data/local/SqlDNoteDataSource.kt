@@ -6,15 +6,18 @@ import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.Priority
 import com.moali.eqraa.domain.models.PriorityEntity
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
+import com.moali.eqraa.core.shared.Dispatchers
+import com.moali.eqraa.core.shared.provideDisPatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.datetime.Clock
 
 class SqlDNoteDataSource(
-    private val db: EqraaDatabase
+    private val db: EqraaDatabase,
+    private val dispatchers: Dispatchers= provideDisPatchers()
 ) : NoteDataSource {
 
     private val querey = db.noteQueries
@@ -45,10 +48,11 @@ class SqlDNoteDataSource(
 
     override suspend fun getStatePriority(): Flow<List<PriorityEntity>> {
         return querey.getStatePriorty().asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.map { pro-> PriorityEntity(pro.id.toInt(),pro.type) }
             }
+
     }
 
     override suspend fun deleteAllNote() {
@@ -57,7 +61,7 @@ class SqlDNoteDataSource(
 
     override fun getNotes(): Flow<List<Note>> {
         return querey.getNotes().asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.toListNote()
             }
@@ -65,7 +69,7 @@ class SqlDNoteDataSource(
 
     override fun getNotesHighPriority(): Flow<List<Note>> {
         return querey.getNotesHighPriority().asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.toListNote()
             }
@@ -73,7 +77,7 @@ class SqlDNoteDataSource(
 
     override fun getNotesLowPriority(): Flow<List<Note>> {
         return querey.getNotesLowPriority().asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.toListNote()
             }
@@ -81,7 +85,7 @@ class SqlDNoteDataSource(
 
     override fun getNotesMedPriority(): Flow<List<Note>> {
         return querey.getNotesMedPriority().asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.toListNote()
             }
@@ -89,7 +93,7 @@ class SqlDNoteDataSource(
 
     override fun searchNoteByTitle(title:String): Flow<List<Note>> {
         return querey.searchNoteByTitle(title).asFlow()
-            .mapToList()
+            .mapToList(dispatchers.io)
             .map {
                 it.toListNote()
             }

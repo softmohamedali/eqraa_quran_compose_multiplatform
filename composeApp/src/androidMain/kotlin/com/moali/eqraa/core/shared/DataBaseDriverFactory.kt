@@ -1,15 +1,16 @@
 package com.moali.eqraa.core.shared
 
 import android.content.Context
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.moali.eqraa.data.local.SqlDNoteDataSource
 import com.moali.eqraa.database.EqraaDatabase
-import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.android.AndroidSqliteDriver
+
 
 actual class DataBaseDriverFactory(
     private val context: Context
 ){
-    actual fun create():SqlDriver{
+    actual fun create(): SqlDriver {
         return AndroidSqliteDriver(
             EqraaDatabase.Schema,
             context,

@@ -92,7 +92,7 @@ class NoteViewModel(
     private fun getAllNote() {
         state = state.copy(loading = true, allNotes = emptyList())
         try {
-            viewModelScope.launch {
+            viewModelScope.launch(dispatchers.main) {
                 when(state.priority){
                     Priority.NONE ->{
                         noteDataSource.getNotes().collect {

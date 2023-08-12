@@ -3,6 +3,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.moali.eqraa.MyApp
+import com.moali.eqraa.core.shared.ProvideSqlDelightNoteDataSource
 
 fun main() = application {
 
@@ -14,7 +15,7 @@ fun main() = application {
         MyApp(
             darkTheme = false,
             dynamicColor = false,
-            noteDataSource=null
+            noteDataSource= ProvideSqlDelightNoteDataSource().sqlDNoteDataSource
         )
     }
 }

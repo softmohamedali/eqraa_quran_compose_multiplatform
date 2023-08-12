@@ -5,9 +5,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 
 class IOSDispatchers:Dispatchers{
     override val io: CoroutineDispatcher
-        get() = kotlinx.coroutines.Dispatchers.Default
+        get() = kotlinx.coroutines.Dispatchers.IO
     override val main: CoroutineDispatcher
-        get() =kotlinx.coroutines.Dispatchers.Default
+        get() =kotlinx.coroutines.Dispatchers.IO
 
 }
 

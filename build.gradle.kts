@@ -6,7 +6,8 @@ plugins {
     alias(libs.plugins.libres).apply(false)
     alias(libs.plugins.buildConfig).apply(false)
     alias(libs.plugins.kotlinx.serialization).apply(false)
-    alias(libs.plugins.sqlDelight).apply(false)
+//    alias(libs.plugins.sqlDelight).apply(false)
+    id("app.cash.sqldelight") version "2.0.0-alpha05" apply false
     alias(libs.plugins.apollo).apply(false)
 
 }
