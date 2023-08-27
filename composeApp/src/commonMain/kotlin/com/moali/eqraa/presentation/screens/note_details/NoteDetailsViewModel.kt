@@ -10,12 +10,16 @@ import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Note
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class NoteDetailsViewModel(
-    private val dispatchers: Dispatchers = DIManualAppModule.disPatchers,
-    private val noteDataSource: NoteDataSource
-) : ViewModel() {
+//    private val dispatchers: Dispatchers = DIManualAppModule.disPatchers,
+//    private val noteDataSource: NoteDataSource
+) : ViewModel(),KoinComponent {
 
+    private val dispatchers :Dispatchers by inject()
+    private val noteDataSource:NoteDataSource by inject()
     var state by mutableStateOf(NoteDetailsState())
 
     fun onEvent(event: NoteDetailsEvents) {

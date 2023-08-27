@@ -5,7 +5,7 @@ import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.core.utils.safeCall
 import com.moali.eqraa.data.resource.QuranJsonRecourse
 import com.moali.eqraa.domain.models.Soura
-import com.moali.eqraa.domain.abstractions.EqraaRepo
+import com.moali.eqraa.domain.abstractions.repo.EqraaRepo
 
 class EqraaRepoImp (
     private val qoranResource:QuranJsonRecourse,

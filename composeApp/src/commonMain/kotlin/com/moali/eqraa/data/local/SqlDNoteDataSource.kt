@@ -17,7 +17,7 @@ import kotlinx.datetime.Clock
 
 class SqlDNoteDataSource(
     private val db: EqraaDatabase,
-    private val dispatchers: Dispatchers= provideDisPatchers()
+    private val dispatchers: Dispatchers
 ) : NoteDataSource {
 
     private val querey = db.noteQueries

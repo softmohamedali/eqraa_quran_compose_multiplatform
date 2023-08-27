@@ -1,6 +1,6 @@
 package com.moali.eqraa.domain.usecases
 
-import com.moali.eqraa.domain.abstractions.EqraaRepo
+import com.moali.eqraa.domain.abstractions.repo.EqraaRepo
 import kotlinx.coroutines.flow.flow
 
 class GetQuranUseCase(

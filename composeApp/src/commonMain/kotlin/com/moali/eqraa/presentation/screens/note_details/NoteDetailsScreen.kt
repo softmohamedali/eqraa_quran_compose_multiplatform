@@ -24,7 +24,7 @@ import dev.icerock.moko.resources.compose.stringResource
 
 
 class NoteDetailsScreen(
-    private val noteDataSource: NoteDataSource,
+//    private val noteDataSource: NoteDataSource,
     private val note: Note?,
 ) : Screen {
     @OptIn(ExperimentalMaterial3Api::class, InternalVoyagerApi::class)
@@ -32,7 +32,7 @@ class NoteDetailsScreen(
     override fun Content() {
         val noteDetailsViewModel = getViewModel(
             "NoteDetailsScreen",
-            viewModelFactory { NoteDetailsViewModel(noteDataSource = noteDataSource) }
+            viewModelFactory { NoteDetailsViewModel() }
         )
         val state = noteDetailsViewModel.state
         LaunchedEffect(true) {

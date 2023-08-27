@@ -84,8 +84,14 @@ kotlin {
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
                 implementation(compose.ui)
+
+                //ktor
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation(libs.ktor.serilization)
+                implementation(libs.ktor.logging)
+                implementation(libs.logback.logback)
+
 
                 implementation(kotlin("stdlib-common"))
                 implementation("co.touchlab:kermit:2.0.0-RC4") //Add latest version
@@ -100,9 +106,9 @@ kotlin {
                 val voyagerVersion = "1.0.0-rc05"
                 // Navigator
                 implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+//                implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion")
+//                implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+//                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
 
                 // Koin integration
                 implementation("cafe.adriel.voyager:voyager-koin:$voyagerVersion")

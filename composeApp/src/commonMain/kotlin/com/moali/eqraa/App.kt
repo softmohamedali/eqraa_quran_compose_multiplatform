@@ -17,7 +17,7 @@ import com.moali.eqraa.presentation.screens.home.components.EqraaIteem
 fun MyApp(
     darkTheme: Boolean,
     dynamicColor: Boolean,
-    noteDataSource: NoteDataSource?
+//    noteDataSource: NoteDataSource?
 ) {
     EqraaTheme(
         darkTheme = darkTheme,
@@ -35,7 +35,7 @@ fun MyApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Navigator(HomeScreen(noteDataSource))
+            Navigator(HomeScreen())
         }
     }
 }

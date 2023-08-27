@@ -17,7 +17,7 @@ import dev.icerock.moko.mvvm.compose.viewModelFactory
 
 
 class NoteScreen(
-    private val noteDataSource: NoteDataSource,
+//    private val noteDataSource: NoteDataSource,
     private val action: Action?
 ) : Screen {
 
@@ -25,9 +25,9 @@ class NoteScreen(
     override fun Content() {
         val noteViewModel = getViewModel(
             "NoteScreen",
-            viewModelFactory { NoteViewModel(noteDataSource = noteDataSource) }
+            viewModelFactory { NoteViewModel() }
         )
-
+//        val noteViewModel:NoteViewModel by inj
         val state = noteViewModel.state
         if (action != null) {
             noteViewModel.handleDBAction(action)
@@ -41,7 +41,7 @@ class NoteScreen(
             navToTaskScreen = {
                 navigator.push(
                     NoteDetailsScreen(
-                        noteDataSource,
+//                        noteDataSource,
                         it,
                     )
                 )

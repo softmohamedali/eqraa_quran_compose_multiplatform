@@ -14,11 +14,16 @@ import com.moali.eqraa.domain.models.ToolBarState
 import com.moali.eqraa.domain.models.getPropertyFromString
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
 class NoteViewModel(
-    private val dispatchers: Dispatchers = DIManualAppModule.disPatchers,
-    private val noteDataSource: NoteDataSource
-) : ViewModel() {
+//    private val dispatchers: Dispatchers = DIManualAppModule.disPatchers,
+//    private val noteDataSource: NoteDataSource
+) : ViewModel() ,KoinComponent{
+
+    private val dispatchers :Dispatchers by inject()
+    private val noteDataSource:NoteDataSource by inject()
 
     var state by mutableStateOf(NoteState())
 

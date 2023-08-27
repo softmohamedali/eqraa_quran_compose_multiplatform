@@ -14,7 +14,7 @@ import com.moali.eqraa.presentation.screens.quran.QuranScreen
 
 
 class HomeScreen(
-    private val noteDataSource: NoteDataSource?
+//    private val noteDataSource: NoteDataSource?
 ):Screen{
 
     @Composable
@@ -30,7 +30,7 @@ class HomeScreen(
                         navigator.push(QuranScreen())
                     }
                     HomeEventsType.TO_NOTE -> {
-                        navigator.push(NoteScreen(noteDataSource!!,Action.NONE))
+                        navigator.push(NoteScreen(Action.NONE))
                     }
 
                     else -> {}
