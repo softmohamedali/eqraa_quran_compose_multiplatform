@@ -3,11 +3,12 @@ package com.moali.eqraa.presentation.screens.soura
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import co.touchlab.kermit.Logger
 import com.moali.eqraa.core.shared.Dispatchers
+import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.abstractions.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -18,6 +19,7 @@ class SouraViewModel : ViewModel(), KoinComponent {
 
     var state by mutableStateOf(SouraState())
 
+
     fun onEvent(events: SouraEvents) {
         when (events) {
             is SouraEvents.OnInit -> {
@@ -26,7 +28,7 @@ class SouraViewModel : ViewModel(), KoinComponent {
             }
 
             is SouraEvents.OnAudioMiniClick -> {
-                onAudioMiniItemClick()
+                openBottomSheet()
             }
 
             is SouraEvents.OnPauseClick -> {
@@ -50,7 +52,9 @@ class SouraViewModel : ViewModel(), KoinComponent {
             }
 
             is SouraEvents.OnSeekChange -> {
-
+                state=state.copy(
+                    currentAudioProgress = events.value,
+                )
             }
 
             is SouraEvents.OnRandomClick -> {
@@ -58,11 +62,11 @@ class SouraViewModel : ViewModel(), KoinComponent {
             }
 
             is SouraEvents.OnTeenForwardClick -> {
-
+                mediaPlayerController.skip10Sec()
             }
 
             is SouraEvents.OnTeenBackWardClick -> {
-
+                mediaPlayerController.back10Sec()
             }
 
             is SouraEvents.OnResumeClick -> {
@@ -72,11 +76,24 @@ class SouraViewModel : ViewModel(), KoinComponent {
             is SouraEvents.OnStopClick -> {
 
             }
+
+            is SouraEvents.OnCloseBottomSheetClick -> {
+                closeBottomSheet()
+            }
+
+            is SouraEvents.OnSeekFinishedChange -> {
+                mediaPlayerController.navigateTo(state.currentAudioProgress.toInt())
+            }
+
         }
     }
 
-    private fun onAudioMiniItemClick() {
+    private fun openBottomSheet() {
         state=state.copy(isShowBottomAudioSheet = true)
+    }
+
+    private fun closeBottomSheet() {
+        state=state.copy(isShowBottomAudioSheet = false)
     }
 
     private fun onNext() {
@@ -104,7 +121,23 @@ class SouraViewModel : ViewModel(), KoinComponent {
             .prepare("https://server8.mp3quran.net/afs/${countNumberDigets(state.soura.id)}.mp3",
                 listener = object : MediaPlayerListener {
                     override fun onReady() {
+//                        Logger.i { "duration ------>${ mediaPlayerController.getDuration()?:"00:00"}" }
+                        state=state.copy(
+                            totalTime = convertMillisecondsToTime(
+                                mediaPlayerController.getDuration()
+                            ),
+                            totalProgress = mediaPlayerController.getDuration()?.toFloat()?:0f
+                        )
 
+                        viewModelScope.launch {
+                            mediaPlayerController.current.collect{
+                                state=state.copy(
+                                    currentTime =  convertMillisecondsToTime(it),
+                                    currentAudioProgress = it?.toFloat()?:0f
+                                )
+                            }
+
+                        }
                     }
 
                     override fun onVideoCompleted() {
@@ -115,6 +148,9 @@ class SouraViewModel : ViewModel(), KoinComponent {
                     }
                 }
             )
+
+
+
     }
 
     private fun onStop() {
@@ -130,6 +166,31 @@ class SouraViewModel : ViewModel(), KoinComponent {
         } else {
             return num.toString()
         }
+    }
+
+    fun convertMillisecondsToTime(milliseconds: Int?): String{
+        if (milliseconds==null){
+            return "00:00"
+        }
+        val seconds = (milliseconds / 1000)
+        val hours = seconds / 3600
+        val minutes = (seconds % 3600) / 60
+        val remainingSeconds = seconds % 60
+
+        return "${formatDigit(hours)}:${formatDigit(minutes)}:${formatDigit(remainingSeconds)}"
+    }
+
+    fun formatDigit(number: Int): String {
+        return if (number in 0..9) {
+            "0$number"
+        } else {
+            number.toString()
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        log("onCleared viewmodel soura","viewmodel")
     }
 
 

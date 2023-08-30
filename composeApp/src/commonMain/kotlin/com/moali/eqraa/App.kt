@@ -35,7 +35,9 @@ fun MyApp(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            Navigator(HomeScreen())
+            Navigator(
+                HomeScreen(),
+            )
         }
     }
 }

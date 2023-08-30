@@ -12,9 +12,12 @@ sealed class SouraEvents {
     object OnPreviousClick:SouraEvents()
     object OnRepeatClick:SouraEvents()
     class OnSeekChange(val value:Float):SouraEvents()
+
+    object OnSeekFinishedChange:SouraEvents()
     object OnRandomClick:SouraEvents()
     object OnTeenForwardClick:SouraEvents()
     object OnTeenBackWardClick:SouraEvents()
+    object OnCloseBottomSheetClick:SouraEvents()
 
     class OnInit(val soura:Soura):SouraEvents()
 

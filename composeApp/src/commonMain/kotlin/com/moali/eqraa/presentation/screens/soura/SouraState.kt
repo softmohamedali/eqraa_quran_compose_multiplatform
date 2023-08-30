@@ -6,11 +6,11 @@ data class SouraState(
     val error:String?=null,
     val soura:Soura= Soura(-1,"", arrayListOf()),
     val speed:String="",
-    val startPeriod:String="",
-    val endPeriod:String="",
     val isPlay:Boolean=false,
     val isShowBottomAudioSheet:Boolean=false,
-    val currentAudioTime:String="",
-    val currentAudioProgress:Float=0.0f
+    val currentAudioProgress:Float=0.0f,
+    val totalProgress:Float=0.0f,
+    val currentTime:String="00:00",
+    val totalTime:String="00:00",
 ) {
 }

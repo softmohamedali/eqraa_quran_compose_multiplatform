@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.components.appcomponent
+package com.moali.eqraa.presentation.screens.soura.component
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -6,18 +6,24 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.with
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Icon
@@ -36,7 +42,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,13 +52,14 @@ import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
 
 
-@OptIn(ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun MiniAudioPlayer(
     modifier: Modifier=Modifier,
-    isAudioPlayed: Boolean,
-    currentProgress: Float,
-    onItemClick:()->Unit,
+    isAudioPlayed: Boolean=false,
+    currentProgress: Float=0f,
+    totalProgress:Float=0f,
+    onItemClick:()->Unit={},
     imageAudioPlay:String="",
     title:String="",
     artistName:String="",
@@ -59,6 +68,7 @@ fun MiniAudioPlayer(
     onResumeClick:()->Unit={},
     onNextClick: () -> Unit={}
 ) {
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -83,7 +93,7 @@ fun MiniAudioPlayer(
             )
 
             LinearProgressIndicator(
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = Color.Blue,
                 backgroundColor = androidx.compose.ui.graphics.Color.Transparent,
                 progress = currentProgress,
                 modifier = Modifier
@@ -100,61 +110,44 @@ fun MiniAudioPlayer(
 
             Row(
                 modifier = Modifier
-                    .weight(0.6f)
-                    .padding(start = 16.dp)
+                    .weight(1f)
+                    .padding(start = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(
-                    imageVector = Icons.Default.Headphones,
-                    contentDescription = null,
-                    tint=MaterialTheme.colorScheme.onPrimary,
-                    modifier = Modifier
-                        .size(40.dp)
-                        .clip(RoundedCornerShape(8.dp))
+                VinylAnimation(
+                    isSongPlaying=isAudioPlayed
                 )
-
-                Column(
-                    modifier = Modifier
-                        .padding(start = 8.dp, end = 8.dp)
-                ) {
-                    Text(
-                        text = title,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Text(
-                        text = artistName,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        fontSize = 11.sp,
-                        fontWeight = FontWeight.SemiBold,
-                        color=MaterialTheme.colorScheme.onPrimary,
-                        modifier = Modifier
-                            .padding(top = 6.dp)
-                    )
-                }
+                Text(
+                    text = "$title : $artistName",
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 20.sp,
+                    overflow = TextOverflow.Ellipsis,
+                    maxLines = 1,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                        .basicMarquee()
+                )
             }
 
             Row(
                 modifier = Modifier
-                    .weight(0.4f)
-                    .padding(end = 16.dp)
+                    .padding(end = 16.dp),
+                horizontalArrangement = Arrangement.End
             ) {
-                // Previous Button
-                IconButton(
-                    onClick = {
-                        onPreviousClick()
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(SharedRes.images.back),
-                        tint =  MaterialTheme.colorScheme.onPrimary,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(20.dp)
-                    )
-                }
+//                // Previous Button
+//                IconButton(
+//                    onClick = {
+//                        onPreviousClick()
+//                    }
+//                ) {
+//                    Icon(
+//                        painter = painterResource(SharedRes.images.back),
+//                        tint =  MaterialTheme.colorScheme.onPrimary,
+//                        contentDescription = null,
+//                        modifier = Modifier
+//                            .size(20.dp)
+//                    )
+//                }
                 // Play or Pause Button
                 IconButton(
                     onClick = {
@@ -177,25 +170,25 @@ fun MiniAudioPlayer(
                             tint = MaterialTheme.colorScheme.onPrimary,
                             contentDescription = null,
                             modifier = Modifier
-                                .size(20.dp)
+                                .size(30.dp)
                         )
                     }
                 }
 
                 // Next Button
-                IconButton(
-                    onClick = {
-                        onNextClick()
-                    }
-                ) {
-                    Icon(
-                        painter = painterResource(SharedRes.images.next),
-                        tint = MaterialTheme.colorScheme.onPrimary,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(20.dp)
-                    )
-                }
+//                IconButton(
+//                    onClick = {
+//                        onNextClick()
+//                    }
+//                ) {
+//                    Icon(
+//                        painter = painterResource(SharedRes.images.next),
+//                        tint = MaterialTheme.colorScheme.onPrimary,
+//                        contentDescription = null,
+//                        modifier = Modifier
+//                            .size(20.dp)
+//                    )
+//                }
             }
         }
     }

@@ -260,7 +260,8 @@ multiplatformResources {
 }
 
 dependencies {
-    implementation("androidx.core:core:1.10.1")
+//    implementation("androidx.core:core:1.10.1")
+//    implementation(libs.androidx.ui.android)
 //    implementation(project(mapOf("path" to ":androidApp")))
     commonMainApi("dev.icerock.moko:mvvm-core:0.16.1")
     commonMainApi("dev.icerock.moko:mvvm-compose:0.16.1")

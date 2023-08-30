@@ -8,15 +8,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Note
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.moali.eqraa.presentation.components.appcomponent.MiniAudioPlayer
 import com.moali.eqraa.presentation.screens.home.components.EqraaIteem
 import com.moali.eqraa.presentation.screens.home.components.HomeEventsType
 import com.moali.eqraa.presentation.screens.home.components.HomeTopAppBar
 import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 
 
@@ -46,7 +45,7 @@ fun HomeView (
                 onClick = {
                     onItemClick(HomeEventsType.TO_QURAN)
                 },
-                icon = Icons.Default.Book
+                icon = painterResource(SharedRes.images.open_quran)
             )
 //            EqraaIteem(
 //                text = "Seb7a",

@@ -34,7 +34,6 @@ class QuranViewModel (
                 when{
                     it is ResultState.IsSucsses ->{
                         state=state.copy(it.data!!)
-                        Logger.i { "it.data =====>  ${it.data}" }
                     }
                     it is ResultState.IsLoading ->{
 
