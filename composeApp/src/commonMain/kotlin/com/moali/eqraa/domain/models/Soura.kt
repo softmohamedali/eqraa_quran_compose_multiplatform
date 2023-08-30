@@ -10,7 +10,8 @@ data class Soura(var id:Int, var name:String, var soura:ArrayList<Aya>) {
         var completesoura:String=""
         for (i in 0 until soura.size)
         {
-            completesoura+=" ${soura[i].standard_full} <(${i+1})>"
+            //
+            completesoura+=" ${soura[i].standard_full} ⊰⦅${i+1}⦆⊱ "
         }
         return completesoura
     }

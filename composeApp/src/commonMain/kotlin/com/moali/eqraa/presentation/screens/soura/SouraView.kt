@@ -81,12 +81,14 @@ fun SouraView(
 
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم",
-                        textAlign = TextAlign.Center,
-                        fontSize = 23.sp,
-                    )
+                    if(soura.id!=9||soura.id!=1){
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = " ⊰⟪ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم ⟫⊱ " ,
+                            textAlign = TextAlign.Center,
+                            fontSize = 23.sp,
+                        )
+                    }
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         modifier = Modifier.fillMaxWidth(),
@@ -103,7 +105,7 @@ fun SouraView(
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = "صدق اللَّهُ العظيم",
+                        text = "⊰⟪ صدق اللَّهُ العظيم ⟫⊱",
                         textAlign = TextAlign.Center,
                         fontSize = 23.sp,
                     )
