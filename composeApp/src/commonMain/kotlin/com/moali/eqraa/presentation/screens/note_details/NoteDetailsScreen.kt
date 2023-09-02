@@ -12,11 +12,11 @@ import cafe.adriel.voyager.core.annotation.InternalVoyagerApi
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
-import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.getPropertyFromString
 import com.moali.eqraa.presentation.screens.note_details.components.TaskToolbar
 import com.moali.eqraa.presentation.components.appcomponent.DisplayAlertDialog
+import com.moali.eqraa.presentation.screens.note_details.components.NoteDetailsView
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory

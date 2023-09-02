@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".App"
         android:icon="@android:drawable/ic_menu_compass"
@@ -20,6 +22,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".core.reiver.NotificationActionBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="START" />
+                <action android:name="STOP" />
+                <action android:name="PLAY" />
+                <action android:name="PAUSE" />
+                <action android:name="SKIP10" />
+                <action android:name="BACK10" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".core.services.AudioServices"
+            android:foregroundServiceType="mediaPlayback"
+            android:enabled="true"/>
     </application>
 
 </manifest>

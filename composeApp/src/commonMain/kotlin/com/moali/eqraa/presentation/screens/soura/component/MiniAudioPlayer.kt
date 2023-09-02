@@ -23,6 +23,8 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.Slider
+import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
@@ -32,10 +34,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moali.eqraa.core.utils.log
 
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
@@ -79,11 +83,12 @@ fun MiniAudioPlayer(
             )
 
             LinearProgressIndicator(
-                color = Color.Blue,
-                backgroundColor = androidx.compose.ui.graphics.Color.Transparent,
-                progress = currentProgress,
+                color = MaterialTheme.colorScheme.onSecondary,
+                backgroundColor = MaterialTheme.colorScheme.secondary,
+                progress = if((currentProgress/totalProgress).isNaN())0f else (currentProgress/totalProgress) ,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(5.dp)
             )
         }
 

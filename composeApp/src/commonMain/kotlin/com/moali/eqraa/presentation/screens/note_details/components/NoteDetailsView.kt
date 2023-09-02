@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.screens.note_details
+package com.moali.eqraa.presentation.screens.note_details.components
 
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.rememberScrollableState

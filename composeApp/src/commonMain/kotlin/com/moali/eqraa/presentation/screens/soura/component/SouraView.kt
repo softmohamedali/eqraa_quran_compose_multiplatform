@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.screens.soura
+package com.moali.eqraa.presentation.screens.soura.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -74,14 +74,14 @@ fun SouraView(
 
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = soura.name,
+                        text = " ⊰⟪ ${soura.name} ⟫⊱ " ,
                         textAlign = TextAlign.Center,
                         fontSize = 23.sp,
                     )
 
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    if(soura.id!=9||soura.id!=1){
+                    if(soura.id!=9&&soura.id!=1){
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = " ⊰⟪ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم ⟫⊱ " ,

@@ -3,9 +3,11 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
 import com.moali.eqraa.MyApp
-import com.moali.eqraa.core.shared.ProvideSqlDelightNoteDataSource
+import com.moali.eqraa.di.initKoin
 
 fun main() = application {
+
+    initKoin()
 
     Window(
         title = "Eqraa",
@@ -15,7 +17,6 @@ fun main() = application {
         MyApp(
             darkTheme = false,
             dynamicColor = false,
-            noteDataSource= ProvideSqlDelightNoteDataSource().sqlDNoteDataSource
         )
     }
 }

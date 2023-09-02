@@ -13,10 +13,6 @@ class MainActivity : ComponentActivity() {
             MyApp(
                 darkTheme = isSystemInDarkTheme(),
                 dynamicColor = true,
-//                noteDataSource = ProvideSqlDelightNoteDataSource(
-//                    this,
-//                    provideDisPatchers()
-//                ).sqlDNoteDataSource
             )
         }
     }

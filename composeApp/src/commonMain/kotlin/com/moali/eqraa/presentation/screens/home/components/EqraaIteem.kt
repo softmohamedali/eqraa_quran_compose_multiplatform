@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.moali.eqraa.presentation.components.TextFullW
 import com.moali.eqraa.ui.resources.ContentDescriptions
 import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 
 @Composable
@@ -71,7 +73,7 @@ fun EqraaIteem (
     icon: Painter ,
     text:String="demo text",
     backGroundColor:Color=MaterialTheme.colorScheme.secondary,
-    onClick:()->Unit={}
+    onClick:()->Unit={},
 ){
 
     val myModifier=modifier.height(200.dp)
@@ -100,3 +102,4 @@ fun EqraaIteem (
         }
     }
 }
+

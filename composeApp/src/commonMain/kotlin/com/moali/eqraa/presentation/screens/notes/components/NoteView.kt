@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.screens.notes
+package com.moali.eqraa.presentation.screens.notes.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

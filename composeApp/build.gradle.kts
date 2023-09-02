@@ -136,7 +136,7 @@ kotlin {
                 implementation(libs.compose.uitooling)
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.ktor.client.okhttp)
-
+                implementation ("androidx.media:media:1.1.0")
                 implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")
 //                implementation("com.squareup.sqldelight:android-driver:1.5.5")
                 api("io.insert-koin:koin-android:$koinVersion")

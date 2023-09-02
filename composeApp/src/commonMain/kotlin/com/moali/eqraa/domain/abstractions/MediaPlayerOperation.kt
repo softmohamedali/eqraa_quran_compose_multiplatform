@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 interface MediaPlayerOperation {
 
     val current:MutableStateFlow<Int?>
+    val playPauseState: MutableStateFlow<Boolean>
     fun prepare(pathSource: String, listener: MediaPlayerListener)
 
     fun start()

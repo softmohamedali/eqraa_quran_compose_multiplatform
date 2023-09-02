@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.Dispatchers
+import com.moali.eqraa.core.shared.ServicesUtils
 import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.abstractions.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
@@ -16,9 +17,18 @@ class SouraViewModel : ViewModel(), KoinComponent {
 
     private val mediaPlayerController: MediaPlayerOperation by inject()
     private val dispatchers: Dispatchers by inject()
+    private val servicesUtils: ServicesUtils by inject()
 
     var state by mutableStateOf(SouraState())
 
+    init {
+        viewModelScope.launch {
+            mediaPlayerController.playPauseState.collect{
+                state=state.copy(isPlay = it)
+            }
+        }
+
+    }
 
     fun onEvent(events: SouraEvents) {
         when (events) {
@@ -102,14 +112,9 @@ class SouraViewModel : ViewModel(), KoinComponent {
 
     private fun onResumePause() {
         if (!mediaPlayerController.isPlaying()) {
-            state = state.copy(
-                isPlay = true
-            )
             mediaPlayerController.start()
+            servicesUtils.startServiceIntent()
         } else {
-            state = state.copy(
-                isPlay = false
-            )
             mediaPlayerController.pause()
 
         }

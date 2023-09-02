@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 
-class MediaPlayerController:MediaPlayerOperation {
+actual class MediaPlayerController:MediaPlayerOperation {
     override fun prepare(pathSource: String, listener: MediaPlayerListener) {
         TODO("Not yet implemented")
     }
@@ -38,6 +38,8 @@ class MediaPlayerController:MediaPlayerOperation {
         return flow {  }
     }
     override val current: MutableStateFlow<Int?> = MutableStateFlow(0)
+    override val playPauseState: MutableStateFlow<Boolean>
+        get() = TODO("Not yet implemented")
 
     override fun navigateTo(duration: Int){}
 

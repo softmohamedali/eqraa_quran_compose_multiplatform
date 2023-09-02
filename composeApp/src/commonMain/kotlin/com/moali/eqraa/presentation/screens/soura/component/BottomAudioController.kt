@@ -116,7 +116,9 @@ fun BottomAudioController(
                         onValueChange = onSliderChange,
                         onValueChangeFinished = onSliderChangeFinished,
                         colors = SliderDefaults.colors(
-                            thumbColor = MaterialTheme.colorScheme.onPrimary
+                            thumbColor = MaterialTheme.colorScheme.onPrimary,
+                            inactiveTrackColor = MaterialTheme.colorScheme.secondary,
+                            activeTrackColor = MaterialTheme.colorScheme.onPrimary,
                         )
                     )
                     Row(

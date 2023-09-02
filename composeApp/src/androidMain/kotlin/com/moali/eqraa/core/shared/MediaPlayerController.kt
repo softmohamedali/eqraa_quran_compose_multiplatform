@@ -25,11 +25,14 @@ actual class MediaPlayerController : MediaPlayerOperation {
 
     override val current: MutableStateFlow<Int?> = MutableStateFlow(0)
 
-    private var coroutineScope = CoroutineScope(Dispatchers.IO)
+    override val playPauseState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+
 
     private var job: Job = Job()
     val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
+
+    private var coroutineScope = CoroutineScope(coroutineContext)
     private var isSurfaceReady = false
         set(value) {
             field = value
@@ -72,7 +75,8 @@ actual class MediaPlayerController : MediaPlayerOperation {
 
     override fun start() {
         mediaPlayer?.start()
-        coroutineScope.launch (coroutineContext){
+        playPauseState.value=true
+        coroutineScope.launch {
             updateCurrentDuration()
         }
     }
@@ -81,22 +85,26 @@ actual class MediaPlayerController : MediaPlayerOperation {
         mediaPlayer?.also { mediaPlayer ->
             if (mediaPlayer.isPlaying) {
                 mediaPlayer.pause()
+                playPauseState.value=false
             }
         }
     }
 
     override fun stop() {
         mediaPlayer?.stop()
+        playPauseState.value=false
         coroutineScope.cancel()
     }
 
     override fun release() {
         isMediaPlayerReady = false
+        playPauseState.value=false
         mediaPlayer?.release()
         mediaPlayer = null
     }
 
     override fun isPlaying(): Boolean {
+        playPauseState.value=mediaPlayer?.isPlaying ?: false
         return mediaPlayer?.isPlaying ?: false
     }
 
@@ -146,12 +154,10 @@ actual class MediaPlayerController : MediaPlayerOperation {
 
     private suspend fun updateCurrentDuration() {
         while (true) {
-            log("updateCurrentDuration true and is Playing${mediaPlayer?.isPlaying?:""}")
             delay(1000) // Update every second
             mediaPlayer?.let {
                 if (it.isPlaying) {
                     current.value=mediaPlayer!!.currentPosition
-                    log("updateCurrentDuration ${mediaPlayer!!.currentPosition}")
                 }
             }
         }

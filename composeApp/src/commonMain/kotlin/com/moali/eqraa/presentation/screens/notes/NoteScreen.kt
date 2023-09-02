@@ -2,16 +2,13 @@ package com.moali.eqraa.presentation.screens.notes
 
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import co.touchlab.kermit.Logger
-import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.presentation.screens.note_details.NoteDetailsScreen
+import com.moali.eqraa.presentation.screens.notes.components.NoteView
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 
