@@ -1,7 +1,6 @@
 package com.moali.eqraa.core.services
 
 import android.app.Notification
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
@@ -13,14 +12,12 @@ import androidx.core.app.NotificationCompat
 import com.moali.eqraa.R
 import com.moali.eqraa.core.reiver.NotificationActionBroadcastReceiver
 import com.moali.eqraa.core.utils.log
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 import com.moali.eqraa.presentation.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import okhttp3.internal.notify
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import kotlin.coroutines.CoroutineContext

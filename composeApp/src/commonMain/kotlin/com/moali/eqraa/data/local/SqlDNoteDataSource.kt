@@ -2,17 +2,14 @@ package com.moali.eqraa.data.local
 
 import co.touchlab.kermit.Logger
 import com.moali.eqraa.database.EqraaDatabase
-import com.moali.eqraa.domain.abstractions.NoteDataSource
+import com.moali.eqraa.domain.abstractions.local.NoteDataSource
 import com.moali.eqraa.domain.models.Note
-import com.moali.eqraa.domain.models.Priority
 import com.moali.eqraa.domain.models.PriorityEntity
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import com.moali.eqraa.core.shared.Dispatchers
-import com.moali.eqraa.core.shared.provideDisPatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.mapLatest
 import kotlinx.datetime.Clock
 
 class SqlDNoteDataSource(

@@ -1,12 +1,12 @@
 package com.moali.eqraa.core.shared
 
-import com.moali.eqraa.domain.abstractions.MediaPlayerListener
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 
-actual class MediaPlayerController:MediaPlayerOperation {
+actual class MediaPlayerController: MediaPlayerOperation {
     override fun prepare(pathSource: String, listener: MediaPlayerListener) {
         TODO("Not yet implemented")
     }

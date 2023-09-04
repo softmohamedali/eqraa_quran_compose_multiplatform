@@ -1,12 +1,10 @@
 package com.moali.eqraa.di
 
 import com.moali.eqraa.core.shared.Dispatchers
-import com.moali.eqraa.core.shared.MediaPlayerController
 import com.moali.eqraa.core.shared.provideDisPatchers
 import com.moali.eqraa.data.remote.QuranAudioServiceImp
 import com.moali.eqraa.data.repo.EqraaRepoImp
 import com.moali.eqraa.data.resource.QuranJsonRecourse
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
 import com.moali.eqraa.domain.abstractions.remote.QuranAudioService
 import com.moali.eqraa.domain.abstractions.repo.EqraaRepo
 import com.moali.eqraa.domain.usecases.GetQuranUseCase
@@ -18,7 +16,6 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.serialization.kotlinx.json.json
-import io.ktor.serialization.kotlinx.serialization
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.singleOf
@@ -48,7 +45,7 @@ val remoteModule= module {
 
 val dataModule= module {
     single { QuranJsonRecourse() }
-
+    
 }
 
 val domainModule= module {
@@ -75,7 +72,7 @@ val sharedModules= listOf(
     utilsModule,
     viewModelModule,
     platformModule()
-    )
+)
 
 fun initKoin(appDeclaration: KoinAppDeclaration) = startKoin {
     modules(sharedModules)

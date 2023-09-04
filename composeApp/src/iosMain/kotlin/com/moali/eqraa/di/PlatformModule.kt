@@ -5,8 +5,8 @@ import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.moali.eqraa.core.shared.MediaPlayerController
 import com.moali.eqraa.data.local.SqlDNoteDataSource
 import com.moali.eqraa.database.EqraaDatabase
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
-import com.moali.eqraa.domain.abstractions.NoteDataSource
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.local.NoteDataSource
 import org.koin.dsl.module
 
 actual fun platformModule()=

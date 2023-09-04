@@ -6,11 +6,11 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.moali.eqraa.data.resource.QuranJsonRecourse
-import com.moali.eqraa.domain.abstractions.NoteDataSource
 import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.presentation.screens.home.components.HomeEventsType
 import com.moali.eqraa.presentation.screens.notes.NoteScreen
 import com.moali.eqraa.presentation.screens.quran.QuranScreen
+import com.moali.eqraa.presentation.screens.sebha.SebhaScreen
 
 
 class HomeScreen(
@@ -31,6 +31,9 @@ class HomeScreen(
                     }
                     HomeEventsType.TO_NOTE -> {
                         navigator.push(NoteScreen(Action.NONE))
+                    }
+                    HomeEventsType.TO_SEBHA -> {
+                        navigator.push(SebhaScreen())
                     }
 
                     else -> {}

@@ -2,10 +2,8 @@ package com.moali.eqraa.core.shared
 
 import android.media.MediaPlayer
 import android.net.Uri
-import co.touchlab.kermit.Logger
-import com.moali.eqraa.core.utils.log
-import com.moali.eqraa.domain.abstractions.MediaPlayerListener
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

@@ -1,4 +1,4 @@
-package com.moali.eqraa.domain.abstractions
+package com.moali.eqraa.domain.abstractions.local
 
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.Priority

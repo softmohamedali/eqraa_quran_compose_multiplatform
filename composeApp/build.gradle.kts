@@ -92,6 +92,8 @@ kotlin {
                 implementation(libs.ktor.logging)
                 implementation(libs.logback.logback)
 
+                implementation(libs.settings)
+
 
                 implementation(kotlin("stdlib-common"))
                 implementation("co.touchlab:kermit:2.0.0-RC4") //Add latest version
@@ -140,6 +142,10 @@ kotlin {
                 implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")
 //                implementation("com.squareup.sqldelight:android-driver:1.5.5")
                 api("io.insert-koin:koin-android:$koinVersion")
+
+                implementation("androidx.glance:glance:1.0.0-rc01")
+                implementation( "androidx.glance:glance-appwidget: 1.0.0-rc01")
+                implementation("androidx.datastore:datastore-preferences:1.0.0")
             }
         }
 
@@ -149,6 +155,7 @@ kotlin {
                 implementation(compose.desktop.currentOs)
                 implementation(libs.ktor.client.okhttp)
                 implementation("app.cash.sqldelight:sqlite-driver:2.0.0-alpha05")
+                implementation("uk.co.caprica:vlcj:4.7.0")
             }
         }
 
@@ -191,11 +198,11 @@ kotlin {
 
 android {
     namespace = "com.moali.eqraa"
-    compileSdk = 33
+    compileSdk = 34//33
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34//33
 
         applicationId = "com.moali.eqraa.androidApp"
         versionCode = 1

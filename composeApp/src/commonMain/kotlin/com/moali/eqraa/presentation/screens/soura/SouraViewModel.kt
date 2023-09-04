@@ -6,8 +6,8 @@ import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.Dispatchers
 import com.moali.eqraa.core.shared.ServicesUtils
 import com.moali.eqraa.core.utils.log
-import com.moali.eqraa.domain.abstractions.MediaPlayerListener
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent

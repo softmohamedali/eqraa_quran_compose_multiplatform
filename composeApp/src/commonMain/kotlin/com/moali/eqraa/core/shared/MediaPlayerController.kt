@@ -1,7 +1,7 @@
 package com.moali.eqraa.core.shared
 
-import com.moali.eqraa.domain.abstractions.MediaPlayerOperation
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 
 
-expect class MediaPlayerController:MediaPlayerOperation {
+expect class MediaPlayerController: MediaPlayerOperation {
 }
