@@ -7,7 +7,7 @@ import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.PriorityEntity
 import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
-import com.moali.eqraa.core.shared.Dispatchers
+import com.moali.eqraa.core.shared.utils.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.Clock

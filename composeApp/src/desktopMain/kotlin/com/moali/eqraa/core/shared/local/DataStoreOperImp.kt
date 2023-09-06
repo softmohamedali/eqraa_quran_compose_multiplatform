@@ -9,6 +9,14 @@ actual class DataStoreOperImp: DataStoreOper {
         return null
     }
 
+    override suspend fun getSebhaPrefAsFlow(): Flow<Int?> {
+        return flow {
+
+        }
+
+    }
+
+
     override suspend fun saveSebhaCounter(counterValue: Int) {
 
     }

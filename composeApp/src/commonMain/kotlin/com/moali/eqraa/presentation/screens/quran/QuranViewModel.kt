@@ -3,8 +3,7 @@ package com.moali.eqraa.presentation.screens.quran
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import co.touchlab.kermit.Logger
-import com.moali.eqraa.core.shared.Dispatchers
+import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.usecases.GetQuranUseCase
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class QuranViewModel (
     private val getQuranUseCase: GetQuranUseCase = DIManualAppModule.getQuranUseCase,
-    private val dispatchers: Dispatchers=DIManualAppModule.disPatchers
+    private val dispatchers: Dispatchers =DIManualAppModule.disPatchers
 ):ViewModel(){
 
 

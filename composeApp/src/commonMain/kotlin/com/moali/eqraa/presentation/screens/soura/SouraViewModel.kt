@@ -3,8 +3,8 @@ package com.moali.eqraa.presentation.screens.soura
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.moali.eqraa.core.shared.Dispatchers
-import com.moali.eqraa.core.shared.ServicesUtils
+import com.moali.eqraa.core.shared.utils.Dispatchers
+import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation

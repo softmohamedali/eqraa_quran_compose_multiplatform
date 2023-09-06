@@ -6,7 +6,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import cafe.adriel.voyager.navigator.Navigator
-import com.moali.eqraa.core.shared.EqraaTheme
+import com.moali.eqraa.core.shared.utils.EqraaTheme
 import com.moali.eqraa.presentation.screens.home.HomeScreen
 
 @Composable
