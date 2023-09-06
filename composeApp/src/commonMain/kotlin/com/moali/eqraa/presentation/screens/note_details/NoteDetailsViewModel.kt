@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import co.touchlab.kermit.Logger
 import com.moali.eqraa.core.shared.Dispatchers
 import com.moali.eqraa.di.DIManualAppModule
-import com.moali.eqraa.domain.abstractions.NoteDataSource
+import com.moali.eqraa.domain.abstractions.local.NoteDataSource
 import com.moali.eqraa.domain.models.Note
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ class NoteDetailsViewModel(
 ) : ViewModel(),KoinComponent {
 
     private val dispatchers :Dispatchers by inject()
-    private val noteDataSource:NoteDataSource by inject()
+    private val noteDataSource: NoteDataSource by inject()
     var state by mutableStateOf(NoteDetailsState())
 
     fun onEvent(event: NoteDetailsEvents) {

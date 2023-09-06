@@ -1,5 +1,6 @@
-package com.moali.eqraa.domain.abstractions
+package com.moali.eqraa.domain.abstractions.media
 
+import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

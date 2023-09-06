@@ -6,7 +6,5 @@ sealed class SebhaEvents {
 
     object OnBackStepClick:SebhaEvents()
 
-    object OnBackClick:SebhaEvents()
-
 
 }

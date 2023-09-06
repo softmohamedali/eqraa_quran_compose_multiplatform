@@ -5,5 +5,7 @@ import kotlinx.coroutines.flow.Flow
 interface DataStoreOper {
     suspend fun getSebhaCounter():Int?
 
+    suspend fun getSebhaPrefAsFlow():Flow<Int?>
+
     suspend fun saveSebhaCounter(counterValue:Int)
 }

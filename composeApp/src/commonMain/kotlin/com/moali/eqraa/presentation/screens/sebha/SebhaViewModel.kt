@@ -24,10 +24,11 @@ class SebhaViewModel : ViewModel(), KoinComponent {
 
     init {
         viewModelScope.launch (dispatchers.main){
-            log("counter --->${pref.getSebhaCounter()?:0}","viewmodel sebha")
-            state=state.copy(
-                counter = pref.getSebhaCounter()?:0
-            )
+            pref.getSebhaPrefAsFlow().collect{
+                state=state.copy(
+                    counter = pref.getSebhaCounter()?:0
+                )
+            }
         }
     }
 
@@ -35,35 +36,40 @@ class SebhaViewModel : ViewModel(), KoinComponent {
 
     fun onEvent(events: SebhaEvents) {
         when (events) {
-
-
             is SebhaEvents.OnIncreaseClick -> {
                 state=state.copy(counter = state.counter+1 )
+                saveSebhaState()
             }
 
             is SebhaEvents.OnRestartClick -> {
                 state=state.copy(counter = 0 )
+                saveSebhaState()
             }
             is SebhaEvents.OnBackStepClick -> {
-                state=state.copy(counter = state.counter-1 )
-            }
-            is SebhaEvents.OnBackClick -> {
-                viewModelScope.launch(dispatchers.io) {
-                    log("oncleared" ,"viewmodel sdeha")
-                    pref.saveSebhaCounter(state.counter)
+                if (state.counter > 0){
+                    state=state.copy(counter = state.counter-1 )
                 }
+                saveSebhaState()
             }
+
+        }
+    }
+
+    private fun saveSebhaState(){
+        viewModelScope.launch(dispatchers.io) {
+            pref.saveSebhaCounter(state.counter)
         }
     }
 
 
     override fun onCleared() {
-        viewModelScope.launch(dispatchers.io) {
-            log("oncleared" ,"viewmodel sdeha")
-            pref.saveSebhaCounter(state.counter)
-        }.invokeOnCompletion {
-            viewModelScope.cancel()
-        }
+//        viewModelScope.launch(dispatchers.io) {
+//
+//            pref.saveSebhaCounter(state.counter)
+//        }.invokeOnCompletion {
+//            viewModelScope.cancel()
+//        }
+        super.onCleared()
 
     }
 

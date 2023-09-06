@@ -5,8 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import co.touchlab.kermit.Logger
 import com.moali.eqraa.core.shared.Dispatchers
-import com.moali.eqraa.di.DIManualAppModule
-import com.moali.eqraa.domain.abstractions.NoteDataSource
+import com.moali.eqraa.domain.abstractions.local.NoteDataSource
 import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.domain.models.Priority
 import com.moali.eqraa.domain.models.PriorityEntity
@@ -23,7 +22,7 @@ class NoteViewModel(
 ) : ViewModel() ,KoinComponent{
 
     private val dispatchers :Dispatchers by inject()
-    private val noteDataSource:NoteDataSource by inject()
+    private val noteDataSource: NoteDataSource by inject()
 
     var state by mutableStateOf(NoteState())
 
