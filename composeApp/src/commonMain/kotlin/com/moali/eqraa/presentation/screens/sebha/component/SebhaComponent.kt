@@ -35,7 +35,7 @@ fun SebhaComponent(
     modifier: Modifier=Modifier
 ) {
     Column(
-        modifier = modifier.width(250.dp).height(300.dp).padding(12.dp)
+        modifier = modifier
             .clip(
                 shape = RoundedCornerShape(
                     topEnd = 80f,

@@ -113,7 +113,10 @@ class SouraViewModel : ViewModel(), KoinComponent {
     private fun onResumePause() {
         if (!mediaPlayerController.isPlaying()) {
             mediaPlayerController.start()
-            servicesUtils.startServiceIntentToCreatePlayerNotification()
+            servicesUtils.startServiceIntentToCreatePlayerNotification(
+                souraName = state.soura.name,
+                shehkName = "ElShehk Mashary Afisi"
+            )
         } else {
             mediaPlayerController.pause()
 

@@ -31,7 +31,7 @@ class QuranJsonRecourse {
             }
             for (i in 1..114)
             {
-                val soura= Soura(1, "", ArrayList())
+                val soura= Soura(1, "", mutableListOf())
                 for (j in sour)
                 {
                     if (j.sura_id==i)

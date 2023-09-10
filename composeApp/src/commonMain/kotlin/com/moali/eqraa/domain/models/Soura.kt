@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Soura(var id:Int, var name:String, var soura:ArrayList<Aya>) {
+data class Soura(var id:Int, var name:String, var soura:MutableList<Aya>) {
     fun sup():String
     {
         var completesoura:String=""
