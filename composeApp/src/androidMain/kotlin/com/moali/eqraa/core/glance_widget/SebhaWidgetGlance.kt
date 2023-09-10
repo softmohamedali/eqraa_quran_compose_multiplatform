@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.screens.sebha
+package com.moali.eqraa.core.glance_widget
 
 import android.content.Context
 import androidx.compose.material3.MaterialTheme
@@ -37,7 +37,7 @@ import com.moali.eqraa.domain.abstractions.local.DataStoreOper
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-object SebhaWidget : GlanceAppWidget(),KoinComponent {
+object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
 
     val pref:DataStoreOper by inject()
 
@@ -100,7 +100,8 @@ object SebhaWidget : GlanceAppWidget(),KoinComponent {
                         text = "Increase",
                         modifier = GlanceModifier.fillMaxWidth().fillMaxHeight()
                             .background(ColorProvider(MaterialTheme.colorScheme.surface)),
-                        onClick = actionRunCallback(IncrementActionCallback(
+                        onClick = actionRunCallback(
+                            IncrementActionCallback(
 
                         )::class.java),
                         )
@@ -115,7 +116,7 @@ object SebhaWidget : GlanceAppWidget(),KoinComponent {
 
 class SimpleCounterWidgetReceiver: GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget
-        get() = SebhaWidget
+        get() = SebhaWidgetGlance
 }
 
 class IncrementActionCallback : ActionCallback ,KoinComponent{
@@ -132,7 +133,7 @@ class IncrementActionCallback : ActionCallback ,KoinComponent{
                 pref.saveSebhaCounter(1)
             }
         }
-        SebhaWidget.update(context, glanceId)
+        SebhaWidgetGlance.update(context, glanceId)
     }
 }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100000"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#FF00687A"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:id="@+id/sebha_counter"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="×"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:background="#C1001C"
+            android:id="@+id/close"/>
+
+    </LinearLayout>
+</FrameLayout>

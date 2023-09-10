@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+
 
     <application
         android:name=".App"
@@ -12,10 +16,11 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         >
         <activity
-            android:name=".presentation.MainActivity"
+            android:name=".MainActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:launchMode="singleInstance"
             android:windowSoftInputMode="adjustResize"
+            android:supportsPictureInPicture="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +29,7 @@
         </activity>
 
         <receiver
-            android:name=".core.reiver.NotificationActionBroadcastReceiver"
+            android:name=".core.reciver.NotificationActionBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -38,11 +43,12 @@
         </receiver>
 
         <service
-            android:name=".core.services.AudioServices"
+            android:name=".core.services.audio_services.AudioServices"
             android:foregroundServiceType="mediaPlayback"
             android:enabled="true"/>
 
-        <receiver android:name=".presentation.screens.sebha.SimpleCounterWidgetReceiver" android:exported="true">
+
+        <receiver android:name=".core.glance_widget.SimpleCounterWidgetReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -50,6 +56,15 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/sebha_widget_info" />
         </receiver>
+
+
+        <service
+            android:name=".core.services.floating_services.SebhaFloatingServices"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection"
+            tools:targetApi="q" />
+
     </application>
 
 </manifest>

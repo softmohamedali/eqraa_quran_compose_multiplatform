@@ -1,4 +1,4 @@
-package com.moali.eqraa.core.services
+package com.moali.eqraa.core.services.audio_services
 
 import android.app.Notification
 import android.app.PendingIntent
@@ -10,10 +10,10 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.core.app.NotificationCompat
 import com.moali.eqraa.R
-import com.moali.eqraa.core.reiver.NotificationActionBroadcastReceiver
+import com.moali.eqraa.core.reciver.NotificationActionBroadcastReceiver
 import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
-import com.moali.eqraa.presentation.MainActivity
+import com.moali.eqraa.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

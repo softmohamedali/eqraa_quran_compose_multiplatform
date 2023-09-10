@@ -113,7 +113,7 @@ class SouraViewModel : ViewModel(), KoinComponent {
     private fun onResumePause() {
         if (!mediaPlayerController.isPlaying()) {
             mediaPlayerController.start()
-            servicesUtils.startServiceIntent()
+            servicesUtils.startServiceIntentToCreatePlayerNotification()
         } else {
             mediaPlayerController.pause()
 

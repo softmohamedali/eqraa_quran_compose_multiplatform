@@ -120,7 +120,6 @@ kotlin {
                 api("dev.icerock.moko:resources-compose:0.23.0") // for compose multiplatform
                 implementation("dev.icerock.moko:resources-test:0.23.0")
 
-
             }
         }
 
@@ -146,6 +145,9 @@ kotlin {
                 implementation("androidx.glance:glance:1.0.0-rc01")
                 implementation( "androidx.glance:glance-appwidget: 1.0.0-rc01")
                 implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+                implementation ("io.github.torrydo:screen-easy:0.0.3")
+
             }
         }
 

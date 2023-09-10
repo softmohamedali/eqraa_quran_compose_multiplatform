@@ -33,6 +33,9 @@ class SebhaScreen(
             },
             onBackStepClick = {
                 sebhaViewModel.onEvent(SebhaEvents.OnBackStepClick)
+            },
+            onFloatingSebhaClick={
+                sebhaViewModel.onEvent(SebhaEvents.OnFloatingSebhaClicked)
             }
         )
     }

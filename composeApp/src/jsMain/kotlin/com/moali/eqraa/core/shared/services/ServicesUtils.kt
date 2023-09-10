@@ -1,10 +1,10 @@
 package com.moali.eqraa.core.shared.services
 
 actual class ServicesUtils {
-    actual fun startServiceIntent(){
+    actual fun startServiceIntentToCreatePlayerNotification(){
 
     }
 
-    actual fun createPlayerNotification() {
+    actual fun startServiceIntentToCreateSebhaFloating() {
     }
 }
