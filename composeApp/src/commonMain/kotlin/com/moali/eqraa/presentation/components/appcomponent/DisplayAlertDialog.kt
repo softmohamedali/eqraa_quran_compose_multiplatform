@@ -27,8 +27,10 @@ fun DisplayAlertDialog(
     showAlert: Boolean,
     title: String,
     text: String,
-    closeDialog: () -> Unit,
-    confirmClick: () -> Unit
+    negativeClick: () -> Unit,
+    positiveClick: () -> Unit,
+    positiveActionText: String = stringResource(SharedRes.strings.confirm),
+    negativeActionText: String = stringResource(SharedRes.strings.cancel)
 ) {
     if (showAlert) {
         Column(
@@ -60,15 +62,15 @@ fun DisplayAlertDialog(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.End
                     ) {
-                        TextButton(onClick = closeDialog) {
-                            Text(text = stringResource(SharedRes.strings.cancel))
+                        TextButton(onClick = negativeClick) {
+                            Text(text =negativeActionText)
                         }
                         Spacer(modifier = Modifier.width(8.dp))
                         TextButton(onClick = {
-                            confirmClick()
-                            closeDialog()
+                            positiveClick()
+                            negativeClick()
                         }) {
-                            Text(text = stringResource(SharedRes.strings.confirm))
+                            Text(text = positiveActionText)
                         }
                     }
                 }

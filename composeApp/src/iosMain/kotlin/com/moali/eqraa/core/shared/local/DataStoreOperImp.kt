@@ -22,4 +22,12 @@ actual class DataStoreOperImp: DataStoreOper {
     override suspend fun saveSebhaCounter(counterValue: Int) {
 
     }
+
+    override suspend fun getCurrentTasbeha(): Flow<Int?> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun saveTasbeha(tasbehaId: Int) {
+        TODO("Not yet implemented")
+    }
 }

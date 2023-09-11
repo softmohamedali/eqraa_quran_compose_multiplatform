@@ -8,4 +8,9 @@ interface DataStoreOper {
     suspend fun getSebhaPrefAsFlow():Flow<Int?>
 
     suspend fun saveSebhaCounter(counterValue:Int)
+
+    suspend fun getCurrentTasbeha():Flow<Int?>
+
+    suspend fun saveTasbeha(tasbehaId:Int)
+
 }

@@ -22,6 +22,8 @@ class SebhaScreen(
 
         SebhaView(
             counter = state.counter.toString(),
+            isShowingRequestDialog = state.showingRequestDialog,
+            currentTasbehaId=state.currentTasbehaId,
             onBackClick = {
                 navigator.pop()
             },
@@ -35,7 +37,16 @@ class SebhaScreen(
                 sebhaViewModel.onEvent(SebhaEvents.OnBackStepClick)
             },
             onFloatingSebhaClick={
-                sebhaViewModel.onEvent(SebhaEvents.OnFloatingSebhaClicked)
+                sebhaViewModel.onEvent(SebhaEvents.OnFloatingSebhaClick)
+            },
+            goSettingClick = {
+                sebhaViewModel.onEvent(SebhaEvents.OnGoSettingClick)
+            },
+            closeAlertClick = {
+                sebhaViewModel.onEvent(SebhaEvents.OnCloseAlertClick)
+            },
+            onTasbehaItemClick = {
+                sebhaViewModel.onEvent(SebhaEvents.OnTasbehaItemClick(it))
             }
         )
     }

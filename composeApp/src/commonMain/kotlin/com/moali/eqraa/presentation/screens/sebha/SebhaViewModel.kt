@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.utils.Dispatchers
+import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.abstractions.local.DataStoreOper
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
@@ -28,6 +29,14 @@ class SebhaViewModel : ViewModel(), KoinComponent {
                 )
             }
         }
+        viewModelScope.launch {
+            pref.getCurrentTasbeha().collect {
+                log("tasbeha id ->${it}","SebhaViewModel")
+                state = state.copy(
+                    currentTasbehaId = it?: 0
+                )
+            }
+        }
     }
 
 
@@ -37,21 +46,31 @@ class SebhaViewModel : ViewModel(), KoinComponent {
                 state = state.copy(counter = state.counter + 1)
                 saveSebhaState()
             }
-
             is SebhaEvents.OnRestartClick -> {
                 state = state.copy(counter = 0)
                 saveSebhaState()
             }
-
             is SebhaEvents.OnBackStepClick -> {
                 if (state.counter > 0) {
                     state = state.copy(counter = state.counter - 1)
                 }
                 saveSebhaState()
             }
-
-            is SebhaEvents.OnFloatingSebhaClicked -> {
+            is SebhaEvents.OnFloatingSebhaClick -> {
+                if (!servicesUtils.canDrawOverlays()){
+                    state = state.copy(showingRequestDialog = true)
+                }else{
+                    servicesUtils.startServiceIntentToCreateSebhaFloating()
+                }
+            }
+            is SebhaEvents.OnGoSettingClick -> {
                 servicesUtils.startServiceIntentToCreateSebhaFloating()
+            }
+            is SebhaEvents.OnCloseAlertClick -> {
+                state = state.copy(showingRequestDialog = false)
+            }
+            is SebhaEvents.OnTasbehaItemClick -> {
+                saveCurrentTasbeha(events.id)
             }
         }
     }
@@ -62,16 +81,15 @@ class SebhaViewModel : ViewModel(), KoinComponent {
         }
     }
 
+    private fun saveCurrentTasbeha(id:Int) {
+        log("save tasbeha id ->${id}","SebhaViewModel")
+        viewModelScope.launch(dispatchers.io) {
+            pref.saveTasbeha(id)
+        }
+    }
 
     override fun onCleared() {
-//        viewModelScope.launch(dispatchers.io) {
-//
-//            pref.saveSebhaCounter(state.counter)
-//        }.invokeOnCompletion {
-//            viewModelScope.cancel()
-//        }
         super.onCleared()
-
     }
 
 

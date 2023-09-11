@@ -98,10 +98,10 @@ class NoteDetailsScreen(
                         showAlert = state.isShowAlertDialog,
                         title = stringResource(SharedRes.strings.delete_x, listOf(note?.title)),
                         text = stringResource(SharedRes.strings.sure_delete, listOf(note?.title)),
-                        closeDialog = {
+                        negativeClick = {
                             noteDetailsViewModel.onEvent(NoteDetailsEvents.OnCloseDialog)
                         },
-                        confirmClick = {
+                        positiveClick = {
                             noteDetailsViewModel.onEvent(NoteDetailsEvents.OnConfirmDeleteClick)
                         }
                     )

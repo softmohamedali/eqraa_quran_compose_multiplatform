@@ -53,8 +53,8 @@ fun ToolBarListScreen(
         showAlert = isShowAlertDialog,
         title = stringResource(SharedRes.strings.delete_all)+" ?",
         text = stringResource(SharedRes.strings.sure_delete_all),
-        closeDialog = { onCloseDialog() },
-        confirmClick = {
+        negativeClick = { onCloseDialog() },
+        positiveClick = {
             onConfirmDialogClick()
         }
     )

@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 class SebhaFloatingState {
   val overlayState = OverlayState()
   val counter= mutableStateOf(0)
+  val currentTasbehaId=mutableStateOf(1)
 
 }
 

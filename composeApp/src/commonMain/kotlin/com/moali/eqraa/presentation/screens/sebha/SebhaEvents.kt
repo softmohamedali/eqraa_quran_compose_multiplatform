@@ -5,7 +5,10 @@ sealed class SebhaEvents {
     object OnRestartClick:SebhaEvents()
     object OnBackStepClick:SebhaEvents()
 
-    object OnFloatingSebhaClicked:SebhaEvents()
+    object OnFloatingSebhaClick:SebhaEvents()
+    object OnGoSettingClick:SebhaEvents()
+    object OnCloseAlertClick:SebhaEvents()
+    class OnTasbehaItemClick(val id:Int):SebhaEvents()
 
 
 }

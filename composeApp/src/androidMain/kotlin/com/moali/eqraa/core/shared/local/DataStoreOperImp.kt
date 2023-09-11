@@ -38,8 +38,21 @@ actual class DataStoreOperImp(
 
     override suspend fun saveSebhaCounter(counterValue: Int) {
         context.dataStore.edit {
-            log(counterValue.toString(),"viewmodel datastoreandroid")
             it[DataStorePhrefrencesKeys.sebhaPrefKey]=counterValue
+        }
+    }
+
+    override suspend fun getCurrentTasbeha(): Flow<Int?> {
+        return flow {
+            context.dataStore.data.collect{
+                emit(it[DataStorePhrefrencesKeys.currentTasbehaPrefKey])
+            }
+        }
+    }
+
+    override suspend fun saveTasbeha(tasbehaId: Int) {
+        context.dataStore.edit {
+            it[DataStorePhrefrencesKeys.currentTasbehaPrefKey]=tasbehaId
         }
     }
 }

@@ -6,4 +6,6 @@ expect class ServicesUtils{
         shehkName:String
     )
     fun startServiceIntentToCreateSebhaFloating()
+
+    fun canDrawOverlays():Boolean
 }

@@ -7,9 +7,12 @@ object Constants {
     const val AFISI_SOUR="/afs"
 
 
-    //android intent
+    //android intent extra
     const val SOURA_NAME_EXTRA="soura"
     const val SHEK_NAME_EXTRA="shek"
+
+    //android request codes
+    const val REQUEST_CODE_ACTION_MANAGE_OVERLAY_PERMISSION=1
 
 
 }

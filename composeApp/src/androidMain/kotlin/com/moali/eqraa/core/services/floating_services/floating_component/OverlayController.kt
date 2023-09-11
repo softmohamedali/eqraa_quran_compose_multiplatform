@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.unit.IntOffset
 import com.moali.eqraa.core.services.floating_services.SebhaFloatingServices
 import com.moali.eqraa.domain.abstractions.local.DataStoreOper
+import com.moali.eqraa.domain.models.tasbehat
 import com.moali.eqraa.presentation.screens.sebha.component.FloatingSebhaContent
 import com.torrydo.screenez.ScreenEz
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +41,12 @@ class OverlayController(
         service.scope.launch(Dispatchers.Main){
             pref.getSebhaPrefAsFlow().collect {
                 sebhaFloatingState.counter.value=it?:0
+
+            }
+        }
+        service.scope.launch(Dispatchers.Main){
+            pref.getCurrentTasbeha().collect {
+                sebhaFloatingState.currentTasbehaId.value=it?:1
 
             }
         }
@@ -89,6 +96,7 @@ class OverlayController(
                             pref.saveSebhaCounter(pref.getSebhaCounter()?.plus(1) ?: 1)
                         }
                     },
+                    title=tasbehat[(sebhaFloatingState.currentTasbehaId.value)-1].name,
                     count = sebhaFloatingState.counter.value
                 )
             },

@@ -49,7 +49,7 @@ fun FloatingSebhaContent(
         )
         Spacer(modifier=Modifier.height(5.dp))
         Text(
-            text = "hi amn how are you to day",
+            text = title,
             fontSize =20.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,

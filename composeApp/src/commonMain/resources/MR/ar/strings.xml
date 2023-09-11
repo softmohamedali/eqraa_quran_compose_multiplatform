@@ -20,4 +20,8 @@
     <string name="cancel">الغاء</string>
     <string name="confirm">تأكيد</string>
     <string name="search">بحث</string>
+    <string name="go_to_settings">الذهاب الى الاعدادات</string>
+    <string name="enable_overlay_permission">تمكين إذن السبحه العائمه</string>
+    <string name="dialog_enable_overlay_permission">يرجى تمكين إذن \"السماح بالعرض فوق التطبيقات الأخرى\" للتطبيق </string>
+    <string name="back">رجوع</string>
 </resources>
