@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +22,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.domain.models.Soura
+import com.moali.eqraa.domain.models.supSouraAyat
+import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.eqraa.presentation.screens.soura.component.BottomAudioController
 import com.moali.eqraa.presentation.screens.soura.component.MiniAudioPlayer
@@ -29,6 +32,7 @@ import com.moali.eqraa.presentation.screens.soura.component.MiniAudioPlayer
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SouraView(
+    isLoading:Boolean,
     soura: Soura,
     onBackClick: () -> Unit,
     isAudioPlayed: Boolean,
@@ -92,7 +96,7 @@ fun SouraView(
                     Spacer(modifier = Modifier.height(15.dp))
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = soura.sup(),
+                        text = supSouraAyat(soura.soura),
                         overflow = TextOverflow.Visible,
                         textAlign = TextAlign.Center,
                         fontSize = 20.sp,
@@ -147,6 +151,9 @@ fun SouraView(
                         onClose = onClose
                     )
                 }
+            }
+            if (isLoading){
+                LoadingLayer(color = MaterialTheme.colorScheme.primary)
             }
 
         }

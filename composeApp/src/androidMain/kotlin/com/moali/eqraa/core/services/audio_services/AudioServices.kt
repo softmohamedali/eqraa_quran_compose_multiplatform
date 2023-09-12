@@ -126,7 +126,12 @@ class AudioServices() : Service(), KoinComponent {
             it.action = ActionAudioService.BACK10.toString()
         }
         val back10PendingIntent =
-            PendingIntent.getBroadcast(this, 0, back10Intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(
+                this,
+                0,
+                back10Intent,
+                PendingIntent.FLAG_UPDATE_CURRENT
+            )
 
         val playPAUSEPauseIntent =
             Intent(this, NotificationActionBroadcastReceiver::class.java).also {

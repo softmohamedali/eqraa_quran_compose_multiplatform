@@ -5,15 +5,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.shared.services.ServicesUtils
+import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.core.utils.log
+import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
+import com.moali.eqraa.domain.usecases.GetQuranUseCase
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class SouraViewModel : ViewModel(), KoinComponent {
+class SouraViewModel(
+    private val getQuranUseCase: GetQuranUseCase = DIManualAppModule.getQuranUseCase,
+) : ViewModel(), KoinComponent {
 
     private val mediaPlayerController: MediaPlayerOperation by inject()
     private val dispatchers: Dispatchers by inject()
@@ -21,20 +26,12 @@ class SouraViewModel : ViewModel(), KoinComponent {
 
     var state by mutableStateOf(SouraState())
 
-    init {
-        viewModelScope.launch {
-            mediaPlayerController.playPauseState.collect{
-                state=state.copy(isPlay = it)
-            }
-        }
-
-    }
 
     fun onEvent(events: SouraEvents) {
         when (events) {
             is SouraEvents.OnInit -> {
-                state = state.copy(soura = events.soura)
-                prepere()
+                state = state.copy(souraId = events.souraId, isLoading = true)
+                getQuran()
             }
 
             is SouraEvents.OnAudioMiniClick -> {
@@ -98,6 +95,29 @@ class SouraViewModel : ViewModel(), KoinComponent {
         }
     }
 
+    private fun getQuran(){
+        viewModelScope.launch(dispatchers.main) {
+            getQuranUseCase().collect{
+                when{
+                    it is ResultState.IsSucsses ->{
+                        state=state.copy(soura = it.data!![state.souraId])
+                        prepere()
+                        mediaPlayerController.playPauseState.collect{
+                            state=state.copy(isPlay = it)
+                        }
+                    }
+                    it is ResultState.IsLoading ->{
+
+                    }
+                    it is ResultState.IsError ->{
+
+                    }
+                }
+
+            }
+        }
+    }
+
     private fun openBottomSheet() {
         state=state.copy(isShowBottomAudioSheet = true)
     }
@@ -129,12 +149,12 @@ class SouraViewModel : ViewModel(), KoinComponent {
             .prepare("https://server8.mp3quran.net/afs/${countNumberDigets(state.soura.id)}.mp3",
                 listener = object : MediaPlayerListener {
                     override fun onReady() {
-//                        Logger.i { "duration ------>${ mediaPlayerController.getDuration()?:"00:00"}" }
                         state=state.copy(
                             totalTime = convertMillisecondsToTime(
                                 mediaPlayerController.getDuration()
                             ),
-                            totalProgress = mediaPlayerController.getDuration()?.toFloat()?:0f
+                            totalProgress = mediaPlayerController.getDuration()?.toFloat()?:0f,
+                            isLoading = false
                         )
 
                         viewModelScope.launch {
@@ -149,10 +169,11 @@ class SouraViewModel : ViewModel(), KoinComponent {
                     }
 
                     override fun onVideoCompleted() {
+                        state=state.copy(isLoading = false)
                     }
 
                     override fun onError() {
-
+                        state=state.copy(isLoading = false)
                     }
                 }
             )
@@ -196,10 +217,7 @@ class SouraViewModel : ViewModel(), KoinComponent {
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        log("onCleared viewmodel soura","viewmodel")
-    }
+
 
 
 }

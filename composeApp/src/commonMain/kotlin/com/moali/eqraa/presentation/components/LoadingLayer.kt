@@ -12,13 +12,12 @@ import androidx.compose.ui.semantics.semantics
 
 @Composable
 fun LoadingLayer(
-    color: Color =MaterialTheme.colorScheme.onPrimary,
+    color: Color =MaterialTheme.colorScheme.primary,
     contentDescription:String=""
 ) {
     Surface(
         modifier = Modifier
             .fillMaxSize(),
-        color = color
     ) {
         Center {
             CircularProgressIndicator(

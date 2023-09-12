@@ -28,6 +28,7 @@ class NoteViewModel(
 
     init {
         getState()
+        saveState(Priority.NONE)
     }
     fun onEvent(event: NoteEvents){
         when(event){

@@ -5,14 +5,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Soura(var id:Int, var name:String, var soura:MutableList<Aya>) {
-    fun sup():String
+
+}
+
+fun supSouraAyat(soura: MutableList<Aya>):String
+{
+    var completesoura:String=""
+    for (i in 0 until soura.size)
     {
-        var completesoura:String=""
-        for (i in 0 until soura.size)
-        {
-            //
-            completesoura+=" ${soura[i].standard_full} ⊰⦅${i+1}⦆⊱ "
-        }
-        return completesoura
+        //
+        completesoura+=" ${soura[i].standard_full} ⊰⦅${i+1}⦆⊱ "
     }
+    return completesoura
 }

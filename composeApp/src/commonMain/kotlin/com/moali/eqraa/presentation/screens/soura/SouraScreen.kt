@@ -2,6 +2,7 @@ package com.moali.eqraa.presentation.screens.soura
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -9,10 +10,11 @@ import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.screens.soura.component.SouraView
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
+import kotlinx.serialization.Serializable
 
 
 class SouraScreen(
-    private val soura:Soura
+    private val souraId:Int
 ): Screen {
 
     @Composable
@@ -22,12 +24,13 @@ class SouraScreen(
         val souraViewModel=getViewModel("SouraViewModel", viewModelFactory { SouraViewModel() })
         val state=souraViewModel.state
         LaunchedEffect(1){
-            souraViewModel.onEvent(SouraEvents.OnInit(soura))
+            souraViewModel.onEvent(SouraEvents.OnInit(souraId))
         }
 
 
         SouraView(
-            soura = soura,
+            isLoading=state.isLoading,
+            soura = state.soura,
             onBackClick = {
                 navigator.pop()
             },

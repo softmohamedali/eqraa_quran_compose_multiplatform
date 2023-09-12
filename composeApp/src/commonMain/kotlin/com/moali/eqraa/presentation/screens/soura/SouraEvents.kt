@@ -19,7 +19,7 @@ sealed class SouraEvents {
     object OnTeenBackWardClick:SouraEvents()
     object OnCloseBottomSheetClick:SouraEvents()
 
-    class OnInit(val soura:Soura):SouraEvents()
+    class OnInit(val souraId:Int):SouraEvents()
 
 
 }

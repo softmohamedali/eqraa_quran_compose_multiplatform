@@ -22,7 +22,7 @@ class QuranScreen:Screen{
                 navigator.pop()
             },
             onSouraItemClick = {
-                navigator.push(SouraScreen(it))
+                navigator.push(SouraScreen(it.id))
             }
         )
     }
