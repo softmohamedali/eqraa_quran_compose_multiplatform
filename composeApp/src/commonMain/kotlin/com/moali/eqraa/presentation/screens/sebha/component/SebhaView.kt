@@ -59,7 +59,7 @@ fun SebhaView(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 LazyColumn(
-                    modifier = Modifier.weight(6.5f)
+                    modifier = Modifier.weight(6f)
                 ) {
                     items(tasbehat) { tasbeha ->
                         TasbheViewItem(
@@ -70,7 +70,7 @@ fun SebhaView(
                     }
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth().weight(3.5f).padding(12.dp)
+                    modifier = Modifier.fillMaxWidth().weight(4f).padding(12.dp)
                 ) {
                     FloatingButton(
                         modifier = Modifier.weight(1f),

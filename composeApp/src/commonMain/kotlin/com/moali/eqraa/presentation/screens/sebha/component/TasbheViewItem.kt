@@ -34,7 +34,7 @@ fun TasbheViewItem(
     isMarkable:Boolean
 ) {
     Column(
-        modifier = Modifier.fillMaxWidth().height(120.dp).padding(8.dp)
+        modifier = Modifier.fillMaxWidth().padding(8.dp)
             .border(
                 3.dp,
                 if (isMarkable) second_text else MaterialTheme.colorScheme.primary,
@@ -54,7 +54,6 @@ fun TasbheViewItem(
         )
         Spacer(Modifier.height(5.dp))
         Text(
-            modifier = Modifier.weight(8f),
             textAlign = TextAlign.End,
             text = tasbeha.useful,
             color = second_text,

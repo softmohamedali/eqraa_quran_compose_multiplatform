@@ -44,6 +44,7 @@ fun NoteView(
     onSearchTextChange: (String) -> Unit,
     isShowAlertDialog: Boolean,
     onCloseDialog: () -> Unit,
+    onBackClick: () -> Unit
 ) {
 
 
@@ -107,6 +108,7 @@ fun NoteView(
                 onSearchTextChange = onSearchTextChange,
                 isShowAlertDialog = isShowAlertDialog,
                 onCloseDialog = onCloseDialog,
+                onBackClick=onBackClick
             )
         },
     )

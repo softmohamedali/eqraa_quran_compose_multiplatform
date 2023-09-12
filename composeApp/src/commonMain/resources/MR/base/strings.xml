@@ -3,7 +3,7 @@
     <string name="app_name">Eqraa</string>
     <string name="alquran_alkarem">AlQuran AlKarem</string>
     <string name="note">Note</string>
-    <string name="no_data_found_error_X">No Data Found Error (%s)</string>
+    <string name="no_data_found_error_X">No Data Found (%s)</string>
     <string name="notes">Notes</string>
     <string name="high">High</string>
     <string name="medium">Medium</string>

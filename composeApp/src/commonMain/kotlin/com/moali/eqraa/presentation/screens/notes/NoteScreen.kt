@@ -90,6 +90,9 @@ class NoteScreen(
             },
             onDeleteActionClick = {
                 noteViewModel.onEvent(NoteEvents.OnDeleteAllClick)
+            },
+            onBackClick = {
+                navigator.pop()
             }
         )
 

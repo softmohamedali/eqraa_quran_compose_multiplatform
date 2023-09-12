@@ -30,7 +30,7 @@ fun SouraItem(
 
     Row(
         modifier = Modifier.fillMaxWidth().height(70.dp).padding(8.dp)
-            .border(1.dp,MaterialTheme.colorScheme.primary,RoundedCornerShape(3))
+            .border(3.dp,MaterialTheme.colorScheme.primary,RoundedCornerShape(10))
             .padding(8.dp)
             .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
@@ -54,7 +54,7 @@ fun SouraItem(
         }
 
         Text(
-            modifier = Modifier.weight(8f),
+            modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
             text = soura.name
         )

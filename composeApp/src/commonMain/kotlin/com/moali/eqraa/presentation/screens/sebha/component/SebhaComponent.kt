@@ -3,6 +3,7 @@ package com.moali.eqraa.presentation.screens.sebha.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Circle
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -77,22 +80,6 @@ fun SebhaComponent(
                 modifier= Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ){
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text="BackOne",
-                        color = MaterialTheme.colorScheme.surface
-                    )
-                    Icon(
-                        modifier = Modifier.size(30.dp).clickable {
-                            onBackStepClick()
-                        },
-                        imageVector = Icons.Default.Circle,
-                        contentDescription = "",
-                        tint = MaterialTheme.colorScheme.surface
-                    )
-                }
                 Column (
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
@@ -110,21 +97,42 @@ fun SebhaComponent(
                         tint = MaterialTheme.colorScheme.surface
                     )
                 }
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text="BackOne",
+                        color = MaterialTheme.colorScheme.surface
+                    )
+                    Icon(
+                        modifier = Modifier.size(30.dp).clickable {
+                            onBackStepClick()
+                        },
+                        imageVector = Icons.Default.Circle,
+                        contentDescription = "",
+                        tint = MaterialTheme.colorScheme.surface
+                    )
+                }
+
             }
 
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Icon(
-                    modifier = Modifier.size(120.dp).padding(12.dp)
-                        .clickable {
-                            onIncreaseClick()
-                        },
-                    imageVector = Icons.Default.Circle,
-                    contentDescription = "",
-                    tint = MaterialTheme.colorScheme.surface
+                Button(
+                    modifier = Modifier
+                        .size(100.dp).height(70.dp).padding(12.dp)
+                        .clip(RoundedCornerShape(40.dp))
+                        ,
+                    colors = ButtonDefaults.buttonColors(
+                        contentColor = MaterialTheme.colorScheme.surface,
+                        containerColor = MaterialTheme.colorScheme.surface
+                    ),
+                    content = {
+                    },
+                    onClick = { onIncreaseClick() }
                 )
             }
 

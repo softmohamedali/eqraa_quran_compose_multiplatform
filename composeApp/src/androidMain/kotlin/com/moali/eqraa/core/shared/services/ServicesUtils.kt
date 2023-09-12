@@ -12,10 +12,12 @@ import com.moali.eqraa.core.services.floating_services.floating_component.INTENT
 import com.moali.eqraa.core.services.floating_services.floating_component.INTENT_COMMAND_COUNTDOWN_CREATE
 import com.moali.eqraa.core.utils.Constants.SHEK_NAME_EXTRA
 import com.moali.eqraa.core.utils.Constants.SOURA_NAME_EXTRA
+import com.moali.eqraa.domain.abstractions.local.DataStoreOper
 
 
 actual class ServicesUtils (
-    private val context: Context
+    private val context: Context,
+    private val pref: DataStoreOper
 ){
     actual fun startServiceIntentToCreatePlayerNotification(
         souraName:String,
@@ -35,7 +37,7 @@ actual class ServicesUtils (
                 val intent = Intent(
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.packageName)
                 )
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
                 return
             }
@@ -54,6 +56,12 @@ actual class ServicesUtils (
         }
         return false
     }
+
+    actual suspend fun startMainComponentAction(mainComponentActionId:Int) {
+        pref.sendAction(mainComponentActionId)
+    }
+
+
 
 
 }

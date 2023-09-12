@@ -1,7 +1,11 @@
 package com.moali.eqraa.presentation.screens.notes.components
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
@@ -12,6 +16,7 @@ import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Menu
@@ -22,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -36,22 +42,22 @@ fun ToolBarListScreen(
     toolBarState: ToolBarState,
     toolBarSearchValue: String,
     onConfirmDialogClick: () -> Unit,
-    isShowAlertDialog:Boolean,
-    onCloseDialog:()->Unit,
+    isShowAlertDialog: Boolean,
+    onCloseDialog: () -> Unit,
     onSearchOpenClick: () -> Unit,
     onFilterClick: () -> Unit,
     onSearchClick: () -> Unit,
     onCloseClick: () -> Unit,
-    onActionMenuClick:()->Unit,
-    onSearchTextChange: (String) -> Unit
+    onActionMenuClick: () -> Unit,
+    onSearchTextChange: (String) -> Unit,
+    onBackClick: () -> Unit
 
 ) {
 
 
-
     DisplayAlertDialog(
         showAlert = isShowAlertDialog,
-        title = stringResource(SharedRes.strings.delete_all)+" ?",
+        title = stringResource(SharedRes.strings.delete_all) + " ?",
         text = stringResource(SharedRes.strings.sure_delete_all),
         negativeClick = { onCloseDialog() },
         positiveClick = {
@@ -69,6 +75,9 @@ fun ToolBarListScreen(
                 },
                 onActionClick = {
                     onActionMenuClick()
+                },
+                onBackClick={
+                    onBackClick()
                 }
             )
         }
@@ -93,24 +102,32 @@ fun ToolBarListScreen(
 }
 
 @Composable
-fun HandleDeleteClick(
-    noteViewModel: NoteViewModel
-) {
-
-
-}
-
-@Composable
 fun DefaultToolBarListScreen(
     searchClick: () -> Unit,
     filterClick: () -> Unit,
     onActionClick: () -> Unit,
+    onBackClick: () -> Unit,
 ) {
     TopAppBar(
         title = {
-            Text(text = stringResource(SharedRes.strings.notes),
-            color = MaterialTheme.colorScheme.onPrimary)
-                },
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = null,
+                    tint=MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier.clickable{
+                        onBackClick()
+                    }
+                )
+                Spacer(Modifier.width(5.dp))
+                Text(
+                    text = stringResource(SharedRes.strings.notes),
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+        },
         actions = {
             ToolBarAction(
                 searchClick = searchClick,
@@ -247,7 +264,7 @@ fun SearchToolBar(
                 focusedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
                 unfocusedIndicatorColor = MaterialTheme.colorScheme.onPrimary,
                 backgroundColor = MaterialTheme.colorScheme.primary,
-                placeholderColor =  MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
+                placeholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.7f),
             )
         )
     }

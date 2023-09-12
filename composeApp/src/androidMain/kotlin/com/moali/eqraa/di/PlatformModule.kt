@@ -41,11 +41,13 @@ actual fun platformModule() =
 
         single<MediaPlayerOperation> { MediaPlayerController() }
 
-        single { ServicesUtils(get()) }
+
 
 
 
         single<DataStoreOper> { DataStoreOperImp(get()) }
+
+        single { ServicesUtils(get(),get()) }
 
         //Data Store settings
         single<SharedPreferences>{ get<Context>().getSharedPreferences("MyShared",Context.MODE_PRIVATE) }

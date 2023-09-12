@@ -25,17 +25,21 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun HomeView (
     onItemClick:(HomeEventsType)->Unit={},
-    infoClick:()->Unit={},
-    shareClick:()->Unit={},
-    rateClick:()->Unit={},
-    menuClick:()->Unit={},
+    onInfoClick:()->Unit={},
+    onShareClick:()->Unit={},
+    onRateClick:()->Unit={},
+    onMenuClick:()->Unit={},
 ){
 
     Column (
         modifier = Modifier.fillMaxSize(),
     ){
         HomeTopAppBar(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            onMenuClick=onMenuClick,
+            onInfoClick = onInfoClick,
+            onRateClick = onRateClick,
+            onShareClick = onShareClick
         )
         Column(
             modifier = Modifier.weight(10f).padding(8.dp),

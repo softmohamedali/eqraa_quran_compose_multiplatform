@@ -26,10 +26,10 @@ import dev.icerock.moko.resources.compose.stringResource
 @Composable
 fun HomeTopAppBar(
     modifier: Modifier=Modifier,
-    infoClick:()->Unit={},
-    shareClick:()->Unit={},
-    rateClick:()->Unit={},
-    menuClick:()->Unit={},
+    onInfoClick:()->Unit={},
+    onShareClick:()->Unit={},
+    onRateClick:()->Unit={},
+    onMenuClick:()->Unit={},
 ){
     Row (
     modifier = modifier
@@ -41,7 +41,7 @@ fun HomeTopAppBar(
         ) {
             IconButton(
                 modifier = Modifier.padding(3.dp),
-                onClick = {infoClick()},
+                onClick = {onInfoClick()},
                 content = {
                     Icon(
                         imageVector = Icons.Rounded.Info,
@@ -52,7 +52,7 @@ fun HomeTopAppBar(
             )
             IconButton(
                 modifier = Modifier.padding(3.dp),
-                onClick = {shareClick()},
+                onClick = {onShareClick()},
                 content = {
                     Icon(
                         imageVector = Icons.Rounded.Share,
@@ -63,7 +63,7 @@ fun HomeTopAppBar(
             )
             IconButton(
                 modifier = Modifier.padding(3.dp),
-                onClick = {rateClick()},
+                onClick = {onRateClick()},
                 content = {
                     Icon(
                         imageVector = Icons.Rounded.Star,
@@ -83,7 +83,7 @@ fun HomeTopAppBar(
                 color = MaterialTheme.colorScheme.onPrimary
             )
             IconButton(
-                onClick = {menuClick()},
+                onClick = {onMenuClick()},
                 content = {
                     Icon(
                         imageVector = Icons.Rounded.Menu,

@@ -55,4 +55,18 @@ actual class DataStoreOperImp(
             it[DataStorePhrefrencesKeys.currentTasbehaPrefKey]=tasbehaId
         }
     }
+
+    override suspend fun sendAction(actionId: Int) {
+        context.dataStore.edit {
+            it[DataStorePhrefrencesKeys.mainComponentActionPrefKey]=actionId
+        }
+    }
+
+    override suspend fun listenMainComponentAction(): Flow<Int?> {
+        return flow {
+            context.dataStore.data.collect{
+                emit(it[DataStorePhrefrencesKeys.mainComponentActionPrefKey])
+            }
+        }
+    }
 }
