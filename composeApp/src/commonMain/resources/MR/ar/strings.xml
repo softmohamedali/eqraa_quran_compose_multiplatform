@@ -24,4 +24,9 @@
     <string name="enable_overlay_permission">تمكين إذن السبحه العائمه</string>
     <string name="dialog_enable_overlay_permission">يرجى تمكين إذن \"السماح بالعرض فوق التطبيقات الأخرى\" للتطبيق </string>
     <string name="back">رجوع</string>
+    <string name="sebha">السبحه</string>
+    <string name="floating_sebha">السبحه العائمه</string>
+    <string name="back_one">رجوع خطوه</string>
+    <string name="restart">البدء من جديد</string>
+
 </resources>

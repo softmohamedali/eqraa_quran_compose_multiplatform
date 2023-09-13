@@ -55,7 +55,7 @@ fun HomeView (
                 icon = painterResource(SharedRes.images.open_quran)
             )
             EqraaIteem(
-                text = "Sebha",
+                text = stringResource(SharedRes.strings.sebha),
                 onClick = {
                     onItemClick(HomeEventsType.TO_SEBHA)
                 },

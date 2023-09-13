@@ -45,7 +45,7 @@ fun SebhaView(
     Scaffold(
         topBar = {
             TopAppbar(
-                title = "Sebha",
+                title = stringResource(SharedRes.strings.sebha),
                 onBackClick = { onBackClick() },
                 isBack = true
             )

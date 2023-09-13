@@ -15,21 +15,22 @@ import com.moali.eqraa.presentation.screens.home.components.HomeEventsType
 import com.moali.eqraa.presentation.screens.notes.NoteScreen
 import com.moali.eqraa.presentation.screens.quran.QuranScreen
 import com.moali.eqraa.presentation.screens.sebha.SebhaScreen
+import com.moali.eqraa.presentation.screens.sebha.SebhaViewModel
+import dev.icerock.moko.mvvm.compose.getViewModel
+import dev.icerock.moko.mvvm.compose.viewModelFactory
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 
 class HomeScreen(
-//    private val noteDataSource: NoteDataSource?
 ):Screen, KoinComponent{
-
-    private val servicesUtils: ServicesUtils by inject()
 
     @Composable
     override fun Content() {
+
         val navigator = LocalNavigator.currentOrThrow
-        val scop= rememberCoroutineScope()
+        val homeViewModel = getViewModel("homeViewMdoel", viewModelFactory { HomeViewModel() })
         LaunchedEffect(1){
             QuranJsonRecourse().getQuranFromResources()
         }
@@ -50,9 +51,7 @@ class HomeScreen(
                 }
             },
             onShareClick = {
-                scop.launch {
-                    servicesUtils.startMainComponentAction(MainCompnentAction.SHARE_APP)
-                }
+                homeViewModel.shareApp()
             },
             onRateClick = {},
             onInfoClick = {},

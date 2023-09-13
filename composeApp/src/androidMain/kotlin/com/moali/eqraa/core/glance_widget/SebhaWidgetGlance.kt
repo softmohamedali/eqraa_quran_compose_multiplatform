@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.glance.Button
 import androidx.glance.GlanceId
@@ -34,6 +35,9 @@ import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.moali.eqraa.domain.abstractions.local.DataStoreOper
+import com.moali.eqraa.ui.theme.md_theme_light_primary
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -58,14 +62,14 @@ object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
         Column(
             modifier = GlanceModifier.width(140.dp).height(180.dp).padding(12.dp)
                 .cornerRadius(80.dp)
-                .background(ColorProvider(MaterialTheme.colorScheme.secondary)),
+                .background(md_theme_light_primary),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(
                 modifier = GlanceModifier
                     .fillMaxWidth(),
-                text = "Sebha",
+                text = stringResource(SharedRes.strings.sebha),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -97,9 +101,9 @@ object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
                     horizontalAlignment = Alignment.End
                 ) {
                     Button(
-                        text = "Increase",
+                        text = "",
                         modifier = GlanceModifier.fillMaxWidth().fillMaxHeight()
-                            .background(ColorProvider(MaterialTheme.colorScheme.surface)),
+                            .background(ColorProvider(Color.Black)),
                         onClick = actionRunCallback(
                             IncrementActionCallback(
 

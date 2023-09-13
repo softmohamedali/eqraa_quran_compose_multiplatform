@@ -23,5 +23,10 @@
     <string name="go_to_settings">Go To Settings</string>
     <string name="enable_overlay_permission">Enable Overlay Permission</string>
     <string name="dialog_enable_overlay_permission">Please enable \"Allow display over other apps\" permission for application </string>
+    <string name="sebha">Sebha</string>
+    <string name="floating_sebha">Floating Sebha</string>
+    <string name="back_one">Back One</string>
+    <string name="restart">Restart</string>
     <string name="back">Back</string>
+
 </resources>

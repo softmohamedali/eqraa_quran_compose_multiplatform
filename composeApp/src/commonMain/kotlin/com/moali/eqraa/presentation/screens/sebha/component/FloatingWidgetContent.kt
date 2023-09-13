@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moali.eqraa.ui.theme.md_theme_light_primary
 
 
 @Composable
@@ -42,7 +43,7 @@ fun FloatingSebhaContent(
             textAlign = TextAlign.Center,
             modifier = Modifier
                 .clip(RoundedCornerShape(40.dp))
-                .background(MaterialTheme.colorScheme.primary)
+                .background(md_theme_light_primary)
                 .padding(8.dp)
 
 
@@ -57,7 +58,7 @@ fun FloatingSebhaContent(
             modifier = Modifier
                 .width(width.dp)
                 .clip(RoundedCornerShape(10.dp))
-                .background(MaterialTheme.colorScheme.primary)
+                .background(md_theme_light_primary)
                 .padding(8.dp).clickable {
                     onclick()
                 },

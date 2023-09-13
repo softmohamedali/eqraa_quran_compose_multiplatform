@@ -200,11 +200,11 @@ kotlin {
 
 android {
     namespace = "com.moali.eqraa"
-    compileSdk = 34//33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 34//33
+        targetSdk = 34
 
         applicationId = "com.moali.eqraa.androidApp"
         versionCode = 1

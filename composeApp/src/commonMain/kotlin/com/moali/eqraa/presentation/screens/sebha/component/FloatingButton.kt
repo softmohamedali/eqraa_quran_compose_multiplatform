@@ -19,6 +19,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun FloatingButton(
@@ -45,7 +47,7 @@ fun FloatingButton(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 Text(
-                    "Floating Seb7a",
+                    stringResource(SharedRes.strings.floating_sebha),
                     maxLines = 2,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Center

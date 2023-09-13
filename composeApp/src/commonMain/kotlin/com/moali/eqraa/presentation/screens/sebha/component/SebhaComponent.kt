@@ -28,6 +28,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun SebhaComponent(
@@ -84,7 +86,7 @@ fun SebhaComponent(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
                     Text(
-                        text="Restart",
+                        text= stringResource(SharedRes.strings.restart),
                         color = MaterialTheme.colorScheme.surface
                     )
                     Icon(
@@ -101,7 +103,7 @@ fun SebhaComponent(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text="BackOne",
+                        text=stringResource(SharedRes.strings.back_one),
                         color = MaterialTheme.colorScheme.surface
                     )
                     Icon(

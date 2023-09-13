@@ -17,8 +17,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class NoteViewModel(
-//    private val dispatchers: Dispatchers = DIManualAppModule.disPatchers,
-//    private val noteDataSource: NoteDataSource
+
 ) : ViewModel() ,KoinComponent{
 
     private val dispatchers : Dispatchers by inject()
@@ -65,6 +64,7 @@ class NoteViewModel(
                 state=state.copy(
                     noteToolBarState = ToolBarState.OPEN,
                     isActionMenuShown = false,
+                    isPriorityMenuShown = false
                 )
             }
             is NoteEvents.OnFilterClick->{

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
@@ -18,7 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.moali.eqraa.ui.resources.ContentDescriptions
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.stringResource
@@ -39,17 +42,17 @@ fun HomeTopAppBar(
         Row(
             modifier = Modifier.fillMaxHeight().weight(5f)
         ) {
-            IconButton(
-                modifier = Modifier.padding(3.dp),
-                onClick = {onInfoClick()},
-                content = {
-                    Icon(
-                        imageVector = Icons.Rounded.Info,
-                        contentDescription = ContentDescriptions.INFO,
-                        tint = MaterialTheme.colorScheme.onPrimary
-                    )
-                }
-            )
+//            IconButton(
+//                modifier = Modifier.padding(3.dp),
+//                onClick = {onInfoClick()},
+//                content = {
+//                    Icon(
+//                        imageVector = Icons.Rounded.Info,
+//                        contentDescription = ContentDescriptions.INFO,
+//                        tint = MaterialTheme.colorScheme.onPrimary
+//                    )
+//                }
+//            )
             IconButton(
                 modifier = Modifier.padding(3.dp),
                 onClick = {onShareClick()},
@@ -80,18 +83,21 @@ fun HomeTopAppBar(
             Spacer(Modifier.weight(1f))
             Text(
                 text = stringResource(SharedRes.strings.app_name),
-                color = MaterialTheme.colorScheme.onPrimary
+                color = MaterialTheme.colorScheme.onPrimary,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
             )
-            IconButton(
-                onClick = {onMenuClick()},
-                content = {
-                    Icon(
-                        imageVector = Icons.Rounded.Menu,
-                        contentDescription = ContentDescriptions.INFO,
-                        tint = MaterialTheme.colorScheme.onPrimary
-                    )
-                }
-            )
+            Spacer(Modifier.width(12.dp))
+//            IconButton(
+//                onClick = {onMenuClick()},
+//                content = {
+//                    Icon(
+//                        imageVector = Icons.Rounded.Menu,
+//                        contentDescription = ContentDescriptions.INFO,
+//                        tint = MaterialTheme.colorScheme.onPrimary
+//                    )
+//                }
+//            )
         }
     }
 }
