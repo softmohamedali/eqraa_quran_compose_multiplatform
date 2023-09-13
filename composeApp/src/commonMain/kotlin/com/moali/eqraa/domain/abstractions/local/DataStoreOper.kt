@@ -13,7 +13,7 @@ interface DataStoreOper {
 
     suspend fun saveTasbeha(tasbehaId:Int)
 
-    suspend fun sendAction(actionId:Int)
+    suspend fun sendAction(actionId:Int?)
     suspend fun listenMainComponentAction():Flow<Int?>
 
 }

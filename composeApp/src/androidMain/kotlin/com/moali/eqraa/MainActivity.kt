@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
             pref.listenMainComponentAction().collect{
                 if (it==MainCompnentAction.SHARE_APP){
                     shareApp()
+                    pref.sendAction(null)
                 }
             }
         }

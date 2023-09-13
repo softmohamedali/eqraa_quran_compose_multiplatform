@@ -10,4 +10,11 @@ actual class ServicesUtils {
 
     actual fun startServiceIntentToCreateSebhaFloating() {
     }
+
+    actual fun canDrawOverlays(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    actual suspend fun startMainComponentAction(mainComponentActionId: Int) {
+    }
 }

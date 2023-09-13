@@ -56,9 +56,9 @@ actual class DataStoreOperImp(
         }
     }
 
-    override suspend fun sendAction(actionId: Int) {
+    override suspend fun sendAction(actionId: Int?) {
         context.dataStore.edit {
-            it[DataStorePhrefrencesKeys.mainComponentActionPrefKey]=actionId
+            it[DataStorePhrefrencesKeys.mainComponentActionPrefKey]=actionId?:-1
         }
     }
 
