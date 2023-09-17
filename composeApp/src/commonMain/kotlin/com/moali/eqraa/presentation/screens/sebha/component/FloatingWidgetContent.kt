@@ -15,7 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.ui.theme.md_theme_light_primary
@@ -41,6 +43,7 @@ fun FloatingSebhaContent(
             fontSize = 30.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .clip(RoundedCornerShape(40.dp))
                 .background(md_theme_light_primary)
@@ -54,7 +57,7 @@ fun FloatingSebhaContent(
             fontSize =20.sp,
             color = MaterialTheme.colorScheme.onPrimary,
             textAlign = TextAlign.Center,
-            maxLines = 2,
+            fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .width(width.dp)
                 .clip(RoundedCornerShape(10.dp))

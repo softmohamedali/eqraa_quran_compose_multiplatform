@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.utils.ResultState
-import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
@@ -30,7 +29,11 @@ class SouraViewModel(
     fun onEvent(events: SouraEvents) {
         when (events) {
             is SouraEvents.OnInit -> {
-                state = state.copy(souraId = events.souraId, isLoading = true)
+                state = state.copy(
+                    souraId = events.souraId,
+                    isLoadingMedia = true,
+                    isLoading = true
+                )
                 getQuran()
             }
 
@@ -100,7 +103,10 @@ class SouraViewModel(
             getQuranUseCase().collect{
                 when{
                     it is ResultState.IsSucsses ->{
-                        state=state.copy(soura = it.data!![state.souraId])
+                        state=state.copy(
+                            soura = it.data!![state.souraId-1],
+                            isLoading = false
+                            )
                         prepere()
                         mediaPlayerController.playPauseState.collect{
                             state=state.copy(isPlay = it)
@@ -154,7 +160,7 @@ class SouraViewModel(
                                 mediaPlayerController.getDuration()
                             ),
                             totalProgress = mediaPlayerController.getDuration()?.toFloat()?:0f,
-                            isLoading = false
+                            isLoadingMedia = false
                         )
 
                         viewModelScope.launch {
@@ -169,11 +175,11 @@ class SouraViewModel(
                     }
 
                     override fun onVideoCompleted() {
-                        state=state.copy(isLoading = false)
+                        state=state.copy(isLoadingMedia = false)
                     }
 
                     override fun onError() {
-                        state=state.copy(isLoading = false)
+                        state=state.copy(isLoadingMedia = false)
                     }
                 }
             )

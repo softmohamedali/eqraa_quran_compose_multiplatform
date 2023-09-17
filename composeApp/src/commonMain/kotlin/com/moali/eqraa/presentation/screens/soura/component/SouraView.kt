@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,13 +26,12 @@ import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.domain.models.supSouraAyat
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
-import com.moali.eqraa.presentation.screens.soura.component.BottomAudioController
-import com.moali.eqraa.presentation.screens.soura.component.MiniAudioPlayer
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SouraView(
+    isLoadingMedia:Boolean,
     isLoading:Boolean,
     soura: Soura,
     onBackClick: () -> Unit,
@@ -80,7 +80,8 @@ fun SouraView(
                         modifier = Modifier.fillMaxWidth(),
                         text = " ⊰⟪ ${soura.name} ⟫⊱ " ,
                         textAlign = TextAlign.Center,
-                        fontSize = 23.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp,
                     )
 
                     Spacer(modifier = Modifier.height(15.dp))
@@ -90,7 +91,8 @@ fun SouraView(
                             modifier = Modifier.fillMaxWidth(),
                             text = " ⊰⟪ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم ⟫⊱ " ,
                             textAlign = TextAlign.Center,
-                            fontSize = 23.sp,
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold,
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
@@ -99,8 +101,9 @@ fun SouraView(
                         text = supSouraAyat(soura.soura),
                         overflow = TextOverflow.Visible,
                         textAlign = TextAlign.Center,
-                        fontSize = 20.sp,
+                        fontSize = 24.sp,
                         lineHeight = 40.sp,
+                        fontWeight = FontWeight.Bold,
                         style = TextStyle(
                             textDirection = TextDirection.Rtl,
                         )
@@ -111,12 +114,14 @@ fun SouraView(
                         modifier = Modifier.fillMaxWidth(),
                         text = "⊰⟪ صدق اللَّهُ العظيم ⟫⊱",
                         textAlign = TextAlign.Center,
-                        fontSize = 23.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 24.sp,
                     )
                 }
 
                 if (!isShowBottomSheet){
                     MiniAudioPlayer(
+                        isLoading=isLoadingMedia,
                         modifier = Modifier.weight(0.12f),
                         isAudioPlayed = isAudioPlayed,
                         currentProgress = currentProgress,
@@ -132,6 +137,7 @@ fun SouraView(
                     )
                 }else{
                     BottomAudioController(
+                        isLoading=isLoadingMedia,
                         modifier = Modifier.weight(0.5f),
                         title = soura.name,
                         subTitle = "ElShes8 Mashari Alafaisi",

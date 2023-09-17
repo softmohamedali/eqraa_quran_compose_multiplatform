@@ -22,6 +22,7 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.rounded.Forward10
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material.icons.rounded.Replay10
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,12 +30,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 
 
 @Composable
 fun BottomAudioController(
+    isLoading:Boolean=false,
     modifier: Modifier=Modifier,
     title:String="title",
     subTitle:String="susbTitle",
@@ -162,22 +166,32 @@ fun BottomAudioController(
                             .size(32.dp),
                         tint= MaterialTheme.colorScheme.onPrimary,
                     )
-                    Icon(
-                        imageVector = if (isSongPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                        contentDescription = "Play",
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .clickable(onClick = {
-                                if (isSongPlaying) {
-                                    onPauseClick()
-                                } else {
-                                    onResumeClick()
-                                }
-                            })
-                            .size(64.dp)
-                            .padding(8.dp),
-                        tint= MaterialTheme.colorScheme.onPrimary,
-                    )
+                    if(isLoading){
+                        CircularProgressIndicator(
+                            modifier = Modifier.semantics {
+                                this.contentDescription=""
+                            }.size(64.dp).padding(8.dp),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }else{
+                        Icon(
+                            imageVector = if (isSongPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                            contentDescription = "Play",
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .clickable(onClick = {
+                                    if (isSongPlaying) {
+                                        onPauseClick()
+                                    } else {
+                                        onResumeClick()
+                                    }
+                                })
+                                .size(64.dp)
+                                .padding(8.dp),
+                            tint= MaterialTheme.colorScheme.onPrimary,
+                        )
+                    }
+
                     Icon(
                         imageVector = Icons.Rounded.Forward10,
                         contentDescription = "Forward 10 seconds",

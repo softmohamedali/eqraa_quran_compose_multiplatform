@@ -8,6 +8,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.glance.Button
+import androidx.glance.ButtonDefaults
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.action.ActionParameters
@@ -69,7 +70,7 @@ object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
             Text(
                 modifier = GlanceModifier
                     .fillMaxWidth(),
-                text = stringResource(SharedRes.strings.sebha),
+                text = "Sebha",
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
@@ -87,7 +88,7 @@ object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
                 style = TextStyle(
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
-                    color = ColorProvider(MaterialTheme.colorScheme.surface)
+                    color = ColorProvider(Color.White)
                 ),
             )
             Spacer(modifier = GlanceModifier.height(20.dp))
@@ -102,8 +103,11 @@ object SebhaWidgetGlance : GlanceAppWidget(),KoinComponent {
                 ) {
                     Button(
                         text = "",
-                        modifier = GlanceModifier.fillMaxWidth().fillMaxHeight()
-                            .background(ColorProvider(Color.Black)),
+                        modifier = GlanceModifier.fillMaxWidth().fillMaxHeight(),
+                        colors = ButtonDefaults.buttonColors(
+                            contentColor =ColorProvider( Color.White),
+                            backgroundColor = ColorProvider( Color.White),
+                        ) ,
                         onClick = actionRunCallback(
                             IncrementActionCallback(
 

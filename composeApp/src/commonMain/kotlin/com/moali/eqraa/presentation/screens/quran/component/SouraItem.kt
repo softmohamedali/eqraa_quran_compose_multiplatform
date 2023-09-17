@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.moali.eqraa.domain.models.Soura
@@ -30,7 +31,7 @@ fun SouraItem(
 
     Row(
         modifier = Modifier.fillMaxWidth().height(70.dp).padding(8.dp)
-            .border(3.dp,MaterialTheme.colorScheme.primary,RoundedCornerShape(10))
+            .border(2.dp,MaterialTheme.colorScheme.primary,RoundedCornerShape(10))
             .padding(8.dp)
             .clickable { onClick() },
         verticalAlignment = Alignment.CenterVertically
@@ -56,7 +57,8 @@ fun SouraItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = soura.name
+            text = soura.name,
+            fontWeight = FontWeight.Bold
         )
 
     }

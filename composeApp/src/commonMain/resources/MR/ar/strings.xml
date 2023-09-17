@@ -3,7 +3,7 @@
     <string name="app_name">اقرأ</string>
     <string name="alquran_alkarem">القرأن الكريم</string>
     <string name="note">مذكره</string>
-    <string name="no_data_found_error_X">لا يوجد بيانات (%s)</string>
+    <string name="no_data_found_error_X">لم يتم اضافه اي مذكرات بعد %s</string>
     <string name="notes">مذكرات</string>
     <string name="high">مهم</string>
     <string name="medium">متوسط</string>

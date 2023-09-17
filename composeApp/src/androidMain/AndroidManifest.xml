@@ -11,7 +11,7 @@
 
     <application
         android:name=".App"
-        android:icon="@android:drawable/ic_menu_compass"
+        android:icon="@mipmap/ic_eqraa_launcher"
         android:label="Eqraa"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         >

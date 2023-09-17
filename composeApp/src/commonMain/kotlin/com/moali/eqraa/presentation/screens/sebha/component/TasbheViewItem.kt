@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -50,6 +51,7 @@ fun TasbheViewItem(
             text = tasbeha.name,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurface,
+            fontWeight = FontWeight.Bold,
             fontSize = 18.sp
         )
         Spacer(Modifier.height(5.dp))
@@ -57,6 +59,7 @@ fun TasbheViewItem(
             textAlign = TextAlign.End,
             text = tasbeha.useful,
             color = second_text,
+            fontWeight = FontWeight.Bold,
             fontSize = 14.sp
         )
 

@@ -29,22 +29,27 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.core.utils.log
+import com.moali.eqraa.presentation.components.LoadingLayer
 
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalFoundationApi::class)
 @Composable
 fun MiniAudioPlayer(
+    isLoading:Boolean=false,
     modifier: Modifier=Modifier,
     isAudioPlayed: Boolean=false,
     currentProgress: Float=0f,
@@ -140,31 +145,41 @@ fun MiniAudioPlayer(
 //                    )
 //                }
                 // Play or Pause Button
-                IconButton(
-                    onClick = {
-                        if (isAudioPlayed) {
-                            onPauseClick()
-                        } else {
-                            onResumeClick()
+                if(isLoading){
+                    CircularProgressIndicator(
+                        modifier = Modifier.semantics {
+                            this.contentDescription=""
+                        },
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }else{
+                    IconButton(
+                        onClick = {
+                            if (isAudioPlayed) {
+                                onPauseClick()
+                            } else {
+                                onResumeClick()
+                            }
                         }
-                    }
-                ) {
-                    AnimatedContent(
-                        targetState = isAudioPlayed,
-                        transitionSpec = {
-                            scaleIn(animationSpec = tween(300)) with
-                                    scaleOut(animationSpec = tween(200))
+                    ) {
+                        AnimatedContent(
+                            targetState = isAudioPlayed,
+                            transitionSpec = {
+                                scaleIn(animationSpec = tween(300)) with
+                                        scaleOut(animationSpec = tween(200))
+                            }
+                        ) { target ->
+                            Icon(
+                                imageVector = if (target) Icons.Default.Pause else Icons.Default.PlayArrow,
+                                tint = MaterialTheme.colorScheme.onPrimary,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .size(30.dp)
+                            )
                         }
-                    ) { target ->
-                        Icon(
-                            imageVector = if (target) Icons.Default.Pause else Icons.Default.PlayArrow,
-                            tint = MaterialTheme.colorScheme.onPrimary,
-                            contentDescription = null,
-                            modifier = Modifier
-                                .size(30.dp)
-                        )
                     }
                 }
+
 
                 // Next Button
 //                IconButton(

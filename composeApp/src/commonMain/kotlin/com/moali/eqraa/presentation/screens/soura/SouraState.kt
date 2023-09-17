@@ -4,6 +4,7 @@ import com.moali.eqraa.domain.models.Soura
 
 data class SouraState(
     val error:String?=null,
+    val isLoadingMedia:Boolean=true,
     val isLoading:Boolean=true,
     val souraId:Int=0,
     val soura:Soura= Soura(-1,"", arrayListOf()),

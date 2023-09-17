@@ -40,7 +40,8 @@ class AudioServices() : Service(), KoinComponent {
 
 
     companion object {
-        private const val MEDIA_SESSION_ACTIONS = (PlaybackStateCompat.ACTION_PLAY
+        private const val MEDIA_SESSION_ACTIONS = (
+                PlaybackStateCompat.ACTION_PLAY
                 or PlaybackStateCompat.ACTION_PAUSE
                 or PlaybackStateCompat.ACTION_PLAY_PAUSE
                 or PlaybackStateCompat.ACTION_SKIP_TO_NEXT
@@ -63,7 +64,7 @@ class AudioServices() : Service(), KoinComponent {
         log("onStartCommand ${intent?.action}", "services warf")
         when (intent?.action) {
             ActionAudioService.START.toString() -> onStartService(intent)
-            ActionAudioService.STOP.toString() -> stopSelf()
+            ActionAudioService.STOP.toString() -> stopAudio()
             ActionAudioService.PLAY_PAUSE.toString() -> playPause()
             ActionAudioService.SKIP10.toString() -> skip10Sec()
             ActionAudioService.BACK10.toString() -> back10Sec()
@@ -108,6 +109,13 @@ class AudioServices() : Service(), KoinComponent {
         mediaPlayerController.back10Sec()
     }
 
+    fun stopAudio() {
+        if (mediaPlayerController.isPlaying()){
+            mediaPlayerController.pause()
+        }
+        stopSelf()
+    }
+
 
     private fun createNotification(
         isPlaying: Boolean,
@@ -130,7 +138,7 @@ class AudioServices() : Service(), KoinComponent {
                 this,
                 0,
                 back10Intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_IMMUTABLE
             )
 
         val playPAUSEPauseIntent =
@@ -142,14 +150,30 @@ class AudioServices() : Service(), KoinComponent {
                 this,
                 0,
                 playPAUSEPauseIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_IMMUTABLE
             )
 
         val skip10Intent = Intent(this, NotificationActionBroadcastReceiver::class.java).also {
             it.action = ActionAudioService.SKIP10.toString()
         }
         val skip10PendingIntent =
-            PendingIntent.getBroadcast(this, 0, skip10Intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            PendingIntent.getBroadcast(
+                this,
+                0,
+                skip10Intent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
+
+        val deletedIntent = Intent(this, NotificationActionBroadcastReceiver::class.java).also {
+            it.action = ActionAudioService.STOP.toString()
+        }
+        val deletedPendingIntent =
+            PendingIntent.getBroadcast(
+                this,
+                0,
+                deletedIntent,
+                PendingIntent.FLAG_IMMUTABLE
+            )
 
         val playPauseIcon = if (isPlaying)
             R.drawable.pause
@@ -172,6 +196,8 @@ class AudioServices() : Service(), KoinComponent {
                 addAction(R.drawable.forward_10, "Next_10", skip10PendingIntent)
                 setSmallIcon(R.drawable.music)
                 setShowWhen(false)
+                setDeleteIntent(deletedPendingIntent)
+                addAction(R.drawable.ic_delete ,"delete",deletedPendingIntent)
                 setStyle(
                     androidx.media.app.NotificationCompat.MediaStyle()
                         .setMediaSession(mediaSessionCompat.sessionToken)
