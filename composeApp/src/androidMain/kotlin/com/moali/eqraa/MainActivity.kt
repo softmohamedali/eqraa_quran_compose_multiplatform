@@ -53,9 +53,9 @@ class MainActivity : ComponentActivity() {
         intent.putExtra(
             Intent.EXTRA_TEXT,
             "Hey Check out this Great app: \n" +
-                    "https://www.linkedin.com/in/mohamed-ali-5505331b2/" +
-                    "and you can follow me in Linked in \n" +
-                    "https://www.linkedin.com/in/mohamed-ali-5505331b2/"
+                    "https://play.google.com/store/apps/details?id=com.moali.eqraa.androidApp&pli=1" +
+                    "and you can support the application developer on \n" +
+                    "https://www.buymeacoffee.com/softmohamem"
         )
         intent.type="text/plain"
         startActivity(Intent.createChooser(intent,"Share To:"))

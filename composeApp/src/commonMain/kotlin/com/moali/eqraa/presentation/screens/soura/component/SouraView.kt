@@ -1,5 +1,6 @@
 package com.moali.eqraa.presentation.screens.soura.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -7,28 +8,39 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.InlineTextContent
+import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDirection
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.moali.eqraa.Resources
 import com.moali.eqraa.domain.models.Soura
-import com.moali.eqraa.domain.models.supSouraAyat
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 fun SouraView(
     isLoadingMedia:Boolean,
@@ -74,49 +86,74 @@ fun SouraView(
                     modifier = Modifier.fillMaxSize().padding(10.dp)
                         .verticalScroll(scrollableState).weight(1f),
                 ) {
-                    Spacer(modifier = Modifier.height(15.dp))
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    ){
+                        Image(
+                            modifier=Modifier.fillMaxWidth(),
+                            painter = painterResource(Resources.images.border),
+                            contentDescription = null,
+                            contentScale = ContentScale.FillBounds
+                        )
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = soura.name ,
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                        )
+                    }
 
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = " ⊰⟪ ${soura.name} ⟫⊱ " ,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp,
-                    )
+
 
                     Spacer(modifier = Modifier.height(15.dp))
 
                     if(soura.id!=9&&soura.id!=1){
                         Text(
                             modifier = Modifier.fillMaxWidth(),
-                            text = " ⊰⟪ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم ⟫⊱ " ,
+                            text = "  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم  " ,
                             textAlign = TextAlign.Center,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold,
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = supSouraAyat(soura.soura),
-                        overflow = TextOverflow.Visible,
-                        textAlign = TextAlign.Center,
-                        fontSize = 24.sp,
-                        lineHeight = 40.sp,
-                        fontWeight = FontWeight.Bold,
-                        style = TextStyle(
-                            textDirection = TextDirection.Rtl,
-                        )
 
-                    )
+                    RichTextComponent(soura)
+//                    Text(
+//                        modifier = Modifier.fillMaxWidth(),
+//                        text = supSouraAyat(soura.soura),
+//                        overflow = TextOverflow.Visible,
+//                        textAlign = TextAlign.Center,
+//                        fontSize = 24.sp,
+//                        lineHeight = 40.sp,
+//                        fontWeight = FontWeight.Bold,
+//                        style = TextStyle(
+//                            textDirection = TextDirection.Rtl,
+//                        )
+//
+//                    )
                     Spacer(modifier = Modifier.height(15.dp))
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = "⊰⟪ صدق اللَّهُ العظيم ⟫⊱",
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 24.sp,
-                    )
+                    Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    ){
+                        Image(
+                            modifier=Modifier.fillMaxWidth(),
+                            painter = painterResource(Resources.images.border),
+                            contentDescription = null,
+                            contentScale = ContentScale.FillBounds
+                        )
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "صدق اللَّهُ العظيم",
+                            textAlign = TextAlign.Center,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 24.sp,
+                        )
+                    }
+
                 }
 
                 if (!isShowBottomSheet){
@@ -168,3 +205,64 @@ fun SouraView(
 
 
 }
+
+
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun AyaNum(number: Int) {
+    Box(
+        contentAlignment = Alignment.Center
+    ){
+        Image(
+            modifier=Modifier.size(60.dp),
+            painter = painterResource(Resources.images.aya),
+            contentDescription = null
+        )
+        Text(
+            number.toString(),
+            color = MaterialTheme.colorScheme.onSurface,
+            fontSize = 15.sp
+        )
+    }
+}
+
+@Composable
+fun RichTextComponent(soura: Soura) {
+    Text(
+        text = buildAnnotatedString {
+            for (i in 0 until soura.soura.size) {
+                withStyle(
+                    style = SpanStyle(
+                        fontSize = 25.sp,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                ) {
+                    append(" ${soura.soura[i].standard_full}")
+                    appendInlineContent(id = "imageId${i+1}")
+                }
+            }
+        },
+        textAlign = TextAlign.Center,
+        inlineContent = generateInlineContent(soura.soura.size),
+        lineHeight = 45.sp,
+        style = TextStyle(
+            textDirection = TextDirection.Rtl
+        )
+    )
+}
+
+
+
+fun generateInlineContent(size: Int): Map<String, InlineTextContent> {
+    val inlineContent = mutableMapOf<String, InlineTextContent>()
+    for (i in 0 until size) {
+        inlineContent["imageId${i+1}"] =
+            InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
+            AyaNum(i+1)
+            }
+    }
+    return inlineContent
+}
+
+

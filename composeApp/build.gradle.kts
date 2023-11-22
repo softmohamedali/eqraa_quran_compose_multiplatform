@@ -218,6 +218,7 @@ android {
 //                "src/commonMain/resources" // <-- add the commonMain Resources
 //            )
 //        )
+        resources.srcDirs("src/commonMain/resources")
     }
     java {
         toolchain {
@@ -235,6 +236,7 @@ android {
             "src/androidMain/resources",
             "src/commonMain/resources" // <-- add the commonMain Resources
         )
+
     )
     packagingOptions {
         resources.excludes.add("META-INF/**")
