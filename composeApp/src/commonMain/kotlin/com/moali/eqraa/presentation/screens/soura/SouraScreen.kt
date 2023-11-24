@@ -11,7 +11,7 @@ import dev.icerock.moko.mvvm.compose.viewModelFactory
 
 
 class SouraScreen(
-    private val souraId:Int
+    private val souraId:Int?
 ): Screen {
 
     @Composable
@@ -21,8 +21,14 @@ class SouraScreen(
         val souraViewModel=getViewModel("SouraViewModel", viewModelFactory { SouraViewModel() })
         val state=souraViewModel.state
         LaunchedEffect(1){
-            souraViewModel.onEvent(SouraEvents.OnInit(souraId))
+            if(souraId!=null){
+                souraViewModel.onEvent(SouraEvents.OnInit(souraId))
+            }else{
+                souraViewModel.onEvent(SouraEvents.OnGetArchive)
+            }
+
         }
+
 
 
         SouraView(
@@ -32,6 +38,7 @@ class SouraScreen(
             onBackClick = {
                 navigator.pop()
             },
+            scrollPostion=state.scrollPotion,
             isAudioPlayed = state.isPlay,
             currentProgress = state.currentAudioProgress,
             totalProgress=state.totalProgress,
@@ -67,6 +74,11 @@ class SouraScreen(
             },
             onClose = {
                 souraViewModel.onEvent(SouraEvents.OnCloseBottomSheetClick)
+            },
+            onAddReferenceClick={ scrollValue,souraId ->
+                souraViewModel.onEvent(
+                    SouraEvents.OnAddReferenceClick(scrollValue = scrollValue, souraId = souraId)
+                )
             }
         )
     }

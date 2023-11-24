@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Eqraa</string>
+    <string name="alquran_alkarem">AlQuran AlKarem</string>
+    <string name="note">Notiz</string>
+    <string name="no_data_found_error_X">Noch keine Notizen hinzugefügt %s</string>
+    <string name="notes">Notizen</string>
+    <string name="high">Hoch</string>
+    <string name="medium">Mittel</string>
+    <string name="low">Niedrig</string>
+    <string name="none">Keine</string>
+    <string name="delete_all">Alle löschen</string>
+    <string name="add_note">Notiz hinzufügen</string>
+    <string name="save">Speichern</string>
+    <string name="title">Titel</string>
+    <string name="your_description_here">Ihre Beschreibung hier</string>
+    <string name="delete_x">Löschen %s</string>
+    <string name="sure_delete">Sind Sie sicher, dass Sie diese Notiz löschen möchten?</string>
+    <string name="sure_delete_all">Sind Sie sicher, dass Sie alle Notizen löschen möchten?</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="confirm">Bestätigen</string>
+    <string name="search">Suchen</string>
+    <string name="go_to_settings">Zu den Einstellungen gehen</string>
+    <string name="enable_overlay_permission">Overlay-Berechtigung aktivieren</string>
+    <string name="dialog_enable_overlay_permission">Bitte aktivieren Sie die Berechtigung "Über anderen Apps anzeigen" für die Anwendung</string>
+    <string name="sebha">Sebha</string>
+    <string name="floating_sebha">Schwimmende Sebha</string>
+    <string name="back_one">Zurück</string>
+    <string name="restart">Neustarten</string>
+    <string name="back">Zurück</string>
+    <string name="sheskh_name">ElSheikh Mashari Alafaisi</string>
+
+</resources>

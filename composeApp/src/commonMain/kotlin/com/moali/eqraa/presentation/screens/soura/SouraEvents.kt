@@ -20,6 +20,8 @@ sealed class SouraEvents {
     object OnCloseBottomSheetClick:SouraEvents()
 
     class OnInit(val souraId:Int):SouraEvents()
+    object OnGetArchive:SouraEvents()
+    class OnAddReferenceClick(val scrollValue: Int,val souraId: Int) : SouraEvents()
 
 
 }

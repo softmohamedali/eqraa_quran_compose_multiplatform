@@ -6,6 +6,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.lifecycle.lifecycleScope
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 import com.moali.eqraa.MyApp
 import com.moali.eqraa.core.utils.MainCompnentAction
 import com.moali.eqraa.domain.abstractions.local.DataStoreOper
@@ -22,6 +24,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this) {}
+        MobileAds.setRequestConfiguration(
+            RequestConfiguration.Builder().setTestDeviceIds(listOf("ABCDEF012345")).build()
+        )
+        startListenActions()
         setContent {
             MyApp(
                 darkTheme = isSystemInDarkTheme(),
@@ -29,7 +36,7 @@ class MainActivity : ComponentActivity() {
             )
 
         }
-        startListenActions()
+
     }
 
     private fun startListenActions() {

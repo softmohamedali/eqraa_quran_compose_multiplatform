@@ -148,6 +148,9 @@ kotlin {
 
                 implementation ("io.github.torrydo:screen-easy:0.0.3")
 
+                //googleads
+                implementation ("com.google.android.gms:play-services-ads:22.5.0")
+
             }
         }
 

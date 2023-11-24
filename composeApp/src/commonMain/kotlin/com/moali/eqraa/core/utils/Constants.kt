@@ -11,8 +11,11 @@ object Constants {
     const val SOURA_NAME_EXTRA="soura"
     const val SHEK_NAME_EXTRA="shek"
 
-    //android request codes
-    const val REQUEST_CODE_ACTION_MANAGE_OVERLAY_PERMISSION=1
+
+    //settings key
+    const val ARCHIVE_SCROLL_POSITION_KEY="scrollPostion"
+    const val ARCHIVE_SOURA_NAME_KEY="souraName"
+
 
 
 }

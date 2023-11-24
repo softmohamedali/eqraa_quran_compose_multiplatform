@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">Икраа</string>
+    <string name="alquran_alkarem">Аль-Куран Аль-Карим</string>
+    <string name="note">Заметка</string>
+    <string name="no_data_found_error_X">Пока нет добавленных заметок %s</string>
+    <string name="notes">Заметки</string>
+    <string name="high">Высокий</string>
+    <string name="medium">Средний</string>
+    <string name="low">Низкий</string>
+    <string name="none">Нет</string>
+    <string name="delete_all">Удалить все</string>
+    <string name="add_note">Добавить заметку</string>
+    <string name="save">Сохранить</string>
+    <string name="title">Заголовок</string>
+    <string name="your_description_here">Ваше описание здесь</string>
+    <string name="delete_x">Удалить %s</string>
+    <string name="sure_delete">Вы уверены, что хотите удалить эту заметку?</string>
+    <string name="sure_delete_all">Вы уверены, что хотите удалить все заметки?</string>
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="search">Поиск</string>
+    <string name="go_to_settings">Перейти в настройки</string>
+    <string name="enable_overlay_permission">Включить разрешение на наложение</string>
+    <string name="dialog_enable_overlay_permission">Пожалуйста, включите разрешение "Разрешить отображение поверх других приложений" для приложения</string>
+    <string name="sebha">Себха</string>
+    <string name="floating_sebha">Плавающая Себха</string>
+    <string name="back_one">Назад</string>
+    <string name="restart">Перезапустить</string>
+    <string name="back">Назад</string>
+    <string name="sheskh_name">ЭльШейх Машари Алафаиси</string>
+
+</resources>

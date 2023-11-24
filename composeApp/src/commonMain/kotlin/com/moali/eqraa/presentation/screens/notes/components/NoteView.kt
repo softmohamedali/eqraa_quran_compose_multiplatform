@@ -1,12 +1,16 @@
 package com.moali.eqraa.presentation.screens.notes.components
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.ScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.moali.eqraa.core.shared.ui.AdmobBanner
 import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.Priority
@@ -64,15 +68,24 @@ fun NoteView(
         scaffoldState = scaffoldState,
         content = {
             Box(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize().padding(it)
             ) {
-                ListScreenContent(
-                    navToTaskScreen,
-                    notes,
-                    searchTask = searchNotes,
-                    toolBarState = toolBarState,
-                    state = state,
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Box (
+                        modifier = Modifier.weight(1f)
+                    ){
+                        ListScreenContent(
+                            navToTaskScreen,
+                            notes,
+                            searchTask = searchNotes,
+                            toolBarState = toolBarState,
+                            state = state,
+                        )
+                    }
+                    AdmobBanner(modifier=Modifier.fillMaxWidth())
+                }
                 if (isPriorityMenuShow) {
                     PriorityMenu(
                         onClick = {

@@ -23,6 +23,9 @@ class QuranScreen:Screen{
             },
             onSouraItemClick = {
                 navigator.push(SouraScreen(it.id))
+            },
+            onArchiveClick = {
+                navigator.push(SouraScreen(null))
             }
         )
     }

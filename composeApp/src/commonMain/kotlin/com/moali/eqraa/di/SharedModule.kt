@@ -11,6 +11,7 @@ import com.moali.eqraa.domain.usecases.GetQuranUseCase
 import com.moali.eqraa.presentation.screens.note_details.NoteDetailsViewModel
 import com.moali.eqraa.presentation.screens.notes.NoteViewModel
 import com.moali.eqraa.presentation.screens.soura.SouraViewModel
+import com.russhwolf.settings.Settings
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
@@ -45,7 +46,9 @@ val remoteModule= module {
 
 val dataModule= module {
     single { QuranJsonRecourse() }
-    
+    single { Settings() }
+
+
 }
 
 val domainModule= module {

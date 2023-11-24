@@ -10,6 +10,7 @@ data class SouraState(
     val soura:Soura= Soura(-1,"", arrayListOf()),
     val speed:String="",
     val isPlay:Boolean=false,
+    val scrollPotion:Int=0,
     val isShowBottomAudioSheet:Boolean=false,
     val currentAudioProgress:Float=0.0f,
     val totalProgress:Float=0.0f,

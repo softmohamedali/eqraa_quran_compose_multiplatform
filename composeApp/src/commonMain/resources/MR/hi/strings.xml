@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="app_name">इकरा</string>
+    <string name="alquran_alkarem">अल-क़ुरान अल-क़रीम</string>
+    <string name="note">नोट</string>
+    <string name="no_data_found_error_X">%s तक कोई नोट नहीं जोड़ा गया है</string>
+    <string name="notes">नोट्स</string>
+    <string name="high">उच्च</string>
+    <string name="medium">मध्यम</string>
+    <string name="low">कम</string>
+    <string name="none">कोई नहीं</string>
+    <string name="delete_all">सभी हटाएं</string>
+    <string name="add_note">नोट जोड़ें</string>
+    <string name="save">सहेजें</string>
+    <string name="title">शीर्षक</string>
+    <string name="your_description_here">आपका विवरण यहाँ</string>
+    <string name="delete_x">%s हटाएं</string>
+    <string name="sure_delete">क्या आप इस नोट को हटाना चाहते हैं?</string>
+    <string name="sure_delete_all">क्या आप सभी नोट्स को हटाना चाहते हैं?</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="search">खोजें</string>
+    <string name="go_to_settings">सेटिंग्स में जाएं</string>
+    <string name="enable_overlay_permission">ओवरले परमिशन सक्रिय करें</string>
+    <string name="dialog_enable_overlay_permission">कृपया "अन्य एप्लिकेशन पर दिखाएं" अनुमति को सक्रिय करें</string>
+    <string name="sebha">सेबहा</string>
+    <string name="floating_sebha">तैरती सेबहा</string>
+    <string name="back_one">वापस जाएं</string>
+    <string name="restart">पुनः आरंभ करें</string>
+    <string name="back">पीछे</string>
+    <string name="sheskh_name">एलशेख मशारी अलफैसी</string>
+
+</resources>

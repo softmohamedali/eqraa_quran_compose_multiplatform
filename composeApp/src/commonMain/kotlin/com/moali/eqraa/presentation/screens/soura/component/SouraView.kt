@@ -14,10 +14,12 @@ import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -33,9 +35,12 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.Resources
+import com.moali.eqraa.core.shared.ui.AdmobBanner
 import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -50,6 +55,7 @@ fun SouraView(
     isAudioPlayed: Boolean,
     currentProgress: Float=0f,
     totalProgress: Float=0f,
+    scrollPostion: Int=0,
     totalTime:String="",
     currentTime:String="",
     isShowBottomSheet: Boolean,
@@ -62,11 +68,16 @@ fun SouraView(
     onSliderChangeFinished: () -> Unit={},
     onRewind: () -> Unit={},
     onForward: () -> Unit={},
-    onClose: () -> Unit={}
+    onClose: () -> Unit={},
+    onAddReferenceClick:(scrollValue:Int,souraId:Int)->Unit
 
 ) {
 
     val scrollableState = rememberScrollState()
+
+    LaunchedEffect(scrollPostion){
+        scrollableState.scrollTo(value = scrollPostion)
+    }
 
     Scaffold(
         topBar = {
@@ -75,12 +86,26 @@ fun SouraView(
                 onBackClick = { onBackClick() },
                 isBack = true
             )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onAddReferenceClick(
+                        scrollableState.value,
+                        soura.id
+                    )
+                },
+                content = {
+
+                }
+            )
         }
     ) {
-
-        Box {
+        Box (
+            modifier = Modifier.fillMaxSize().padding(it)
+        ){
             Column(
-                modifier = Modifier.fillMaxSize().padding(it),
+                modifier = Modifier.fillMaxSize(),
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize().padding(10.dp)
@@ -104,8 +129,6 @@ fun SouraView(
                             fontSize = 24.sp,
                         )
                     }
-
-
 
                     Spacer(modifier = Modifier.height(15.dp))
 
@@ -154,8 +177,9 @@ fun SouraView(
                         )
                     }
 
-                }
 
+                }
+                AdmobBanner(modifier=Modifier.fillMaxWidth())
                 if (!isShowBottomSheet){
                     MiniAudioPlayer(
                         isLoading=isLoadingMedia,
@@ -166,7 +190,7 @@ fun SouraView(
                         imageAudioPlay = "",
                         title = soura.name,
                         totalProgress = totalProgress,
-                        artistName = "ElShes8 Mashari Alafaisi",
+                        artistName = stringResource(SharedRes.strings.sheskh_name),
                         onPreviousClick = onPreviousClick,
                         onPauseClick = onPauseClick,
                         onResumeClick = onResumeClick,
@@ -177,7 +201,7 @@ fun SouraView(
                         isLoading=isLoadingMedia,
                         modifier = Modifier.weight(0.5f),
                         title = soura.name,
-                        subTitle = "ElShes8 Mashari Alafaisi",
+                        subTitle = stringResource(SharedRes.strings.sheskh_name),
                         isSongPlaying = isAudioPlayed,
                         currentProgress = currentProgress,
                         totalProgress = totalProgress,
@@ -226,7 +250,6 @@ fun AyaNum(number: Int) {
         )
     }
 }
-
 @Composable
 fun RichTextComponent(soura: Soura) {
     Text(
@@ -251,8 +274,6 @@ fun RichTextComponent(soura: Soura) {
         )
     )
 }
-
-
 
 fun generateInlineContent(size: Int): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()

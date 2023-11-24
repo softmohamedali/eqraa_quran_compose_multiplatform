@@ -5,11 +5,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.shared.services.ServicesUtils
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_SOURA_NAME_KEY
 import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
 import com.moali.eqraa.domain.usecases.GetQuranUseCase
+import com.russhwolf.settings.Settings
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
@@ -22,8 +25,9 @@ class SouraViewModel(
     private val mediaPlayerController: MediaPlayerOperation by inject()
     private val dispatchers: Dispatchers by inject()
     private val servicesUtils: ServicesUtils by inject()
-
+    private val  settings: Settings by inject()
     var state by mutableStateOf(SouraState())
+
 
 
     fun onEvent(events: SouraEvents) {
@@ -35,6 +39,14 @@ class SouraViewModel(
                     isLoading = true
                 )
                 getQuran()
+            }
+            is SouraEvents.OnGetArchive->{
+                state = state.copy(
+                    souraId = settings.getInt(ARCHIVE_SOURA_NAME_KEY,1),
+                    isLoadingMedia = true,
+                    isLoading = true
+                )
+                getQuranScrollPostion()
             }
 
             is SouraEvents.OnAudioMiniClick -> {
@@ -95,6 +107,38 @@ class SouraViewModel(
                 mediaPlayerController.navigateTo(state.currentAudioProgress.toInt())
             }
 
+            is SouraEvents.OnAddReferenceClick->{
+                settings.putInt(ARCHIVE_SCROLL_POSITION_KEY,events.scrollValue)
+                settings.putInt(ARCHIVE_SOURA_NAME_KEY,events.souraId)
+            }
+
+        }
+    }
+
+    private fun getQuranScrollPostion() {
+        viewModelScope.launch(dispatchers.main) {
+            getQuranUseCase().collect{
+                when{
+                    it is ResultState.IsSucsses ->{
+                        state=state.copy(
+                            soura = it.data!![state.souraId-1],
+                            scrollPotion = settings.getInt(ARCHIVE_SCROLL_POSITION_KEY,0),
+                            isLoading = false
+                        )
+                        prepere()
+                        mediaPlayerController.playPauseState.collect{
+                            state=state.copy(isPlay = it)
+                        }
+                    }
+                    it is ResultState.IsLoading ->{
+
+                    }
+                    it is ResultState.IsError ->{
+
+                    }
+                }
+
+            }
         }
     }
 
@@ -106,7 +150,7 @@ class SouraViewModel(
                         state=state.copy(
                             soura = it.data!![state.souraId-1],
                             isLoading = false
-                            )
+                        )
                         prepere()
                         mediaPlayerController.playPauseState.collect{
                             state=state.copy(isPlay = it)
