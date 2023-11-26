@@ -1,7 +1,7 @@
 package com.moali.eqraa.data.resource
 
-import co.touchlab.kermit.Logger
 import com.moali.eqraa.domain.models.Aya
+import com.moali.eqraa.domain.models.Juza
 import com.moali.eqraa.domain.models.Soura
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
@@ -12,7 +12,7 @@ import org.jetbrains.compose.resources.resource
 class QuranJsonRecourse {
 
     @OptIn(ExperimentalResourceApi::class)
-    suspend fun getQuranFromResources():List<Soura>{
+    suspend fun getQuranFromResourcesAsSoura():List<Soura>{
         val str = resource("assets/quran.json").readBytes().decodeToString()
         val json=Json.parseToJsonElement(str).jsonArray
         val quran= mutableListOf<Soura>()
@@ -22,22 +22,26 @@ class QuranJsonRecourse {
                 val jsonObject=json.get(i).jsonObject
                 sour.add(
                     Aya(
-                        jsonObject["sura_id"].toString().toInt(),
-                        jsonObject["aya_id"].toString().toInt(),
-                        jsonObject["sura_name"].toString().drop(1).dropLast(1),
-                        jsonObject["standard_full"].toString().drop(1).dropLast(1)
+                        sura_id=jsonObject["sura_id"].toString().toInt(),
+                        aya_id=jsonObject["aya_id"].toString().toInt(),
+                        aya_id_ar=jsonObject["aya_id_display"].toString(),
+                        sura_name=jsonObject["sura_name_en"].toString().drop(1).dropLast(1),
+                        standard_full=jsonObject["standard_full"].toString().drop(1).dropLast(1),
+                        juz_id=jsonObject["juz_id"].toString().toInt(),
+                        sura_name_ar =jsonObject["sura_name"].toString().drop(1).dropLast(1),
                     )
                 )
             }
             for (i in 1..114)
             {
-                val soura= Soura(1, "", mutableListOf())
+                val soura= Soura(1, "", "",mutableListOf())
                 for (j in sour)
                 {
                     if (j.sura_id==i)
                     {
                         if (j.sura_id==i)
                         {
+                            soura.name_ar=j.sura_name_ar
                             soura.name=j.sura_name
                             soura.id=j.sura_id
                         }
@@ -51,6 +55,45 @@ class QuranJsonRecourse {
     }
 
 
+    @OptIn(ExperimentalResourceApi::class)
+    suspend fun getQuranFromResourcesAsJuza():List<Juza>{
+        val str = resource("assets/quran.json").readBytes().decodeToString()
+        val json=Json.parseToJsonElement(str).jsonArray
+        val quranAjza= mutableListOf<Juza>()
+        val ayat= mutableListOf<Aya>()
+        for (i in 0 until json.size)
+        {
+            val jsonObject=json.get(i).jsonObject
+            ayat.add(
+                Aya(
+                    sura_id=jsonObject["sura_id"].toString().toInt(),
+                    aya_id=jsonObject["aya_id"].toString().toInt(),
+                    aya_id_ar=jsonObject["aya_id_display"].toString(),
+                    sura_name=jsonObject["sura_name_en"].toString().drop(1).dropLast(1),
+                    standard_full=jsonObject["standard_full"].toString().drop(1).dropLast(1),
+                    juz_id=jsonObject["juz_id"].toString().toInt(),
+                    sura_name_ar =jsonObject["sura_name"].toString().drop(1).dropLast(1),
+                )
+            )
+        }
+        for (i in 1..30)
+        {
+            val ju= Juza(i, mutableListOf())
+            for (j in ayat)
+            {
+                if (j.juz_id==i)
+                {
+                    if (j.sura_id==i)
+                    {
+                        ju.id=j.juz_id
+                    }
+                    ju.ayat.add(j)
+                }
+            }
+            quranAjza.add(ju)
+        }
+        return quranAjza
+    }
 }
 
 

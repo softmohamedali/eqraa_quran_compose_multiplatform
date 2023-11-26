@@ -184,7 +184,7 @@ class SouraViewModel(
         if (!mediaPlayerController.isPlaying()) {
             mediaPlayerController.start()
             servicesUtils.startServiceIntentToCreatePlayerNotification(
-                souraName = state.soura.name,
+                souraName = state.soura.name_ar,
                 shehkName = "ElShehk Mashary Afisi"
             )
         } else {

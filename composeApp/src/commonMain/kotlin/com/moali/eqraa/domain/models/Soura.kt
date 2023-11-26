@@ -4,7 +4,12 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Soura(var id:Int, var name:String, var soura:MutableList<Aya>) {
+data class Soura(
+    var id:Int,
+    var name_ar:String,
+    var name:String,
+    var soura:MutableList<Aya>
+) {
 
 }
 

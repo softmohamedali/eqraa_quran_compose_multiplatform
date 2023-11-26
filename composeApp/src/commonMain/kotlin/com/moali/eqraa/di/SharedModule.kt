@@ -7,6 +7,7 @@ import com.moali.eqraa.data.repo.EqraaRepoImp
 import com.moali.eqraa.data.resource.QuranJsonRecourse
 import com.moali.eqraa.domain.abstractions.remote.QuranAudioService
 import com.moali.eqraa.domain.abstractions.repo.EqraaRepo
+import com.moali.eqraa.domain.usecases.GetQuranAsJuzaUseCase
 import com.moali.eqraa.domain.usecases.GetQuranUseCase
 import com.moali.eqraa.presentation.screens.note_details.NoteDetailsViewModel
 import com.moali.eqraa.presentation.screens.notes.NoteViewModel
@@ -53,6 +54,7 @@ val dataModule= module {
 
 val domainModule= module {
     factory { GetQuranUseCase(get()) }
+    factory { GetQuranAsJuzaUseCase(get()) }
     single<EqraaRepo> { EqraaRepoImp(get(),get()) }
 }
 

@@ -43,6 +43,9 @@ fun TopAppbar(
             )
         },
         actions={
+            actions()
+        },
+        navigationIcon = {
             if (isBack) {
                 Icon(
                     modifier = Modifier.size(25.dp)
@@ -52,7 +55,6 @@ fun TopAppbar(
                     tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
-            actions()
         },
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primary

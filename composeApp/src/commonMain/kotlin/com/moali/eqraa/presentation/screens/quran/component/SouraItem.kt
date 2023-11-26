@@ -2,7 +2,6 @@ package com.moali.eqraa.presentation.screens.quran.component
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.moali.eqraa.domain.models.Juza
 import com.moali.eqraa.domain.models.Soura
 
 @Composable
@@ -57,7 +57,49 @@ fun SouraItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = soura.name,
+            text = soura.name_ar,
+            fontWeight = FontWeight.Bold
+        )
+
+    }
+}
+
+
+@Composable
+fun JuzaItem(
+    juza:Juza,
+    onClick:()->Unit
+) {
+
+    Row(
+        modifier = Modifier.fillMaxWidth().height(70.dp).padding(8.dp)
+            .border(2.dp,MaterialTheme.colorScheme.primary,RoundedCornerShape(10))
+            .padding(8.dp)
+            .clickable { onClick() },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box (
+            modifier = Modifier.size(50.dp).weight(1f),
+            contentAlignment = Alignment.Center,
+        ){
+            Icon(
+                modifier = Modifier.size(40.dp),
+                imageVector = Icons.Default.Circle,
+                //ToDo content discription
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.primary
+            )
+            Text(
+                text = juza.id.toString(),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onPrimary
+            )
+        }
+
+        Text(
+            modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
+            textAlign = TextAlign.End,
+            text = "Al Juza "+juza.id.toString(),
             fontWeight = FontWeight.Bold
         )
 

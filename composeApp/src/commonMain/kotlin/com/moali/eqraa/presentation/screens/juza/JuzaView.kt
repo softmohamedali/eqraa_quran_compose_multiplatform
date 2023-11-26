@@ -1,4 +1,4 @@
-package com.moali.eqraa.presentation.screens.soura.component
+package com.moali.eqraa.presentation.screens.juza
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -15,7 +15,6 @@ import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -37,39 +36,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.Resources
 import com.moali.eqraa.core.shared.ui.AdmobBanner
+import com.moali.eqraa.domain.models.Juza
 import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.kmm_sharingresources.SharedRes
-import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
-fun SouraView(
-    isLoadingMedia:Boolean,
+fun JuzaView(
     isLoading:Boolean,
-    soura: Soura,
+    juza: Juza,
     onBackClick: () -> Unit,
-    isAudioPlayed: Boolean,
-    currentProgress: Float=0f,
-    totalProgress: Float=0f,
     scrollPostion: Int=0,
-    totalTime:String="",
-    currentTime:String="",
-    isShowBottomSheet: Boolean,
-    onItemClick: () -> Unit={},
-    onPreviousClick: () -> Unit = {},
-    onPauseClick: () -> Unit = {},
-    onResumeClick: () -> Unit = {},
-    onNextClick: () -> Unit = {},
-    onSliderChange: (Float) -> Unit={},
-    onSliderChangeFinished: () -> Unit={},
-    onRewind: () -> Unit={},
-    onForward: () -> Unit={},
-    onClose: () -> Unit={},
     onAddReferenceClick:(scrollValue:Int,souraId:Int)->Unit
 
 ) {
@@ -83,7 +65,7 @@ fun SouraView(
     Scaffold(
         topBar = {
             TopAppbar(
-                title = "سورة ${soura.name_ar}",
+                title = "juza ${juza.id}",
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
@@ -92,7 +74,7 @@ fun SouraView(
                             .clickable {
                                 onAddReferenceClick(
                                     scrollableState.value,
-                                    soura.id
+                                    juza.id
                                 )
                             },
                         painter = dev.icerock.moko.resources.compose.painterResource(SharedRes.images.bookmark),
@@ -125,7 +107,7 @@ fun SouraView(
                         )
                         Text(
                             modifier = Modifier.fillMaxWidth(),
-                            text = soura.name_ar ,
+                            text = juza.id.toString() ,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                             fontSize = 24.sp,
@@ -134,7 +116,7 @@ fun SouraView(
 
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    if(soura.id!=9&&soura.id!=1){
+                    if(juza.id!=9&&juza.id!=1){
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = "  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم  " ,
@@ -144,21 +126,7 @@ fun SouraView(
                         )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
-
-                    RichTextComponent(soura)
-//                    Text(
-//                        modifier = Modifier.fillMaxWidth(),
-//                        text = supSouraAyat(soura.soura),
-//                        overflow = TextOverflow.Visible,
-//                        textAlign = TextAlign.Center,
-//                        fontSize = 24.sp,
-//                        lineHeight = 40.sp,
-//                        fontWeight = FontWeight.Bold,
-//                        style = TextStyle(
-//                            textDirection = TextDirection.Rtl,
-//                        )
-//
-//                    )
+                    RichTextComponent(juza)
                     Spacer(modifier = Modifier.height(15.dp))
                     Box(
                         contentAlignment = Alignment.Center,
@@ -182,44 +150,6 @@ fun SouraView(
 
                 }
                 AdmobBanner(modifier=Modifier.fillMaxWidth())
-                if (!isShowBottomSheet){
-                    MiniAudioPlayer(
-                        isLoading=isLoadingMedia,
-                        modifier = Modifier.weight(0.12f),
-                        isAudioPlayed = isAudioPlayed,
-                        currentProgress = currentProgress,
-                        onItemClick = onItemClick,
-                        imageAudioPlay = "",
-                        title = soura.name_ar,
-                        totalProgress = totalProgress,
-                        artistName = stringResource(SharedRes.strings.sheskh_name),
-                        onPreviousClick = onPreviousClick,
-                        onPauseClick = onPauseClick,
-                        onResumeClick = onResumeClick,
-                        onNextClick = onNextClick
-                    )
-                }else{
-                    BottomAudioController(
-                        isLoading=isLoadingMedia,
-                        modifier = Modifier.weight(0.5f),
-                        title = soura.name_ar,
-                        subTitle = stringResource(SharedRes.strings.sheskh_name),
-                        isSongPlaying = isAudioPlayed,
-                        currentProgress = currentProgress,
-                        totalProgress = totalProgress,
-                        currentTime = currentTime,
-                        totalTime = totalTime,
-                        onPauseClick = onPauseClick,
-                        onResumeClick = onResumeClick,
-                        playNextSong = onNextClick,
-                        playPreviousSong = onPreviousClick,
-                        onSliderChange = onSliderChange,
-                        onSliderChangeFinished = onSliderChangeFinished,
-                        onRewind = onRewind,
-                        onForward = onForward,
-                        onClose = onClose
-                    )
-                }
             }
             if (isLoading){
                 LoadingLayer(color = MaterialTheme.colorScheme.primary)
@@ -253,23 +183,23 @@ fun AyaNum(number: Int) {
     }
 }
 @Composable
-fun RichTextComponent(soura: Soura) {
+fun RichTextComponent(juza: Juza) {
     Text(
         text = buildAnnotatedString {
-            for (i in 0 until soura.soura.size) {
+            for (i in 0 until juza.ayat.size) {
                 withStyle(
                     style = SpanStyle(
                         fontSize = 25.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 ) {
-                    append(" ${soura.soura[i].standard_full}")
+                    append(" ${juza.ayat[i].standard_full}")
                     appendInlineContent(id = "imageId${i+1}")
                 }
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura.soura.size),
+        inlineContent = generateInlineContent(juza.ayat.size),
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl

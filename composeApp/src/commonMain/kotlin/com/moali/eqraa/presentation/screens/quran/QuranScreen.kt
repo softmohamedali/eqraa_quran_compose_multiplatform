@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.moali.eqraa.presentation.screens.juza.JuzaScreen
 import com.moali.eqraa.presentation.screens.quran.component.QuranView
 import com.moali.eqraa.presentation.screens.soura.SouraScreen
 import dev.icerock.moko.mvvm.compose.getViewModel
@@ -18,11 +19,15 @@ class QuranScreen:Screen{
 
         QuranView(
             sour = quranViewModel.state.sour,
+            ajza = quranViewModel.state.ajza,
             onBackClick = {
                 navigator.pop()
             },
             onSouraItemClick = {
                 navigator.push(SouraScreen(it.id))
+            },
+            onJuzaItemClick = {
+                navigator.push(JuzaScreen(it.id))
             },
             onArchiveClick = {
                 navigator.push(SouraScreen(null))

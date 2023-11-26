@@ -7,7 +7,7 @@ data class SouraState(
     val isLoadingMedia:Boolean=true,
     val isLoading:Boolean=true,
     val souraId:Int=0,
-    val soura:Soura= Soura(-1,"", arrayListOf()),
+    val soura:Soura= Soura(-1,"","", arrayListOf()),
     val speed:String="",
     val isPlay:Boolean=false,
     val scrollPotion:Int=0,
