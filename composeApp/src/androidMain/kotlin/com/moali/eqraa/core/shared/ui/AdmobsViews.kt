@@ -20,7 +20,7 @@ actual fun AdmobBanner(modifier: Modifier) {
                 // on below line specifying ad unit id
                 // currently added a test ad unit id.
                 setAdSize(AdSize.BANNER)
-                adUnitId = "ca-app-pub-3940256099942544/6300978111"
+                adUnitId = "ca-app-pub-6570367924596598/4189214377"
                 // calling load ad to load our ad.
                 loadAd(AdRequest.Builder().build())
             }
@@ -41,7 +41,7 @@ actual fun InterstitialBanner(modifier: Modifier) {
                 // on below line specifying ad unit id
                 // currently added a test ad unit id.
                 setAdSize(AdSize.BANNER)
-                adUnitId = "ca-app-pub-3940256099942544/6300978111"
+                adUnitId = "ca-app-pub-6570367924596598/4189214377"
                 // calling load ad to load our ad.
                 loadAd(AdRequest.Builder().build())
             }

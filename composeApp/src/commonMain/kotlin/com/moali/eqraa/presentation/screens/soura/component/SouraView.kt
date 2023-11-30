@@ -269,7 +269,7 @@ fun RichTextComponent(soura: Soura) {
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura.soura.size),
+        inlineContent = generateInlineContent(soura),
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -277,12 +277,12 @@ fun RichTextComponent(soura: Soura) {
     )
 }
 
-fun generateInlineContent(size: Int): Map<String, InlineTextContent> {
+fun generateInlineContent(soura: Soura): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()
-    for (i in 0 until size) {
-        inlineContent["imageId${i+1}"] =
+    for (i in soura.soura) {
+        inlineContent["imageId${i.aya_id}"] =
             InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-            AyaNum(i+1)
+            AyaNum(i.aya_id)
             }
     }
     return inlineContent

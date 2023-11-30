@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Juza(
     var id:Int,
-    var ayat:MutableList<Aya>
+    var sour:MutableList<Soura>
 ) {
 
 }

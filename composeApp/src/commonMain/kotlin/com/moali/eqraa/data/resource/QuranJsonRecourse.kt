@@ -39,12 +39,9 @@ class QuranJsonRecourse {
                 {
                     if (j.sura_id==i)
                     {
-                        if (j.sura_id==i)
-                        {
-                            soura.name_ar=j.sura_name_ar
-                            soura.name=j.sura_name
-                            soura.id=j.sura_id
-                        }
+                        soura.name_ar=j.sura_name_ar
+                        soura.name=j.sura_name
+                        soura.id=j.sura_id
                         soura.soura.add(j)
                     }
                 }
@@ -76,21 +73,25 @@ class QuranJsonRecourse {
                 )
             )
         }
-        for (i in 1..30)
-        {
-            val ju= Juza(i, mutableListOf())
-            for (j in ayat)
-            {
-                if (j.juz_id==i)
-                {
-                    if (j.sura_id==i)
-                    {
-                        ju.id=j.juz_id
-                    }
-                    ju.ayat.add(j)
-                }
+
+        // Group by juz_id
+        val groupedByJuz = ayat.groupBy { it.juz_id }
+        // Iterate over each juz group
+        for ((juzId, ayatInJuz) in groupedByJuz) {
+            val juza=Juza(juzId, mutableListOf())
+            // Group by sura_id within each juz group
+            val groupedBySura = ayatInJuz.groupBy { it.sura_id }
+            // Iterate over each sura group within the juz
+            for ((suraId, ayatInSura) in groupedBySura) {
+                val soura=Soura(
+                    id = suraId,
+                    name_ar = ayatInSura[0].sura_name_ar,
+                    name =  ayatInSura[0].sura_name,
+                    soura = ayatInSura as MutableList<Aya>
+                )
+                juza.sour.add(soura)
             }
-            quranAjza.add(ju)
+            quranAjza.add(juza)
         }
         return quranAjza
     }

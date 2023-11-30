@@ -4,8 +4,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.utils.Dispatchers
+import com.moali.eqraa.core.utils.Constants
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
-import com.moali.eqraa.core.utils.Constants.ARCHIVE_SOURA_NAME_KEY
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_ID_KEY
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_JUZA
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA_JUZA_KEY
 import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.domain.usecases.GetQuranAsJuzaUseCase
 import com.russhwolf.settings.Settings
@@ -33,7 +37,7 @@ class JuzaViewModel: ViewModel(), KoinComponent {
             }
             is JuzaEvents.OnGetArchive->{
                 state = state.copy(
-                    juzaId = settings.getInt(ARCHIVE_SOURA_NAME_KEY,1),
+                    juzaId = settings.getInt(ARCHIVE_ID_KEY,1),
                     isLoading = true
                 )
                 getQuranScrollPostion()
@@ -41,7 +45,8 @@ class JuzaViewModel: ViewModel(), KoinComponent {
 
             is JuzaEvents.OnAddReferenceClick->{
                 settings.putInt(ARCHIVE_SCROLL_POSITION_KEY,events.scrollValue)
-                settings.putInt(ARCHIVE_SOURA_NAME_KEY,events.souraId)
+                settings.putInt(ARCHIVE_ID_KEY,events.juzaId)
+                settings.putString(ARCHIVE_TYPE_SURA_JUZA_KEY,ARCHIVE_TYPE_JUZA)
             }
 
         }

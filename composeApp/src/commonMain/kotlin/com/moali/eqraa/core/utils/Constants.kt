@@ -14,7 +14,12 @@ object Constants {
 
     //settings key
     const val ARCHIVE_SCROLL_POSITION_KEY="scrollPostion"
-    const val ARCHIVE_SOURA_NAME_KEY="souraName"
+    const val ARCHIVE_ID_KEY="id"
+    const val ARCHIVE_TYPE_SURA_JUZA_KEY="type"
+    const val ARCHIVE_TYPE_SURA="soura"
+    const val ARCHIVE_TYPE_JUZA="juza"
+
+
 
 
 

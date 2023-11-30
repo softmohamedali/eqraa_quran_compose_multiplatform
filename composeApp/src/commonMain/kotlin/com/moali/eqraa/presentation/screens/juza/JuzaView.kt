@@ -95,38 +95,40 @@ fun JuzaView(
                     modifier = Modifier.fillMaxSize().padding(5.dp)
                         .verticalScroll(scrollableState).weight(1f),
                 ) {
-                    Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.fillMaxWidth()
-                    ){
-                        Image(
-                            modifier=Modifier.fillMaxWidth(),
-                            painter = painterResource(Resources.images.border),
-                            contentDescription = null,
-                            contentScale = ContentScale.FillBounds
-                        )
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = juza.id.toString() ,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 24.sp,
-                        )
-                    }
 
-                    Spacer(modifier = Modifier.height(15.dp))
+                    juza.sour.forEach {
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        ){
+                            Image(
+                                modifier=Modifier.fillMaxWidth(),
+                                painter = painterResource(Resources.images.border),
+                                contentDescription = null,
+                                contentScale = ContentScale.FillBounds
+                            )
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = it.name_ar ,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 24.sp,
+                            )
+                        }
 
-                    if(juza.id!=9&&juza.id!=1){
-                        Text(
-                            modifier = Modifier.fillMaxWidth(),
-                            text = "  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم  " ,
-                            textAlign = TextAlign.Center,
-                            fontSize = 24.sp,
-                            fontWeight = FontWeight.Bold,
-                        )
+                        Spacer(modifier = Modifier.height(15.dp))
+                        if(it.id!=9&&it.id!=1){
+                            Text(
+                                modifier = Modifier.fillMaxWidth(),
+                                text = "  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم  " ,
+                                textAlign = TextAlign.Center,
+                                fontSize = 24.sp,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(15.dp))
+                        RichTextComponent(it)
                     }
-                    Spacer(modifier = Modifier.height(15.dp))
-                    RichTextComponent(juza)
                     Spacer(modifier = Modifier.height(15.dp))
                     Box(
                         contentAlignment = Alignment.Center,
@@ -163,7 +165,6 @@ fun JuzaView(
 }
 
 
-
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun AyaNum(number: Int) {
@@ -183,23 +184,23 @@ fun AyaNum(number: Int) {
     }
 }
 @Composable
-fun RichTextComponent(juza: Juza) {
+fun RichTextComponent(soura: Soura) {
     Text(
         text = buildAnnotatedString {
-            for (i in 0 until juza.ayat.size) {
+            for (i in soura.soura) {
                 withStyle(
                     style = SpanStyle(
                         fontSize = 25.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 ) {
-                    append(" ${juza.ayat[i].standard_full}")
-                    appendInlineContent(id = "imageId${i+1}")
+                    append(" ${i.standard_full}")
+                    appendInlineContent(id = "${i.sura_id}imageId${i.aya_id}")
                 }
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(juza.ayat.size),
+        inlineContent = generateInlineContent(soura),
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -207,15 +208,13 @@ fun RichTextComponent(juza: Juza) {
     )
 }
 
-fun generateInlineContent(size: Int): Map<String, InlineTextContent> {
+fun generateInlineContent(soura: Soura): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()
-    for (i in 0 until size) {
-        inlineContent["imageId${i+1}"] =
+    for (i in soura.soura) {
+        inlineContent["${i.sura_id}imageId${i.aya_id}"] =
             InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-            AyaNum(i+1)
+                AyaNum(i.aya_id)
             }
     }
     return inlineContent
 }
-
-

@@ -38,9 +38,9 @@ class JuzaScreen(
             },
             scrollPostion=state.scrollPotion,
 
-            onAddReferenceClick={ scrollValue,souraId ->
+            onAddReferenceClick={ scrollValue,juzaId ->
                 juzaViewModel.onEvent(
-                    JuzaEvents.OnAddReferenceClick(scrollValue = scrollValue, souraId = souraId)
+                    JuzaEvents.OnAddReferenceClick(scrollValue = scrollValue, juzaId = juzaId)
                 )
             }
         )

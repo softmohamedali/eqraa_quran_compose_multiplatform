@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
-import com.moali.eqraa.core.utils.Constants.ARCHIVE_SOURA_NAME_KEY
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_ID_KEY
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA
+import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA_JUZA_KEY
 import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
@@ -42,7 +44,7 @@ class SouraViewModel(
             }
             is SouraEvents.OnGetArchive->{
                 state = state.copy(
-                    souraId = settings.getInt(ARCHIVE_SOURA_NAME_KEY,1),
+                    souraId = settings.getInt(ARCHIVE_ID_KEY,1),
                     isLoadingMedia = true,
                     isLoading = true
                 )
@@ -109,7 +111,8 @@ class SouraViewModel(
 
             is SouraEvents.OnAddReferenceClick->{
                 settings.putInt(ARCHIVE_SCROLL_POSITION_KEY,events.scrollValue)
-                settings.putInt(ARCHIVE_SOURA_NAME_KEY,events.souraId)
+                settings.putInt(ARCHIVE_ID_KEY,events.souraId)
+                settings.putString(ARCHIVE_TYPE_SURA_JUZA_KEY,ARCHIVE_TYPE_SURA)
             }
 
         }
