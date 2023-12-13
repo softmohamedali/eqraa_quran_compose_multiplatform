@@ -22,6 +22,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.moali.eqraa.domain.models.Juza
 import com.moali.eqraa.domain.models.Soura
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun SouraItem(
@@ -57,7 +59,7 @@ fun SouraItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = soura.name_ar,
+            text = "${stringResource(SharedRes.strings.soura_)} ${soura.name_ar}",
             fontWeight = FontWeight.Bold
         )
 
@@ -99,7 +101,7 @@ fun JuzaItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = "Al Juza "+juza.id.toString(),
+            text = "${stringResource(SharedRes.strings.juza_)} ${juza.id}",
             fontWeight = FontWeight.Bold
         )
 

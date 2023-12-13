@@ -83,7 +83,7 @@ fun SouraView(
     Scaffold(
         topBar = {
             TopAppbar(
-                title = "سورة ${soura.name_ar}",
+                title = "${stringResource(SharedRes.strings.soura_)} ${soura.name_ar}",
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
