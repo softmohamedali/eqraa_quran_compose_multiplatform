@@ -35,6 +35,7 @@ class SouraScreen(
             isLoadingMedia=state.isLoadingMedia,
             isLoading=state.isLoading,
             soura = state.soura,
+            lang= state.lang,
             onBackClick = {
                 navigator.pop()
             },

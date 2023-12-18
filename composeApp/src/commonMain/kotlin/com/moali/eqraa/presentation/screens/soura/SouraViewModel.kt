@@ -30,7 +30,9 @@ class SouraViewModel(
     private val  settings: Settings by inject()
     var state by mutableStateOf(SouraState())
 
-
+    init {
+        state=state.copy(lang = servicesUtils.getCurrentLanguage())
+    }
 
     fun onEvent(events: SouraEvents) {
         when (events) {

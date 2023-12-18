@@ -1,7 +1,9 @@
 package com.moali.eqraa
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -95,6 +97,8 @@ class MainActivity : ComponentActivity() {
             Toast.makeText(this, "No web browser app found", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
 
 }

@@ -29,9 +29,15 @@
     <string name="restart">Neustarten</string>
     <string name="back">Zurück</string>
     <string name="sheskh_name">ElSheikh Mashari Alafaisi</string>
-
-    <string name="sour">Sour</string>
+    <string name="soura_">Sura</string>
+    <string name="juza_">Juz</string>
+    <string name="sour">Sura</string>
     <string name="ajza">Ajza</string>
-
+    <string name="share_support_link">Support-Link teilen</string>
+    <string name="go_to_support">Zum Support gehen</string>
+    <string name="support_app_owner">App-Eigentümer unterstützen</string>
+    <string name="support_message">
+        ☕ Liebst du die App? Unterstütze den Entwickler ☕ \n Hallo, \n Genießt du die App? Unser Entwickler hat persönliche Zeit und Mühe investiert, um sie für dich fantastisch zu machen. Wenn du ihre harte Arbeit schätzt, erwäge, ihnen einen Kaffee zu kaufen! Es ist eine kleine Geste, die einen langen Weg geht, um sie mit Energie zu versorgen und motiviert zu halten. \n ☕ Kaufe eine Tasse für den Entwickler \n Danke, dass du unabhängige Entwickler wie uns unterstützt! 🙌 \n Prost, \n Eqraa Quran Entwickler 🌟
+    </string>
 
 </resources>

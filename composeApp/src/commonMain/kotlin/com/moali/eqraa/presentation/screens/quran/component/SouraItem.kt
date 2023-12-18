@@ -27,7 +27,8 @@ import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
 fun SouraItem(
-    soura:Soura,
+    id:String,
+    name:String,
     onClick:()->Unit
 ) {
 
@@ -50,7 +51,7 @@ fun SouraItem(
                 tint = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = soura.id.toString(),
+                text = id,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -59,7 +60,7 @@ fun SouraItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = "${stringResource(SharedRes.strings.soura_)} ${soura.name_ar}",
+            text = "${stringResource(SharedRes.strings.soura_)} ${name}",
             fontWeight = FontWeight.Bold
         )
 
@@ -69,7 +70,7 @@ fun SouraItem(
 
 @Composable
 fun JuzaItem(
-    juza:Juza,
+    id:String,
     onClick:()->Unit
 ) {
 
@@ -92,7 +93,7 @@ fun JuzaItem(
                 tint = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = juza.id.toString(),
+                text =id,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onPrimary
             )
@@ -101,7 +102,7 @@ fun JuzaItem(
         Text(
             modifier = Modifier.weight(8f).padding(horizontal = 8.dp),
             textAlign = TextAlign.End,
-            text = "${stringResource(SharedRes.strings.juza_)} ${juza.id}",
+            text = "${stringResource(SharedRes.strings.juza_)} ${id}",
             fontWeight = FontWeight.Bold
         )
 

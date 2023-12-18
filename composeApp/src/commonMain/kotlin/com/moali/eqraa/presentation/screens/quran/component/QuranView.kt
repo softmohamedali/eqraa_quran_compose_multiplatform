@@ -40,9 +40,7 @@ val tabs = listOf(
     SharedRes.strings.ajza
 )
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class,
-    ExperimentalFoundationApi::class
-)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun QuranView(
     sour: List<Soura>,
@@ -51,6 +49,7 @@ fun QuranView(
     onJuzaItemClick: (Juza) -> Unit,
     onBackClick: () -> Unit,
     onArchiveClick: () -> Unit,
+    lang:String
 ) {
 
     var selectedTabIndex by remember {
@@ -111,11 +110,12 @@ fun QuranView(
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth().padding(10.dp)
                     ) {
-                        items(sour) {
+                        items(sour) {soura->
                             SouraItem(
-                                soura = it,
+                                id = soura.id.toString(),
+                                name = if (lang=="ar") soura.name_ar else soura.name,
                                 onClick = {
-                                    onSouraItemClick(it)
+                                    onSouraItemClick(soura)
                                 }
                             )
                         }
@@ -124,11 +124,11 @@ fun QuranView(
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth().padding(10.dp)
                     ) {
-                        items(ajza) {
+                        items(ajza) {juza->
                             JuzaItem(
-                                juza = it,
+                                id = juza.id.toString(),
                                 onClick = {
-                                    onJuzaItemClick(it)
+                                    onJuzaItemClick(juza)
                                 }
                             )
                         }

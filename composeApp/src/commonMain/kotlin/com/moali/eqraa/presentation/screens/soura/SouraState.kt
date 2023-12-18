@@ -16,5 +16,6 @@ data class SouraState(
     val totalProgress:Float=0.0f,
     val currentTime:String="00:00",
     val totalTime:String="00:00",
+    val lang:String="en",
 ) {
 }

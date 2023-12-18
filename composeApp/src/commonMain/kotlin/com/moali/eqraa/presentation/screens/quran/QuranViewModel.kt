@@ -3,6 +3,7 @@ package com.moali.eqraa.presentation.screens.quran
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.di.DIManualAppModule
@@ -18,11 +19,12 @@ class QuranViewModel :ViewModel(),KoinComponent{
     private val getQuranUseCase: GetQuranUseCase by inject()
     private val getQuranAsJuzaUseCase: GetQuranAsJuzaUseCase by inject()
     private val dispatchers: Dispatchers by inject()
-
+    private val servicesUtils: ServicesUtils by inject()
 
     var state by mutableStateOf(QuranState())
 
     init {
+        state=state.copy(lang = servicesUtils.getCurrentLanguage())
         getQuran()
         getQuranAsJuza()
     }

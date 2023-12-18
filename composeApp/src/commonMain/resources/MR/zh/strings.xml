@@ -29,9 +29,15 @@
     <string name="restart">重新开始</string>
     <string name="back">返回</string>
     <string name="sheskh_name">艾尔谢赫·马沙里·阿拉菲西</string>
-
-    <string name="sour">Sour</string>
-    <string name="ajza">Ajza</string>
-
+    <string name="soura_">苏拉</string>
+    <string name="juza_">居扎</string>
+    <string name="sour">苏拉</string>
+    <string name="ajza">阿兹哈</string>
+    <string name="share_support_link">分享支持链接</string>
+    <string name="go_to_support">转到支持</string>
+    <string name="support_app_owner">支持应用程序所有者</string>
+    <string name="support_message">
+        ☕ 喜欢这个应用程序吗？支持开发者 ☕ \n 你好，\n 享受这个应用程序吗？我们的开发者投入了个人的时间和努力，使其变得令人惊叹。如果你赞赏他们的辛勤工作，请考虑为他们买杯咖啡！这是一个小小的举动，对于保持他们充满活力和积极性有很长的道路。 \n ☕ 为开发者买一杯 \n 感谢支持像我们这样的独立开发者！ 🙌 \n 干杯，\n Eqraa Quran 开发者 🌟
+    </string>
 
 </resources>

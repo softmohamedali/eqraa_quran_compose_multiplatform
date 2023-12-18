@@ -25,6 +25,7 @@ class QuranScreen:Screen,KoinComponent{
         QuranView(
             sour = quranViewModel.state.sour,
             ajza = quranViewModel.state.ajza,
+            lang= quranViewModel.state.lang,
             onBackClick = {
                 navigator.pop()
             },

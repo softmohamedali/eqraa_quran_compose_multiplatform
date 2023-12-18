@@ -52,6 +52,7 @@ fun SouraView(
     isLoadingMedia:Boolean,
     isLoading:Boolean,
     soura: Soura,
+    lang:String,
     onBackClick: () -> Unit,
     isAudioPlayed: Boolean,
     currentProgress: Float=0f,
@@ -83,7 +84,7 @@ fun SouraView(
     Scaffold(
         topBar = {
             TopAppbar(
-                title = "${stringResource(SharedRes.strings.soura_)} ${soura.name_ar}",
+                title = "${stringResource(SharedRes.strings.soura_)} ${if (lang=="ar") soura.name_ar else soura.name}",
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
@@ -125,7 +126,7 @@ fun SouraView(
                         )
                         Text(
                             modifier = Modifier.fillMaxWidth(),
-                            text = soura.name_ar ,
+                            text = if (lang=="ar") soura.name_ar else soura.name ,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
                             fontSize = 24.sp,
@@ -145,7 +146,7 @@ fun SouraView(
                     }
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    RichTextComponent(soura)
+                    RichTextComponent(soura,lang)
 //                    Text(
 //                        modifier = Modifier.fillMaxWidth(),
 //                        text = supSouraAyat(soura.soura),
@@ -190,7 +191,7 @@ fun SouraView(
                         currentProgress = currentProgress,
                         onItemClick = onItemClick,
                         imageAudioPlay = "",
-                        title = soura.name_ar,
+                        title = if (lang=="ar") soura.name_ar else soura.name,
                         totalProgress = totalProgress,
                         artistName = stringResource(SharedRes.strings.sheskh_name),
                         onPreviousClick = onPreviousClick,
@@ -202,7 +203,7 @@ fun SouraView(
                     BottomAudioController(
                         isLoading=isLoadingMedia,
                         modifier = Modifier.weight(0.5f),
-                        title = soura.name_ar,
+                        title = if (lang=="ar") soura.name_ar else soura.name,
                         subTitle = stringResource(SharedRes.strings.sheskh_name),
                         isSongPlaying = isAudioPlayed,
                         currentProgress = currentProgress,
@@ -236,7 +237,7 @@ fun SouraView(
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun AyaNum(number: Int) {
+fun AyaNum(number: String) {
     Box(
         contentAlignment = Alignment.Center
     ){
@@ -246,14 +247,14 @@ fun AyaNum(number: Int) {
             contentDescription = null
         )
         Text(
-            number.toString(),
+            number,
             color = MaterialTheme.colorScheme.onSurface,
             fontSize = 15.sp
         )
     }
 }
 @Composable
-fun RichTextComponent(soura: Soura) {
+fun RichTextComponent(soura: Soura,lang:String) {
     Text(
         text = buildAnnotatedString {
             for (i in 0 until soura.soura.size) {
@@ -269,7 +270,7 @@ fun RichTextComponent(soura: Soura) {
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura),
+        inlineContent = generateInlineContent(soura,lang),
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -277,12 +278,12 @@ fun RichTextComponent(soura: Soura) {
     )
 }
 
-fun generateInlineContent(soura: Soura): Map<String, InlineTextContent> {
+fun generateInlineContent(soura: Soura,lang:String,): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()
     for (i in soura.soura) {
         inlineContent["imageId${i.aya_id}"] =
             InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-            AyaNum(i.aya_id)
+            AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
             }
     }
     return inlineContent

@@ -24,7 +24,7 @@ class QuranJsonRecourse {
                     Aya(
                         sura_id=jsonObject["sura_id"].toString().toInt(),
                         aya_id=jsonObject["aya_id"].toString().toInt(),
-                        aya_id_ar=jsonObject["aya_id_display"].toString(),
+                        aya_id_ar=jsonObject["aya_id_display"].toString().drop(1).dropLast(1),
                         sura_name=jsonObject["sura_name_en"].toString().drop(1).dropLast(1),
                         standard_full=jsonObject["standard_full"].toString().drop(1).dropLast(1),
                         juz_id=jsonObject["juz_id"].toString().toInt(),
@@ -65,7 +65,7 @@ class QuranJsonRecourse {
                 Aya(
                     sura_id=jsonObject["sura_id"].toString().toInt(),
                     aya_id=jsonObject["aya_id"].toString().toInt(),
-                    aya_id_ar=jsonObject["aya_id_display"].toString(),
+                    aya_id_ar=jsonObject["aya_id_display"].toString().drop(1).dropLast(1),
                     sura_name=jsonObject["sura_name_en"].toString().drop(1).dropLast(1),
                     standard_full=jsonObject["standard_full"].toString().drop(1).dropLast(1),
                     juz_id=jsonObject["juz_id"].toString().toInt(),

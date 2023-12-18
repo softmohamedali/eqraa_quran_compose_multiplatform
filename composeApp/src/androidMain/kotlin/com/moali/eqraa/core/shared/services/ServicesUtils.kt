@@ -62,6 +62,17 @@ actual class ServicesUtils (
     }
 
 
+    actual fun getCurrentLanguage(): String {
+        val resources = context.resources
+        val configuration = resources.configuration
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            return configuration.locales.get(0).language
+        } else {
+            @Suppress("DEPRECATION")
+            return configuration.locale.language
+        }
+    }
 
 
 }

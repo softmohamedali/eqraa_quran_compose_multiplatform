@@ -29,9 +29,16 @@
     <string name="restart">Reiniciar</string>
     <string name="back">Atrás</string>
     <string name="sheskh_name">ElSheikh Mashari Alafaisi</string>
-
-    <string name="sour">Sour</string>
+    <string name="soura_">Sura</string>
+    <string name="juza_">Juz</string>
+    <string name="sour">Sura</string>
     <string name="ajza">Ajza</string>
+    <string name="share_support_link">Compartir enlace de soporte</string>
+    <string name="go_to_support">Ir a Soporte</string>
+    <string name="support_app_owner">Soportar al dueño de la aplicación</string>
+    <string name="support_message">
+        ☕ ¿Te gusta la aplicación? Apoya al desarrollador ☕ \n Hola, \n ¿Disfrutando de la aplicación? Nuestro desarrollador ha dedicado tiempo y esfuerzo personal para hacerla increíble para ti. Si aprecias su arduo trabajo, ¡considera comprarle un café! Es un pequeño gesto que marca la diferencia para mantenerlos motivados. \n ☕ Compra una taza para el desarrollador \n ¡Gracias por apoyar a desarrolladores independientes como nosotros! 🙌 \n Saludos, \n Desarrollador de Eqraa Quran 🌟
+    </string>
 
 
 </resources>
