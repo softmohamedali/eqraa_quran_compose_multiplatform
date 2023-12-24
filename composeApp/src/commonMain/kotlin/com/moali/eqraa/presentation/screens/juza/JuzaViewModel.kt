@@ -3,6 +3,7 @@ package com.moali.eqraa.presentation.screens.juza
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.utils.Constants
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
@@ -22,9 +23,12 @@ class JuzaViewModel: ViewModel(), KoinComponent {
     private val getQuranJuzaUseCase: GetQuranAsJuzaUseCase by inject()
     private val dispatchers: Dispatchers by inject()
     private val  settings: Settings by inject()
+    private val servicesUtils: ServicesUtils by inject()
     var state by mutableStateOf(JuzaState())
 
-
+    init {
+        state=state.copy(lang = servicesUtils.getCurrentLanguage())
+    }
 
     fun onEvent(events: JuzaEvents) {
         when (events) {

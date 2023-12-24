@@ -14,12 +14,17 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -41,6 +46,8 @@ import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -50,6 +57,7 @@ import org.jetbrains.compose.resources.painterResource
 fun JuzaView(
     isLoading:Boolean,
     juza: Juza,
+    lang:String,
     onBackClick: () -> Unit,
     scrollPostion: Int=0,
     onAddReferenceClick:(scrollValue:Int,souraId:Int)->Unit
@@ -57,18 +65,21 @@ fun JuzaView(
 ) {
 
     val scrollableState = rememberScrollState()
-
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(scrollPostion){
         scrollableState.scrollTo(value = scrollPostion)
     }
 
     Scaffold(
+        snackbarHost={ SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppbar(
                 title = "juza ${juza.id}",
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
+                    val text= stringResource(SharedRes.strings.A_bookmark_has_been_saved)
                     Image(
                         modifier = Modifier.size(25.dp)
                             .clickable {
@@ -76,6 +87,9 @@ fun JuzaView(
                                     scrollableState.value,
                                     juza.id
                                 )
+                                coroutineScope.launch {
+                                    snackbarHostState.showSnackbar(text)
+                                }
                             },
                         painter = dev.icerock.moko.resources.compose.painterResource(SharedRes.images.bookmark),
                         contentDescription = null,
@@ -109,7 +123,7 @@ fun JuzaView(
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text = it.name_ar ,
+                                text =if (lang=="ar") it.name_ar else it.name  ,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 24.sp,
@@ -127,7 +141,7 @@ fun JuzaView(
                             )
                         }
                         Spacer(modifier = Modifier.height(15.dp))
-                        RichTextComponent(it)
+                        RichTextComponent(it,lang)
                     }
                     Spacer(modifier = Modifier.height(15.dp))
                     Box(
@@ -167,7 +181,7 @@ fun JuzaView(
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun AyaNum(number: Int) {
+fun AyaNum(number: String) {
     Box(
         contentAlignment = Alignment.Center
     ){
@@ -184,7 +198,7 @@ fun AyaNum(number: Int) {
     }
 }
 @Composable
-fun RichTextComponent(soura: Soura) {
+fun RichTextComponent(soura: Soura,lang:String) {
     Text(
         text = buildAnnotatedString {
             for (i in soura.soura) {
@@ -200,7 +214,7 @@ fun RichTextComponent(soura: Soura) {
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura),
+        inlineContent = generateInlineContent(soura,lang),
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -208,12 +222,12 @@ fun RichTextComponent(soura: Soura) {
     )
 }
 
-fun generateInlineContent(soura: Soura): Map<String, InlineTextContent> {
+fun generateInlineContent(soura: Soura,lang:String): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()
     for (i in soura.soura) {
         inlineContent["${i.sura_id}imageId${i.aya_id}"] =
             InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-                AyaNum(i.aya_id)
+                AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
             }
     }
     return inlineContent

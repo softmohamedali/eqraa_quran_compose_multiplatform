@@ -9,5 +9,6 @@ data class JuzaState(
     val juzaId:Int=0,
     val juza:Juza= Juza(-1, arrayListOf()),
     val scrollPotion:Int=0,
+    val lang:String="en",
 ) {
 }

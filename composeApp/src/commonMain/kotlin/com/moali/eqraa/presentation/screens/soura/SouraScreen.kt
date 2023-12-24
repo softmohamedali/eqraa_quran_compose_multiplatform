@@ -30,7 +30,6 @@ class SouraScreen(
         }
 
 
-
         SouraView(
             isLoadingMedia=state.isLoadingMedia,
             isLoading=state.isLoading,
@@ -80,6 +79,7 @@ class SouraScreen(
                 souraViewModel.onEvent(
                     SouraEvents.OnAddReferenceClick(scrollValue = scrollValue, souraId = souraId)
                 )
+
             }
         )
     }

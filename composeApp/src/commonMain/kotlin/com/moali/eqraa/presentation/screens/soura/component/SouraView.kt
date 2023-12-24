@@ -14,13 +14,18 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -42,6 +47,7 @@ import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.stringResource
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -76,18 +82,21 @@ fun SouraView(
 ) {
 
     val scrollableState = rememberScrollState()
-
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(scrollPostion){
         scrollableState.scrollTo(value = scrollPostion)
     }
 
     Scaffold(
+        snackbarHost={ SnackbarHost(snackbarHostState) },
         topBar = {
             TopAppbar(
                 title = "${stringResource(SharedRes.strings.soura_)} ${if (lang=="ar") soura.name_ar else soura.name}",
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
+                    val text=stringResource(SharedRes.strings.A_bookmark_has_been_saved)
                     Image(
                         modifier = Modifier.size(25.dp)
                             .clickable {
@@ -95,6 +104,9 @@ fun SouraView(
                                     scrollableState.value,
                                     soura.id
                                 )
+                                coroutineScope.launch {
+                                    snackbarHostState.showSnackbar(text)
+                                }
                             },
                         painter = dev.icerock.moko.resources.compose.painterResource(SharedRes.images.bookmark),
                         contentDescription = null,
@@ -278,7 +290,7 @@ fun RichTextComponent(soura: Soura,lang:String) {
     )
 }
 
-fun generateInlineContent(soura: Soura,lang:String,): Map<String, InlineTextContent> {
+fun generateInlineContent(soura: Soura,lang:String): Map<String, InlineTextContent> {
     val inlineContent = mutableMapOf<String, InlineTextContent>()
     for (i in soura.soura) {
         inlineContent["imageId${i.aya_id}"] =

@@ -36,6 +36,7 @@ class JuzaScreen(
             onBackClick = {
                 navigator.pop()
             },
+            lang= state.lang,
             scrollPostion=state.scrollPotion,
 
             onAddReferenceClick={ scrollValue,juzaId ->
