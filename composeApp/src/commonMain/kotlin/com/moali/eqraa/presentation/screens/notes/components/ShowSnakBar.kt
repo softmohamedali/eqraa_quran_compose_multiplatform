@@ -1,6 +1,7 @@
 package com.moali.eqraa.presentation.screens.notes.components
 
 import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -10,7 +11,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ShowSnakBar(
-    scaffoldState: ScaffoldState,
+    scaffoldState: SnackbarHostState,
     action: Action,
     title: String,
     undoDelteTask: (Action) -> Unit,
@@ -22,7 +23,7 @@ fun ShowSnakBar(
     {
         if (action != Action.NONE) {
             scope.launch {
-                val result = scaffoldState.snackbarHostState.showSnackbar(
+                val result = scaffoldState.showSnackbar(
                     message = massageText(
                         action = action,
                         title = title

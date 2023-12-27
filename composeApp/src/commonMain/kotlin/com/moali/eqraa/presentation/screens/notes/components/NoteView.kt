@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.ScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,18 +17,13 @@ import com.moali.eqraa.domain.models.Action
 import com.moali.eqraa.domain.models.Note
 import com.moali.eqraa.domain.models.Priority
 import com.moali.eqraa.domain.models.ToolBarState
-import com.moali.eqraa.presentation.screens.notes.components.FabListScreen
-import com.moali.eqraa.presentation.screens.notes.components.ListScreenContent
-import com.moali.eqraa.presentation.screens.notes.components.OthersMenu
-import com.moali.eqraa.presentation.screens.notes.components.PriorityMenu
-import com.moali.eqraa.presentation.screens.notes.components.ShowSnakBar
-import com.moali.eqraa.presentation.screens.notes.components.ToolBarListScreen
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NoteView(
     navToTaskScreen: (Note?) -> Unit,
-    scaffoldState: ScaffoldState,
+    scaffoldState: SnackbarHostState,
     action: Action,
     notes: List<Note>,
     searchNotes: List<Note>,
@@ -65,7 +62,7 @@ fun NoteView(
         }
     )
     Scaffold(
-        scaffoldState = scaffoldState,
+        snackbarHost={ SnackbarHost(scaffoldState) },
         content = {
             Box(
                 modifier = Modifier.fillMaxSize().padding(it)

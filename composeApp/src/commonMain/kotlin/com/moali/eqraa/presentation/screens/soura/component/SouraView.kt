@@ -17,6 +17,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -28,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
@@ -46,10 +50,10 @@ import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
@@ -131,10 +135,11 @@ fun SouraView(
                         modifier = Modifier.fillMaxWidth()
                     ){
                         Image(
-                            modifier=Modifier.fillMaxWidth(),
-                            painter = painterResource(Resources.images.border),
+                            modifier=Modifier.fillMaxWidth().height(70.dp),
+                            painter = painterResource(SharedRes.images.border2),
                             contentDescription = null,
-                            contentScale = ContentScale.FillBounds
+                            contentScale = ContentScale.FillBounds,
+                            colorFilter= ColorFilter.tint( LocalContentColor.current)
                         )
                         Text(
                             modifier = Modifier.fillMaxWidth(),
@@ -178,10 +183,11 @@ fun SouraView(
                         modifier = Modifier.fillMaxWidth()
                     ){
                         Image(
-                            modifier=Modifier.fillMaxWidth(),
-                            painter = painterResource(Resources.images.border),
+                            modifier=Modifier.fillMaxWidth().height(70.dp),
+                            painter = painterResource(SharedRes.images.border2),
                             contentDescription = null,
-                            contentScale = ContentScale.FillBounds
+                            contentScale = ContentScale.FillBounds,
+                            colorFilter= ColorFilter.tint( LocalContentColor.current)
                         )
                         Text(
                             modifier = Modifier.fillMaxWidth(),
@@ -255,13 +261,13 @@ fun AyaNum(number: String) {
     ){
         Image(
             modifier=Modifier.size(60.dp),
-            painter = painterResource(Resources.images.aya),
+            painter = org.jetbrains.compose.resources.painterResource(Resources.images.aya),
             contentDescription = null
         )
         Text(
             number,
-            color = MaterialTheme.colorScheme.onSurface,
-            fontSize = 15.sp
+            color = Color.Black,
+            fontSize = 15.sp,
         )
     }
 }

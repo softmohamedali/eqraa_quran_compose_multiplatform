@@ -10,17 +10,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -30,7 +27,6 @@ import androidx.compose.ui.unit.sp
 import com.moali.eqraa.domain.models.Priority
 import com.moali.eqraa.presentation.screens.notes.components.PriorityMenu
 import com.moali.eqraa.ui.theme.none
-import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
@@ -53,7 +49,7 @@ fun ProrityDropDownItem(
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.onPrimary)
+                .background(MaterialTheme.colorScheme.background)
                 .clickable {
                     onClick()
                 }
@@ -82,7 +78,7 @@ fun ProrityDropDownItem(
                     imageVector = Icons.Filled.ArrowDropDown,
                     contentDescription = "",
                     modifier = Modifier.rotate(iconArrowState),
-                    tint = MaterialTheme.colors.onPrimary
+                    tint = MaterialTheme.colorScheme.onPrimary
                 )
             }
 
@@ -94,7 +90,7 @@ fun ProrityDropDownItem(
                 },
                 modifier = Modifier
                     .fillMaxWidth(fraction = 0.94f)
-                    .background(MaterialTheme.colors.background),
+                    .background(MaterialTheme.colorScheme.background),
 
                 showNone = false
             )

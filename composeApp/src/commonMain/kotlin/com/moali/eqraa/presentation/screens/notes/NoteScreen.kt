@@ -1,7 +1,11 @@
 package com.moali.eqraa.presentation.screens.notes
 
 import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -32,6 +36,8 @@ class NoteScreen(
 
         val scaffoldState = rememberScaffoldState()
         val navigator = LocalNavigator.currentOrThrow
+        val snackbarHostState = remember { SnackbarHostState() }
+        val coroutineScope = rememberCoroutineScope()
 
 
         NoteView(
@@ -43,7 +49,7 @@ class NoteScreen(
                     )
                 )
             },
-            scaffoldState = scaffoldState,
+            scaffoldState = snackbarHostState,
             action = state.action,
             notes = state.allNotes,
             searchNotes = state.searchNotes,

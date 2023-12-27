@@ -85,11 +85,11 @@ fun QuranView(
             modifier = Modifier.fillMaxSize().padding(it)
         ){
             TabRow(
-                selectedTabIndex = selectedTabIndex
-            ) {
+                selectedTabIndex = selectedTabIndex,
+                ) {
                 tabs.forEachIndexed { index, stringResource ->
                     Tab(
-                        modifier=Modifier.background(MaterialTheme.colorScheme.onSecondary),
+                        modifier=Modifier.background(MaterialTheme.colorScheme.background),
                         selected = index == selectedTabIndex,
                         onClick ={
                             selectedTabIndex=index
