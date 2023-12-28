@@ -127,7 +127,7 @@ fun JuzaView(
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text =if (lang=="ar") it.name_ar else it.name  ,
+                                text =stringResource(SharedRes.strings.soura_)+" "+if (lang=="ar") it.name_ar else it.name  ,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 24.sp,
