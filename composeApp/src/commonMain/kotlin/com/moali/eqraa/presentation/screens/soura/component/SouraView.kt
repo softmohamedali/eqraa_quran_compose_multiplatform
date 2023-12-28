@@ -200,7 +200,7 @@ fun SouraView(
 
 
                 }
-                AdmobBanner(modifier=Modifier.fillMaxWidth())
+                AdmobBanner(modifier=Modifier.fillMaxWidth(),"ca-app-pub-1851487582524044/4421812345")
                 if (!isShowBottomSheet){
                     MiniAudioPlayer(
                         isLoading=isLoadingMedia,

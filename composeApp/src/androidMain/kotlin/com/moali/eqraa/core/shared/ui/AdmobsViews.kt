@@ -9,7 +9,7 @@ import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 
 @Composable
-actual fun AdmobBanner(modifier: Modifier) {
+actual fun AdmobBanner(modifier: Modifier,key:String) {
     AndroidView(
         modifier = Modifier.fillMaxWidth(),
         factory = { context ->
@@ -20,7 +20,7 @@ actual fun AdmobBanner(modifier: Modifier) {
                 // on below line specifying ad unit id
                 // currently added a test ad unit id.
                 setAdSize(AdSize.BANNER)
-                adUnitId = "ca-app-pub-1851487582524044/4421812345"
+                adUnitId = key
                 // calling load ad to load our ad.
                 loadAd(AdRequest.Builder().build())
             }

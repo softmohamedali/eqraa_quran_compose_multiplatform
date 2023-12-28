@@ -171,7 +171,7 @@ fun JuzaView(
 
 
                 }
-                AdmobBanner(modifier=Modifier.fillMaxWidth())
+                AdmobBanner(modifier=Modifier.fillMaxWidth(),"ca-app-pub-1851487582524044/2803486644")
             }
             if (isLoading){
                 LoadingLayer(color = MaterialTheme.colorScheme.primary)
