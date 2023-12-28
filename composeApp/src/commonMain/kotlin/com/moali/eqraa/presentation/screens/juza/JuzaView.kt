@@ -130,7 +130,6 @@ fun JuzaView(
                                 text =if (lang=="ar") it.name_ar else it.name  ,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
-                                color = Color.Black,
                                 fontSize = 24.sp,
                             )
                         }
