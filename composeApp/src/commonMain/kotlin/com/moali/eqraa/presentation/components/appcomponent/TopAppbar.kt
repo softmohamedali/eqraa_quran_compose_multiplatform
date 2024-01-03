@@ -20,8 +20,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.moali.eqraa.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,7 +41,8 @@ fun TopAppbar(
                 modifier = Modifier,
                 textAlign = TextAlign.End,
                 color = MaterialTheme.colorScheme.onPrimary,
-                style = Typography.headlineSmall
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold
             )
         },
         actions={

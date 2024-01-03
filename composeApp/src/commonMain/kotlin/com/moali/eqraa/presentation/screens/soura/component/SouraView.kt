@@ -146,7 +146,7 @@ fun SouraView(
                             text = stringResource(SharedRes.strings.soura_)+" "+if (lang=="ar") soura.name_ar else soura.name ,
                             textAlign = TextAlign.Center,
                             fontWeight = FontWeight.Bold,
-                            fontSize = 24.sp,
+                            fontSize = 20.sp,
                         )
                     }
 
