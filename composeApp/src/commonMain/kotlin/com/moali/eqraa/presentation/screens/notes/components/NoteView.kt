@@ -81,7 +81,7 @@ fun NoteView(
                             state = state,
                         )
                     }
-                    AdmobBanner(modifier=Modifier.fillMaxWidth(),"ca-app-pub-1851487582524044/5631409085")
+                    AdmobBanner(modifier=Modifier.fillMaxWidth(),"ca-app-pub-7258529419894486/8313390660")
                 }
                 if (isPriorityMenuShow) {
                     PriorityMenu(
@@ -123,3 +123,6 @@ fun NoteView(
         },
     )
 }
+
+
+
