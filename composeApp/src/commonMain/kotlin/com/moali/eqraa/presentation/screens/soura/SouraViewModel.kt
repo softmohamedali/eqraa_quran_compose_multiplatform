@@ -1,8 +1,12 @@
 package com.moali.eqraa.presentation.screens.soura
 
+import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.unit.sp
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
@@ -13,7 +17,10 @@ import com.moali.eqraa.core.utils.ResultState
 import com.moali.eqraa.di.DIManualAppModule
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerListener
 import com.moali.eqraa.domain.abstractions.media.MediaPlayerOperation
+import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.domain.usecases.GetQuranUseCase
+import com.moali.eqraa.presentation.screens.juza.JuzaMapData
+import com.moali.eqraa.presentation.screens.soura.component.AyaNum
 import com.russhwolf.settings.Settings
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.launch
@@ -152,9 +159,17 @@ class SouraViewModel(
             getQuranUseCase().collect{
                 when{
                     it is ResultState.IsSucsses ->{
+
                         state=state.copy(
                             soura = it.data!![state.souraId-1],
-                            isLoading = false
+                            isLoading = false,
+                            souraMap =  SouraMapData(
+                                soura = it.data!![state.souraId-1],
+                                souraMap = generateInlineContent(
+                                    it.data[state.souraId-1],
+                                    state.lang,
+                                )
+                            )
                         )
                         prepere()
                         mediaPlayerController.playPauseState.collect{
@@ -273,6 +288,16 @@ class SouraViewModel(
     }
 
 
+    fun generateInlineContent(soura: Soura, lang:String): Map<String, InlineTextContent> {
+        val inlineContent = mutableMapOf<String, InlineTextContent>()
+        for (i in soura.soura) {
+            inlineContent["imageId${i.aya_id}"] =
+                InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
+                    AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
+                }
+        }
+        return inlineContent
+    }
 
 
 }

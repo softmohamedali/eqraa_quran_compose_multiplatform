@@ -38,6 +38,7 @@ class SouraScreen(
             onBackClick = {
                 navigator.pop()
             },
+            souraMap=state.souraMap,
             scrollPostion=state.scrollPotion,
             isAudioPlayed = state.isPlay,
             currentProgress = state.currentAudioProgress,

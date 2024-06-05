@@ -1,6 +1,7 @@
 package com.moali.eqraa.presentation.screens.soura
 
 import com.moali.eqraa.domain.models.Soura
+import com.moali.eqraa.presentation.screens.juza.JuzaMapData
 
 data class SouraState(
     val error:String?=null,
@@ -17,5 +18,6 @@ data class SouraState(
     val currentTime:String="00:00",
     val totalTime:String="00:00",
     val lang:String="en",
+    val souraMap:SouraMapData = SouraMapData(),
 ) {
 }

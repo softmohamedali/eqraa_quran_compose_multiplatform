@@ -1,17 +1,20 @@
 package com.moali.eqraa.presentation.screens.juza
 
+import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.Placeholder
+import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.unit.sp
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.utils.Dispatchers
-import com.moali.eqraa.core.utils.Constants
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_SCROLL_POSITION_KEY
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_ID_KEY
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_JUZA
-import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA
 import com.moali.eqraa.core.utils.Constants.ARCHIVE_TYPE_SURA_JUZA_KEY
 import com.moali.eqraa.core.utils.ResultState
+import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.domain.usecases.GetQuranAsJuzaUseCase
 import com.russhwolf.settings.Settings
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -80,15 +83,27 @@ class JuzaViewModel: ViewModel(), KoinComponent {
     }
 
     private fun getQuranAsJuza(){
-        viewModelScope.launch(dispatchers.main) {
+        viewModelScope.launch(dispatchers.io) {
             getQuranJuzaUseCase().collect{
                 when{
                     it is ResultState.IsSucsses ->{
+                        val maps= mutableListOf<JuzaMapData>()
+                        it.data!![state.juzaId-1].sour.forEach {
+                            maps.add(
+                                JuzaMapData(
+                                    soura = it,
+                                    souraMap = generateInlineContent(
+                                        it,
+                                        state.lang,
+                                    )
+                                )
+                            )
+                        }
                         state=state.copy(
                             juza = it.data!![state.juzaId-1],
-                            isLoading = false
+                            isLoading = false,
+                            juzaMap = maps
                         )
-
                     }
                     it is ResultState.IsLoading ->{
 
@@ -105,6 +120,15 @@ class JuzaViewModel: ViewModel(), KoinComponent {
 
 
 
-
+    fun generateInlineContent(soura: Soura, lang:String): Map<String, InlineTextContent> {
+        val inlineContent = mutableMapOf<String, InlineTextContent>()
+        for (i in soura.soura) {
+            inlineContent["${i.sura_id}imageId${i.aya_id}"] =
+                InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
+                    AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
+                }
+        }
+        return inlineContent
+    }
 
 }

@@ -14,10 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -26,6 +23,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -33,8 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -46,9 +43,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.Resources
 import com.moali.eqraa.core.shared.ui.AdmobBanner
+import com.moali.eqraa.core.utils.log
 import com.moali.eqraa.domain.models.Soura
 import com.moali.eqraa.presentation.components.LoadingLayer
 import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
+import com.moali.eqraa.presentation.screens.soura.SouraMapData
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -65,6 +64,7 @@ fun SouraView(
     lang:String,
     onBackClick: () -> Unit,
     isAudioPlayed: Boolean,
+    souraMap: SouraMapData,
     currentProgress: Float=0f,
     totalProgress: Float=0f,
     scrollPostion: Int=0,
@@ -163,7 +163,7 @@ fun SouraView(
                     }
                     Spacer(modifier = Modifier.height(15.dp))
 
-                    RichTextComponent(soura,lang)
+                    RichTextComponent(soura, souraMap = souraMap.souraMap,lang)
 //                    Text(
 //                        modifier = Modifier.fillMaxWidth(),
 //                        text = supSouraAyat(soura.soura),
@@ -272,14 +272,35 @@ fun AyaNum(number: String) {
     }
 }
 @Composable
-fun RichTextComponent(soura: Soura,lang:String) {
-    Text(
-        text = buildAnnotatedString {
+fun RichTextComponent(soura: Soura,souraMap:Map<String, InlineTextContent>,lang:String) {
+
+    val asd= remember{ mutableStateOf<AnnotatedString>(AnnotatedString("")) }
+    log("----------------------ppppppppppppppppppppp")
+    LaunchedEffect(1){
+        log("----------------------p5555555555555555555p")
+        var x=buildAnnotatedString {
             for (i in 0 until soura.soura.size) {
+                log("----------------------${soura.soura[i].standard_full}")
                 withStyle(
                     style = SpanStyle(
                         fontSize = 25.sp,
-                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                ) {
+                    append(" ${soura.soura[i].standard_full}")
+                    appendInlineContent(id = "imageId${i+1}")
+                }
+            }
+        }
+        asd.value=x
+    }
+
+    Text(
+        text =buildAnnotatedString {
+            for (i in 0 until soura.soura.size) {
+                log("----------------------${soura.soura[i].standard_full}")
+                withStyle(
+                    style = SpanStyle(
+                        fontSize = 25.sp,
                     )
                 ) {
                     append(" ${soura.soura[i].standard_full}")
@@ -288,7 +309,7 @@ fun RichTextComponent(soura: Soura,lang:String) {
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura,lang),
+        inlineContent =souraMap ,
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -296,15 +317,5 @@ fun RichTextComponent(soura: Soura,lang:String) {
     )
 }
 
-fun generateInlineContent(soura: Soura,lang:String): Map<String, InlineTextContent> {
-    val inlineContent = mutableMapOf<String, InlineTextContent>()
-    for (i in soura.soura) {
-        inlineContent["imageId${i.aya_id}"] =
-            InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-            AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
-            }
-    }
-    return inlineContent
-}
 
 

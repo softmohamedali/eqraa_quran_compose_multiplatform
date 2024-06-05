@@ -210,8 +210,8 @@ android {
         targetSdk = 34
 
         applicationId = "com.moali.eqraa.androidApp"
-        versionCode = 3
-        versionName = "1.1.0"
+        versionCode = 5
+        versionName = "1.3.0"
     }
     sourceSets["main"].apply {
         manifest.srcFile("src/androidMain/AndroidManifest.xml")

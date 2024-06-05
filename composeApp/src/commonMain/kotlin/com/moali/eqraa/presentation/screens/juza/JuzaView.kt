@@ -14,7 +14,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.foundation.text.appendInlineContent
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -24,6 +23,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -31,8 +31,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.Placeholder
-import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -60,6 +58,7 @@ import org.jetbrains.compose.resources.ExperimentalResourceApi
 fun JuzaView(
     isLoading:Boolean,
     juza: Juza,
+    juzaMap: List<JuzaMapData>,
     lang:String,
     onBackClick: () -> Unit,
     scrollPostion: Int=0,
@@ -69,6 +68,7 @@ fun JuzaView(
 
     val scrollableState = rememberScrollState()
     val snackbarHostState = remember { SnackbarHostState() }
+    val islood = remember { mutableStateOf(true) }
     val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(scrollPostion){
         scrollableState.scrollTo(value = scrollPostion)
@@ -113,7 +113,7 @@ fun JuzaView(
                         .verticalScroll(scrollableState).weight(1f),
                 ) {
 
-                    juza.sour.forEach {
+                    juzaMap.forEach {
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier.fillMaxWidth()
@@ -127,7 +127,7 @@ fun JuzaView(
                             )
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
-                                text =stringResource(SharedRes.strings.soura_)+" "+if (lang=="ar") it.name_ar else it.name  ,
+                                text =stringResource(SharedRes.strings.soura_)+" "+if (lang=="ar") it.soura.name_ar else it.soura.name  ,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 24.sp,
@@ -135,7 +135,7 @@ fun JuzaView(
                         }
 
                         Spacer(modifier = Modifier.height(15.dp))
-                        if(it.id!=9&&it.id!=1){
+                        if(it.soura.id!=9&&it.soura.id!=1){
                             Text(
                                 modifier = Modifier.fillMaxWidth(),
                                 text = "  بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم  " ,
@@ -145,7 +145,10 @@ fun JuzaView(
                             )
                         }
                         Spacer(modifier = Modifier.height(15.dp))
-                        RichTextComponent(it,lang)
+
+                        RichTextComponent(it.soura,it.souraMap, onFinsh = {
+                            islood.value=false
+                        })
                     }
                     Spacer(modifier = Modifier.height(15.dp))
                     Box(
@@ -173,7 +176,7 @@ fun JuzaView(
                 }
                 AdmobBanner(modifier=Modifier.fillMaxWidth(),"ca-app-pub-7258529419894486/3061063987")
             }
-            if (isLoading){
+            if (isLoading||islood.value){
                 LoadingLayer(color = MaterialTheme.colorScheme.primary)
             }
 
@@ -204,23 +207,27 @@ fun AyaNum(number: String) {
     }
 }
 @Composable
-fun RichTextComponent(soura: Soura,lang:String) {
+fun RichTextComponent(soura: Soura,souraMap:Map<String, InlineTextContent>,onFinsh:()->Unit) {
+
     Text(
         text = buildAnnotatedString {
-            for (i in soura.soura) {
+            for (i in 0 until soura.soura.size) {
                 withStyle(
                     style = SpanStyle(
                         fontSize = 25.sp,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                 ) {
-                    append(" ${i.standard_full}")
-                    appendInlineContent(id = "${i.sura_id}imageId${i.aya_id}")
+                    append(" ${soura.soura[i].standard_full}")
+                    appendInlineContent(id = "${soura.soura[i].sura_id}imageId${soura.soura[i].aya_id}")
+                }
+                if (i==soura.soura.size-1){
+                    onFinsh()
                 }
             }
         },
         textAlign = TextAlign.Center,
-        inlineContent = generateInlineContent(soura,lang),
+        inlineContent = souraMap,
         lineHeight = 45.sp,
         style = TextStyle(
             textDirection = TextDirection.Rtl
@@ -228,13 +235,4 @@ fun RichTextComponent(soura: Soura,lang:String) {
     )
 }
 
-fun generateInlineContent(soura: Soura,lang:String): Map<String, InlineTextContent> {
-    val inlineContent = mutableMapOf<String, InlineTextContent>()
-    for (i in soura.soura) {
-        inlineContent["${i.sura_id}imageId${i.aya_id}"] =
-            InlineTextContent(Placeholder(50.sp, 50.sp, PlaceholderVerticalAlign.TextCenter)) {
-                AyaNum(number=if (lang=="ar") i.aya_id_ar else i.aya_id.toString())
-            }
-    }
-    return inlineContent
-}
+

@@ -38,7 +38,7 @@ class JuzaScreen(
             },
             lang= state.lang,
             scrollPostion=state.scrollPotion,
-
+            juzaMap = state.juzaMap,
             onAddReferenceClick={ scrollValue,juzaId ->
                 juzaViewModel.onEvent(
                     JuzaEvents.OnAddReferenceClick(scrollValue = scrollValue, juzaId = juzaId)
