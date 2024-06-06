@@ -5,5 +5,6 @@ enum class HomeEventsType {
     TO_QURAN,
     TO_AZKAR,
     TO_SALA,
-    TO_NOTE
+    TO_NOTE,
+    TO_COMPASS,
 }

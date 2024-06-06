@@ -2,13 +2,13 @@ package com.moali.eqraa.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.moali.eqraa.core.shared.utils.MediaPlayerController
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.local.DataStoreOperImp
+import com.moali.eqraa.core.shared.utils.CompassSensorManager
+import com.moali.eqraa.core.shared.utils.permission.AndroidPermissionCheck
 import com.moali.eqraa.data.local.SqlDNoteDataSource
 import com.moali.eqraa.database.EqraaDatabase
 import com.moali.eqraa.domain.abstractions.local.DataStoreOper
@@ -46,6 +46,9 @@ actual fun platformModule() =
 
 
         single<DataStoreOper> { DataStoreOperImp(get()) }
+
+        single { CompassSensorManager(get()) }
+        single { AndroidPermissionCheck(get()) }
 
         single { ServicesUtils(get(),get()) }
 
