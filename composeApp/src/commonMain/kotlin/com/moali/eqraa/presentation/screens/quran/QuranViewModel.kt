@@ -3,6 +3,7 @@ package com.moali.eqraa.presentation.screens.quran
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.input.TextFieldValue
 import com.moali.eqraa.core.shared.services.ServicesUtils
 import com.moali.eqraa.core.shared.utils.Dispatchers
 import com.moali.eqraa.core.utils.ResultState
@@ -30,7 +31,21 @@ class QuranViewModel :ViewModel(),KoinComponent{
     }
 
     fun onEvent(events: QuranEvents){
-
+        when(events){
+            QuranEvents.OnCloseSearchClick -> {
+                if (state.searchQuery.isNotEmpty()) {
+                    state=state.copy(searchQuery = "")
+                } else {
+                    state=state.copy(isSearchTopAppBar = false)
+                }
+            }
+            QuranEvents.OnSearchClick -> {
+                state=state.copy(isSearchTopAppBar = true)
+            }
+            is QuranEvents.OnSearchQueryChange -> {
+                state=state.copy(searchQuery = events.query)
+            }
+        }
     }
 
     private fun getQuran(){

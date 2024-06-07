@@ -7,4 +7,6 @@ data class QuranState(
     val sour:List<Soura> = emptyList(),
     val ajza:List<Juza> = emptyList(),
     val lang:String="en",
+    val searchQuery:String="",
+    val isSearchTopAppBar:Boolean=false,
 )

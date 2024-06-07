@@ -1,6 +1,9 @@
 package com.moali.eqraa.presentation.screens.compass
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -14,9 +17,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.moali.eqraa.Resources
+import com.moali.kmm_sharingresources.SharedRes
+import dev.icerock.moko.resources.compose.stringResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 
@@ -36,13 +43,25 @@ fun CompassView(
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(
-                text = "Al kobla",
-                style = MaterialTheme.typography.bodyLarge,
-                fontSize = 20.sp,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(16.dp)
-            )
+            Column (
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(
+                    text = stringResource(SharedRes.strings.Al_Qiblah_Direction),
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontSize = 25.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(16.dp)
+                )
+                Canvas(modifier = Modifier.size(100.dp)) {
+                    drawCircle(
+                        color = Color.Red,
+                        radius = 20f
+                    )
+                }
+            }
             Spacer(modifier = Modifier.height(40.dp))
             Image(
                 painter = org.jetbrains.compose.resources.painterResource(Resources.images.compass),

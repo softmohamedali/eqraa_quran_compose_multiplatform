@@ -29,11 +29,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.moali.eqraa.domain.models.Juza
 import com.moali.eqraa.domain.models.Soura
-import com.moali.eqraa.presentation.components.appcomponent.TopAppbar
 import com.moali.kmm_sharingresources.SharedRes
 import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 val tabs = listOf(
     SharedRes.strings.sour,
@@ -49,7 +47,12 @@ fun QuranView(
     onJuzaItemClick: (Juza) -> Unit,
     onBackClick: () -> Unit,
     onArchiveClick: () -> Unit,
-    lang:String
+    lang:String,
+    searchQuery:String,
+    isSearchTopAppBar:Boolean,
+    onSearchQueryChange:(String)->Unit,
+    onSearchClick:()->Unit,
+    onCloseClick:()->Unit
 ) {
 
     var selectedTabIndex by remember {
@@ -65,8 +68,9 @@ fun QuranView(
     }
     Scaffold(
         topBar = {
-            TopAppbar(
+            QuranTopAppbar(
                 title = stringResource(SharedRes.strings.alquran_alkarem),
+                searchQuery =searchQuery ,
                 onBackClick = { onBackClick() },
                 isBack = true,
                 actions = {
@@ -76,7 +80,11 @@ fun QuranView(
                         painter = painterResource(SharedRes.images.bookmark),
                         contentDescription = null,
                     )
-                }
+                },
+                onSearchQueryChange = onSearchQueryChange,
+                onCloseClick =onCloseClick,
+                onSearchClick =onSearchClick,
+                isSearching=isSearchTopAppBar,
             )
         }
     ) {

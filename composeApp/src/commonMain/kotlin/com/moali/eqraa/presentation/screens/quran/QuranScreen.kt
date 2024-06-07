@@ -1,6 +1,7 @@
 package com.moali.eqraa.presentation.screens.quran
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.text.input.TextFieldValue
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
@@ -26,6 +27,8 @@ class QuranScreen:Screen,KoinComponent{
             sour = quranViewModel.state.sour,
             ajza = quranViewModel.state.ajza,
             lang= quranViewModel.state.lang,
+            searchQuery = quranViewModel.state.searchQuery,
+            isSearchTopAppBar = quranViewModel.state.isSearchTopAppBar,
             onBackClick = {
                 navigator.pop()
             },
@@ -43,6 +46,16 @@ class QuranScreen:Screen,KoinComponent{
                     navigator.push(JuzaScreen(null))
                 }
 
+            },
+            onSearchQueryChange = {
+                quranViewModel.onEvent(QuranEvents.OnSearchQueryChange(it))
+            },
+            onCloseClick = {
+                quranViewModel.onEvent(QuranEvents.OnCloseSearchClick)
+
+            },
+            onSearchClick={
+                quranViewModel.onEvent(QuranEvents.OnSearchClick)
             }
         )
     }
