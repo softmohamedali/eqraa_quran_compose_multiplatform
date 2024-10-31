@@ -22,7 +22,7 @@ class CompassScreen(
     @Composable
     override fun Content() {
 
-//        val navigator = LocalNavigator.currentOrThrow
+        val navigator = LocalNavigator.currentOrThrow
         val compassViewModel = getViewModel("CompassViewModel", viewModelFactory { CompassViewModel() })
         val azimuth by compassViewModel.azimuth.collectAsState(0f)
         val qiblaDirection by compassViewModel.qiblaDirection.collectAsState(0.0)
@@ -30,7 +30,10 @@ class CompassScreen(
 
         CompassView(
             azimuth=azimuth,
-            qiblaDirection=qiblaDirection
+            qiblaDirection=qiblaDirection,
+            onBackClick = {
+                navigator.pop()
+            }
         )
     }
 

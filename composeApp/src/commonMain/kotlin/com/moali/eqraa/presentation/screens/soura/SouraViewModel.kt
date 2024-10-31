@@ -135,7 +135,14 @@ class SouraViewModel(
                         state=state.copy(
                             soura = it.data!![state.souraId-1],
                             scrollPotion = settings.getInt(ARCHIVE_SCROLL_POSITION_KEY,0),
-                            isLoading = false
+                            isLoading = false,
+                            souraMap =  SouraMapData(
+                                soura = it.data!![state.souraId-1],
+                                souraMap = generateInlineContent(
+                                    it.data[state.souraId-1],
+                                    state.lang,
+                                )
+                            )
                         )
                         prepere()
                         mediaPlayerController.playPauseState.collect{
