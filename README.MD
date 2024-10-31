@@ -1,34 +1,47 @@
-# Compose Multiplatform Application
+# 📖 Quran Compass & Notes 🕌 
 
-## Before running!
- - check your system with [KDoctor](https://github.com/Kotlin/kdoctor)
- - install JDK 8 on your machine
- - add `local.properties` file to the project root and set a path to Android SDK there
- - run `./gradlew podInstall` in the project root
+An Android application that combines essential tools for Muslims including a complete **Quran reader**, an organized **note-taking tool**, and a **Qibla compass** for finding the correct prayer direction. This app is designed with a sleek, user-friendly interface to enhance the spiritual and personal experience of the user.
 
-### Android
-To run the application on android device/emulator:  
- - open project in Android Studio and run imported android run configuration
+## 🌟 Features
 
-To build the application bundle:
- - run `./gradlew :composeApp:assembleDebug`
- - find `.apk` file in `composeApp/build/outputs/apk/debug/composeApp-debug.apk`
+- **Quran Section** 📜  
+  Access all **surahs** and **ajza** with a smooth and organized reader. Engage with the Quran through a responsive and clean design that allows easy navigation between chapters and verses.
 
-### Desktop
-Run the desktop application: `./gradlew :composeApp:run`
+- **Note-taking Tool** 📝  
+  A dedicated space to capture your thoughts, reminders, and inspirations. Filter notes by **importance** for easy access to your most valuable insights.
 
-### iOS
-To run the application on iPhone device/simulator:
- - Open `iosApp/iosApp.xcworkspace` in Xcode and run standard configuration
- - Or use [Kotlin Multiplatform Mobile plugin](https://plugins.jetbrains.com/plugin/14936-kotlin-multiplatform-mobile) for Android Studio
+- **Qibla Compass** 🧭  
+  Utilize the compass feature to locate the **Qibla** direction accurately, ensuring you’re always oriented for prayer no matter where you are.
 
-### Browser
-Run the browser application: `./gradlew :composeApp:jsBrowserDevelopmentRun`
+## 🛠️ Tech Stack & Architecture
 
+This app leverages the latest technology to create a seamless, multi-platform experience:
+  
+- **Foreground Service**: To maintain the **Media Player Controller notification** for Quran audio playback.
+- **Compose Multiplatform**: Ensures a **shared UI across platforms**, making the app more adaptable and maintainable.
+- **Voyager**: Handles **intuitive navigation**.
+- **Koin DI**: Simplifies **dependency injection** for modular and testable code.
+- **MVI Architecture Pattern**: Offers a **unidirectional data flow** and state management.
+- **Clean Architecture**: Organizes code into distinct layers, ensuring a clear separation of concerns.
+- **ViewModel & Coroutine**: Enhances UI logic handling and asynchronous operations.
+- **SQLDelight**: Provides **robust data persistence** and management.
+- **Moko**: Manages shared resources, such as strings, colors, and themes across platforms.
 
+## 🎨 Screenshots
 
+| Home Screen  | Quran Section | Notes Filter |
+|--------------|---------------|--------------|
+| ![Home Screen](link_to_home_screen_image) | ![Quran Section](link_to_quran_section_image) | ![Notes Filter](link_to_notes_filter_image) |
 
-Kotlin	1.8.20
-Compose	1.4.0
-Gradle	8.1.1
-Android Gradle Plugin	8.0.1
+| Qibla Compass | Media Player | Settings |
+|---------------|--------------|----------|
+| ![Qibla Compass](link_to_qibla_compass_image) | ![Media Player](link_to_media_player_image) | ![Settings](link_to_settings_image) |
+
+## 🚀 Getting Started
+
+To start exploring and customizing this project:
+
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/yourusername/quran-compass-notes.git
+   cd quran-compass-notes
