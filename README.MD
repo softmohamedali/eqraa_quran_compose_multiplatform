@@ -39,11 +39,11 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
  <img src="pics/pic1.jpeg" alt="Home Screen" width="200"/>  <img src="pics/pic2.jpeg" alt="Quran Section" width="200"/>  <img src="pics/pic3.jpeg" alt="Notes Filter" width="200"/>  <img src="pics/pic4.jpeg" alt="Notes Filter" width="200"/> 
 
- <img src="pics/pic01.png" alt="Home Screen" width="200"/>  <img src="pics/pic02.png" alt="Quran Section" width="200"/>  <img src="pics/pic03.png" alt="Notes Filter" width="200"/>  <img src="pics/png.jpeg" alt="Notes Filter" width="200"/> 
+ <img src="pics/pic01.jpg" alt="Home Screen" width="200"/>  <img src="pics/pic02.jpg" alt="Quran Section" width="200"/>  <img src="pics/pic03.jpg" alt="Notes Filter" width="200"/>  <img src="pics/png.jpg" alt="Notes Filter" width="200"/> 
 
 <img src="pics/pic05.png" alt="Home Screen" width="200"/>  <img src="pics/pic06.png" alt="Quran Section" width="200"/>  <img src="pics/pic07.png" alt="Notes Filter" width="200"/>  <img src="pics/pic08.png" alt="Notes Filter" width="200"/> 
 
-<img src="pics/pic09.png" alt="Home Screen" width="200"/>  <img src="pics/pic011.png" alt="Quran Section" width="200"/> 
+<img src="pics/pic09.jpg" alt="Home Screen" width="200"/>  <img src="pics/pic011.jpg" alt="Quran Section" width="200"/> 
 
 | Feature Overview Video |
 |------------------------|
