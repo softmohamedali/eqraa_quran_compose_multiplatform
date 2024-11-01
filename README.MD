@@ -37,6 +37,11 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 |---------------|--------------|----------|
 | <img src="link_to_qibla_compass_image" alt="Qibla Compass" width="200"/> | <img src="link_to_media_player_image" alt="Media Player" width="200"/> | <img src="link_to_settings_image" alt="Settings" width="200"/> |
 
+
+| Feature Overview Video |
+|------------------------|
+| [![Watch the video](https://img.youtube.com/vi/your_video_id/maxresdefault.jpg)](https://www.youtube.com/watch?v=your_video_id) |
+
 ## 🚀 Getting Started
 
 To start exploring and customizing this project:
