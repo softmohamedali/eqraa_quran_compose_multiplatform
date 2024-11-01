@@ -37,11 +37,11 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
 |--------------|---------------|--------------|
 
-| <img src="pics/pic1.jpeg" alt="Home Screen" width="200"/> | <img src="pics/pic2.jpeg" alt="Quran Section" width="200"/> | <img src="pics/pic3.jpeg" alt="Notes Filter" width="200"/> | <img src="pics/pic4.jpeg" alt="Notes Filter" width="200"/> |
+ <img src="pics/pic1.jpeg" alt="Home Screen" width="200"/>  <img src="pics/pic2.jpeg" alt="Quran Section" width="200"/>  <img src="pics/pic3.jpeg" alt="Notes Filter" width="200"/>  <img src="pics/pic4.jpeg" alt="Notes Filter" width="200"/> 
 
-| Qibla Compass | Media Player | Settings |
-|---------------|--------------|----------|
-| <img src="link_to_qibla_compass_image" alt="Qibla Compass" width="200"/> | <img src="link_to_media_player_image" alt="Media Player" width="200"/> | <img src="link_to_settings_image" alt="Settings" width="200"/> |
+ <img src="pics/pic01.jpeg" alt="Home Screen" width="200"/>  <img src="pics/pic02.jpeg" alt="Quran Section" width="200"/>  <img src="pics/pic03.jpeg" alt="Notes Filter" width="200"/>  <img src="pics/pic04.jpeg" alt="Notes Filter" width="200"/> 
+
+<img src="pics/pic05.jpeg" alt="Home Screen" width="200"/>  <img src="pics/pic06.jpeg" alt="Quran Section" width="200"/>  <img src="pics/pic07.jpeg" alt="Notes Filter" width="200"/>  <img src="pics/pic08.jpeg" alt="Notes Filter" width="200"/> 
 
 
 | Feature Overview Video |
