@@ -31,7 +31,7 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
 | Home Screen  | Quran Section | Notes Filter |
 |--------------|---------------|--------------|
-| ![Home Screen](pics/banner.jpg) | ![Quran Section](link_to_quran_section_image) | ![Notes Filter](link_to_notes_filter_image) |
+| ![Home Screen](pics/banner.png) | ![Quran Section](link_to_quran_section_image) | ![Notes Filter](link_to_notes_filter_image) |
 
 | Qibla Compass | Media Player | Settings |
 |---------------|--------------|----------|
