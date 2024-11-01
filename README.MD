@@ -41,7 +41,7 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
  <img src="pics/pic01.jpg" alt="Home Screen" width="200"/>  <img src="pics/pic02.jpg" alt="Quran Section" width="200"/>  <img src="pics/pic03.jpg" alt="Notes Filter" width="200"/>  <img src="pics/png.jpg" alt="Notes Filter" width="200"/> 
 
-<img src="pics/pic05.png" alt="Home Screen" width="200"/>  <img src="pics/pic06.png" alt="Quran Section" width="200"/>  <img src="pics/pic07.png" alt="Notes Filter" width="200"/>  <img src="pics/pic08.png" alt="Notes Filter" width="200"/> 
+<img src="pics/pic05.png" alt="Home Screen" width="200"/>  <img src="pics/pic06.jpg" alt="Quran Section" width="200"/>  <img src="pics/pic07.png" alt="Notes Filter" width="200"/>  <img src="pics/pic08.jpg" alt="Notes Filter" width="200"/> 
 
 <img src="pics/pic09.jpg" alt="Home Screen" width="200"/>  <img src="pics/pic011.jpg" alt="Quran Section" width="200"/> 
 
