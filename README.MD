@@ -35,7 +35,7 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
 | Qibla Compass | Media Player | Settings |
 |---------------|--------------|----------|
-| ![Qibla Compass](link_to_qibla_compass_image) | ![Media Player](link_to_media_player_image) | ![Settings](link_to_settings_image) |
+| ![Qibla Compass]() | ![Media Player](link_to_media_player_image) | ![Settings](link_to_settings_image) |
 
 ## 🚀 Getting Started
 
