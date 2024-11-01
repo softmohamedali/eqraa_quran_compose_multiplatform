@@ -30,6 +30,7 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 ## 🎨 Screenshots
 
 |--------------|---------------|--------------|
+
 | <img src="pics/pic1.jpeg" alt="Home Screen" width="200"/> | <img src="pics/pic2.jpeg" alt="Quran Section" width="200"/> | <img src="pics/pic3.jpeg" alt="Notes Filter" width="200"/> |
 
 | Qibla Compass | Media Player | Settings |
