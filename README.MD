@@ -30,11 +30,11 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 ## 🎨 Screenshots
 
 |--------------|---------------|--------------|
-| ![Home Screen](pics/pic1.jpeg) | ![Quran Section](pics/pic2.jpeg) | ![Notes Filter](pics/pic3.jpeg) |
+| <img src="pics/pic1.jpeg" alt="Home Screen" width="200"/> | <img src="pics/pic2.jpeg" alt="Quran Section" width="200"/> | <img src="pics/pic3.jpeg" alt="Notes Filter" width="200"/> |
 
 | Qibla Compass | Media Player | Settings |
 |---------------|--------------|----------|
-| ![Qibla Compass]() | ![Media Player](link_to_media_player_image) | ![Settings](link_to_settings_image) |
+| <img src="link_to_qibla_compass_image" alt="Qibla Compass" width="200"/> | <img src="link_to_media_player_image" alt="Media Player" width="200"/> | <img src="link_to_settings_image" alt="Settings" width="200"/> |
 
 ## 🚀 Getting Started
 
