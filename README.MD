@@ -13,6 +13,12 @@ An Android application that combines essential tools for Muslims including a com
 - **Qibla Compass** 🧭  
   Utilize the compass feature to locate the **Qibla** direction accurately, ensuring you’re always oriented for prayer no matter where you are.
 
+- **Floating Sebha** 🧭  
+
+- **Home Component Sebha** 🧭  
+  
+
+
 ## 🛠️ Tech Stack & Architecture
 
 This app leverages the latest technology to create a seamless, multi-platform experience:
