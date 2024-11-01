@@ -40,7 +40,7 @@ This app leverages the latest technology to create a seamless, multi-platform ex
 
 | Feature Overview Video |
 |------------------------|
-| [![Watch the video](https://img.youtube.com/vi/your_video_id/maxresdefault.jpg)](https://www.youtube.com/watch?v=your_video_id) |
+| [![Watch the video]](https://www.youtube.com/watch?si=Q_8IgXTKNUh-7QHD&v=inmFwCbQsB8&feature=youtu.be) |
 
 ## 🚀 Getting Started
 
