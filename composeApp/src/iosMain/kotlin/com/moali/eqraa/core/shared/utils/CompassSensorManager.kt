@@ -1,7 +1,9 @@
 package com.moali.eqraa.core.shared.utils
 
+import kotlinx.coroutines.flow.Flow
+
 actual class CompassSensorManager {
-    actual var azimuth: Float
+    var azimuth: Float
         get() = TODO("Not yet implemented")
         set(value) {}
 
@@ -9,6 +11,14 @@ actual class CompassSensorManager {
     }
 
     actual fun stop() {
+    }
+
+    actual fun azimuth(): Flow<Float> {
+        TODO("Not yet implemented")
+    }
+
+    actual fun qiblaDirection(): Flow<Double> {
+        TODO("Not yet implemented")
     }
 
 }

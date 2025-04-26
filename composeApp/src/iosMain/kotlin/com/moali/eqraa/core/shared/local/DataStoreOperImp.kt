@@ -30,4 +30,12 @@ actual class DataStoreOperImp: DataStoreOper {
     override suspend fun saveTasbeha(tasbehaId: Int) {
         TODO("Not yet implemented")
     }
+
+    override suspend fun sendAction(actionId: Int?) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun listenMainComponentAction(): Flow<Int?> {
+        TODO("Not yet implemented")
+    }
 }

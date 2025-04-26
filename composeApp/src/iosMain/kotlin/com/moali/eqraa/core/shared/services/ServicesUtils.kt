@@ -17,4 +17,8 @@ actual class ServicesUtils {
 
     actual suspend fun startMainComponentAction(mainComponentActionId: Int) {
     }
+
+    actual fun getCurrentLanguage(): String {
+        TODO("Not yet implemented")
+    }
 }
